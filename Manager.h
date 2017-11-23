@@ -16,22 +16,42 @@
  */
 
 /*
- * main.cpp
+ * Manager.h
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
-#include "Manager.h"
+#ifndef MANAGER_H_
+#define MANAGER_H_
 
-using namespace TBT;
+#include <vector>
+using namespace std;
 
-int main(int argc, char* argv[])
+#include "Types.h"
+
+namespace TBT
 {
-	Manager* pManager = new Manager();
 
-	delete pManager;
+	class Interface;
 
-	return 0;
-}
+	class Manager
+	{
+		public:
+			Manager();
+			virtual ~Manager();
 
+			void setPowerState(PowerState newState);
+
+		protected:
+
+		private:
+			PowerState	m_PowerState;
+
+			vector<Interface*>	m_Interfaces;
+
+	};	/* class Manager */
+
+} /* namespace TBT */
+
+#endif /* MANAGER_H_ */

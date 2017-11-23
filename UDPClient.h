@@ -16,22 +16,38 @@
  */
 
 /*
- * main.cpp
+ * UDPClient.h
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
-#include "Manager.h"
+#ifndef UDPCLIENT_H_
+#define UDPCLIENT_H_
 
-using namespace TBT;
+#include "Client.h"
+#include "UDPInterface.h"
 
-int main(int argc, char* argv[])
+namespace TBT
 {
-	Manager* pManager = new Manager();
 
-	delete pManager;
+	class UDPClient: public Client
+	{
+		public:
+			UDPClient(UDPInterface* pinterface, const sockaddr_in& address);
+			virtual ~UDPClient();
 
-	return 0;
-}
+			virtual void broadcastPowerStateChange(PowerState newState);
 
+			const sockaddr_in& getAddress(void) { return m_Address; }
+
+		protected:
+			const sockaddr_in	m_Address;
+
+		private:
+
+	};	/*	class UDPClient */
+
+} /* namespace TBT */
+
+#endif /* UDPCLIENT_H_ */

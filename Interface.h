@@ -16,22 +16,36 @@
  */
 
 /*
- * main.cpp
+ * Interface.h
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
+#ifndef INTERFACE_H_
+#define INTERFACE_H_
+
 #include "Manager.h"
 
-using namespace TBT;
-
-int main(int argc, char* argv[])
+namespace TBT
 {
-	Manager* pManager = new Manager();
 
-	delete pManager;
+	class Interface
+	{
+		public:
+			Interface(Manager* pManager);
+			virtual ~Interface();
 
-	return 0;
-}
+			//	pure virtuals
+			virtual void broadcastPowerStateChange(PowerState newState) = 0;
 
+		protected:
+			Manager*	m_pManager;
+
+		private:
+
+	};	/* class Interface */
+
+} /* namespace TBT */
+
+#endif /* INTERFACE_H_ */

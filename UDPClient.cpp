@@ -16,22 +16,32 @@
  */
 
 /*
- * main.cpp
+ * UDPClient.cpp
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
-#include "Manager.h"
+#include "UDPClient.h"
 
-using namespace TBT;
-
-int main(int argc, char* argv[])
+namespace TBT
 {
-	Manager* pManager = new Manager();
 
-	delete pManager;
+	UDPClient::UDPClient(UDPInterface* pinterface, const sockaddr_in& address)
+	:	Client(pinterface)
+	,	m_Address(address)
+	{
+		// TODO Auto-generated constructor stub
+	}
 
-	return 0;
-}
+	UDPClient::~UDPClient()
+	{
+		// TODO Auto-generated destructor stub
+	}
 
+	void UDPClient::broadcastPowerStateChange(PowerState newState)
+	{
+
+	}
+
+} /* namespace TBT */

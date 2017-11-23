@@ -16,22 +16,26 @@
  */
 
 /*
- * main.cpp
+ * Client.cpp
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
-#include "Manager.h"
+#include "Client.h"
 
-using namespace TBT;
-
-int main(int argc, char* argv[])
+namespace TBT
 {
-	Manager* pManager = new Manager();
 
-	delete pManager;
+	Client::Client(Interface* pInterface)
+	:	m_pInterface(pInterface)
+	{
+		// TODO Auto-generated constructor stub
+	}
 
-	return 0;
-}
+	Client::~Client()
+	{
+		// TODO Auto-generated destructor stub
+	}
 
+} /* namespace TBT */

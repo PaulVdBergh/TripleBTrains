@@ -16,22 +16,39 @@
  */
 
 /*
- * main.cpp
+ * Manager.cpp
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
 #include "Manager.h"
+#include "Interface.h"
 
-using namespace TBT;
-
-int main(int argc, char* argv[])
+namespace TBT
 {
-	Manager* pManager = new Manager();
 
-	delete pManager;
+	Manager::Manager()
+	:	m_PowerState(PowerOff)
+	{
+		// TODO Auto-generated constructor stub
+	}
 
-	return 0;
-}
+	Manager::~Manager()
+	{
+		// TODO Auto-generated destructor stub
+	}
 
+	void Manager::setPowerState(PowerState newState)
+	{
+		if(m_PowerState != newState)
+		{
+			m_PowerState = newState;
+			for(auto interface : m_Interfaces)
+			{
+				interface->broadcastPowerStateChange(m_PowerState);
+			}
+		}
+	}
+
+} /* namespace TBT */

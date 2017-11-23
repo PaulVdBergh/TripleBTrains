@@ -16,22 +16,23 @@
  */
 
 /*
- * main.cpp
+ * Types.h
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
-#include "Manager.h"
+#ifndef TYPES_H_
+#define TYPES_H_
 
-using namespace TBT;
-
-int main(int argc, char* argv[])
+namespace TBT
 {
-	Manager* pManager = new Manager();
+	enum PowerState
+	{
+		PowerOn,
+		PowerOff
+	};
 
-	delete pManager;
+}	/* namespace TBT */
 
-	return 0;
-}
-
+#endif /* TYPES_H_ */

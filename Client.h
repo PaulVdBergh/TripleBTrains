@@ -16,22 +16,36 @@
  */
 
 /*
- * main.cpp
+ * Client.h
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
-#include "Manager.h"
+#ifndef CLIENT_H_
+#define CLIENT_H_
 
-using namespace TBT;
+#include "Interface.h"
 
-int main(int argc, char* argv[])
+namespace TBT
 {
-	Manager* pManager = new Manager();
 
-	delete pManager;
+	class Client
+	{
+		public:
+			Client(Interface* pInterface);
+			virtual ~Client();
 
-	return 0;
-}
+			//	pure virtuals
+			virtual void broadcastPowerStateChange(PowerState newState) = 0;
 
+		protected:
+			Interface*	m_pInterface;
+
+		private:
+
+	};	/* class Client */
+
+} /* namespace TBT */
+
+#endif /* CLIENT_H_ */

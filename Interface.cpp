@@ -16,22 +16,27 @@
  */
 
 /*
- * main.cpp
+ * Interface.cpp
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
-#include "Manager.h"
+#include "Interface.h"
 
-using namespace TBT;
-
-int main(int argc, char* argv[])
+namespace TBT
 {
-	Manager* pManager = new Manager();
 
-	delete pManager;
+	Interface::Interface(Manager* pManager)
+	:	m_pManager(pManager)
+	{
+	// TODO Auto-generated constructor stub
 
-	return 0;
-}
+	}
 
+	Interface::~Interface()
+	{
+	// TODO Auto-generated destructor stub
+	}
+
+} /* namespace TBT */
