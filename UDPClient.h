@@ -39,6 +39,7 @@ namespace TBT
 
 			virtual void 		broadcastPowerStateChange(PowerState newState);
 			virtual void		broadcastLocInfoChanged(LocDecoder* pLoc);
+			virtual void		broadcastEmergencyStop(bool state);
 
 			const sockaddr_in& 	getAddress(void) { return m_Address; }
 			uint32_t 			getBroadcastFlags(void);

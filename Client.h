@@ -41,6 +41,7 @@ namespace TBT
 			//	pure virtuals
 			virtual void broadcastPowerStateChange(PowerState newState) = 0;
 			virtual void broadcastLocInfoChanged(LocDecoder* pLoc) = 0;
+			virtual void broadcastEmergencyStop(bool state) = 0;
 
 		protected:
 			ClientInterface*	m_pInterface;

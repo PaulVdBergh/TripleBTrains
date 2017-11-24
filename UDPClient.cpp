@@ -64,6 +64,15 @@ namespace TBT
 		sendto(m_MySocket, pMsg, pMsg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
 	}
 
+	void UDPClient::broadcastEmergencyStop(bool state)
+	{
+		if(state)
+		{
+			uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x81, 0x00, 0x81};
+			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+		}
+	}
+
 	uint32_t UDPClient::getBroadcastFlags()
 	{
 		return m_BroadcastFlags;

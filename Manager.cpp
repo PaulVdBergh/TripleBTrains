@@ -112,11 +112,11 @@ namespace TBT
 				lock_guard<recursive_mutex> guard(m_MSystemState);
 				if(newState)
 				{
-					m_SystemState.CentralState &= ~(csEmergencyStop);
+					m_SystemState.CentralState |= csEmergencyStop;
 				}
 				else
 				{
-					m_SystemState.CentralState |= csEmergencyStop;
+					m_SystemState.CentralState &= ~(csEmergencyStop);
 				}
 			}
 

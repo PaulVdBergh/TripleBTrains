@@ -97,7 +97,16 @@ namespace TBT
 
 	void XpressNetClientInterface::broadcastPowerStateChange(PowerState newState)
 	{
-		//	TODO implementation
+		if(PowerState::PowerOff == newState)
+		{
+			uint8_t msg[] = {0x05, 0x60, 0x61, 0x00, 0x61};
+			write(m_fdSerial, msg, msg[0]);
+		}
+		else
+		{
+			uint8_t msg[] = {0x05, 0x60, 0x61, 0x01, 0x60};
+			write(m_fdSerial, msg, msg[0]);
+		}
 	}
 
 	void XpressNetClientInterface::broadcastLocInfoChanged(LocDecoder* pLoc)
@@ -107,7 +116,11 @@ namespace TBT
 
 	void XpressNetClientInterface::broadcastEmergencyStop(bool state)
 	{
-		//	TODO	implementation
+		if(true == state)
+		{
+			uint8_t msg[] = {0x05, 0x60, 0x81, 0x00, 0x81};
+			write(m_fdSerial, msg, msg[0]);
+		}
 	}
 
 	XpressNetClient* XpressNetClientInterface::findClient(const uint8_t& address)
@@ -284,6 +297,7 @@ namespace TBT
 									case 0x81://	Resume operation
 									{
 										pClient->getInterface()->getManager()->setPowerState(PowerOn);
+										pClient->getInterface()->getManager()->setEmergencyStop(false);
 										break;
 									}
 

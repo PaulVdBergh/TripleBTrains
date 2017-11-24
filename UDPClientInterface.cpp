@@ -103,7 +103,12 @@ namespace TBT
 
 	void UDPClientInterface::broadcastEmergencyStop(bool state)
 	{
-		//	TODO	implementation
+		lock_guard<recursive_mutex> guard(sm_MClients);
+
+		for(auto client : sm_Clients)
+		{
+			client->broadcastEmergencyStop(state);
+		}
 	}
 
 	UDPClient* UDPClientInterface::findClient(const sockaddr_in& address)
@@ -290,6 +295,15 @@ namespace TBT
 									locMode[5] = pLoc->getDCCAddress() & 0xFF;
 									locMode[6] = pLoc->getLocMode();
 									sendto(m_fdsock_me, locMode, locMode[0], 0, (struct sockaddr*)&si_other, sizeof(si_other));
+								}
+								break;
+							}
+
+							case 0x00400006:	//	 LAN_X_SET_STOP
+							{
+								if(payload[4] == 0x80)
+								{
+									pClient->getInterface()->getManager()->setEmergencyStop(true);
 								}
 								break;
 							}
