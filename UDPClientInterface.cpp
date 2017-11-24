@@ -83,6 +83,8 @@ namespace TBT
 
 	void UDPClientInterface::broadcastPowerStateChange(PowerState newState)
 	{
+		lock_guard<recursive_mutex> guard(sm_MClients);
+
 		for(auto client : sm_Clients)
 		{
 			client->broadcastPowerStateChange(newState);
@@ -91,7 +93,17 @@ namespace TBT
 
 	void UDPClientInterface::broadcastLocInfoChanged(LocDecoder* pLoc)
 	{
+		lock_guard<recursive_mutex> guard(sm_MClients);
 
+		for(auto client : sm_Clients)
+		{
+			client->broadcastLocInfoChanged(pLoc);
+		}
+	}
+
+	void UDPClientInterface::broadcastEmergencyStop(bool state)
+	{
+		//	TODO	implementation
 	}
 
 	UDPClient* UDPClientInterface::findClient(const sockaddr_in& address)
@@ -959,8 +971,5 @@ namespace TBT
 
 		}	/* while(bContinue) */
 	}	/*	threadFunc(void)	*/
-
-	vector<UDPClient*> UDPClientInterface::sm_Clients;
-	recursive_mutex UDPClientInterface::sm_MClients;
 
 } /* namespace TBT */

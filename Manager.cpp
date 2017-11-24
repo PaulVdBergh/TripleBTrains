@@ -24,7 +24,8 @@
 
 #include "Manager.h"
 #include <cstring>
-#include "ClientInterface.h"
+#include "UDPClientInterface.h"
+#include "XpressNetClientInterface.h"
 #include "LocDecoder.h"
 
 namespace TBT
@@ -32,12 +33,19 @@ namespace TBT
 
 	Manager::Manager()
 	{
-		// TODO Auto-generated constructor stub
+		UDPClientInterface* pUDPClientIF = new UDPClientInterface(this);
+		m_ClientInterfaces.push_back(pUDPClientIF);
+
+		XpressNetClientInterface* pXpressNetClientIF = new XpressNetClientInterface(this);
+		m_ClientInterfaces.push_back(pXpressNetClientIF);
 	}
 
 	Manager::~Manager()
 	{
-		// TODO Auto-generated destructor stub
+		for(auto client : m_ClientInterfaces)
+		{
+			delete client;
+		}
 	}
 
 	Decoder* Manager::findDecoder(uint16_t dccAddress)
@@ -92,6 +100,33 @@ namespace TBT
 					interface->broadcastPowerStateChange(newState);
 				}
 			}	//	guard unlocked
+		}
+	}
+
+	void Manager::setEmergencyStop(bool newState)
+	{
+		bool currentState = m_SystemState.CentralState & csEmergencyStop;
+		if(currentState != newState)
+		{
+			{
+				lock_guard<recursive_mutex> guard(m_MSystemState);
+				if(newState)
+				{
+					m_SystemState.CentralState &= ~(csEmergencyStop);
+				}
+				else
+				{
+					m_SystemState.CentralState |= csEmergencyStop;
+				}
+			}
+
+			{
+				lock_guard<recursive_mutex> guard(m_MClientInterfaces);
+				for(auto interface : m_ClientInterfaces)
+				{
+					interface->broadcastEmergencyStop(newState);
+				}
+			}
 		}
 	}
 

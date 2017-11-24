@@ -37,11 +37,12 @@ namespace TBT
 			UDPClient(UDPClientInterface* pinterface, const sockaddr_in& address);
 			virtual ~UDPClient();
 
-			virtual void broadcastPowerStateChange(PowerState newState);
+			virtual void 		broadcastPowerStateChange(PowerState newState);
+			virtual void		broadcastLocInfoChanged(LocDecoder* pLoc);
 
-			const sockaddr_in& getAddress(void) { return m_Address; }
-			uint32_t getBroadcastFlags(void);
-			void	setBroadcastFlags(uint32_t newFlags) { m_BroadcastFlags = newFlags; }
+			const sockaddr_in& 	getAddress(void) { return m_Address; }
+			uint32_t 			getBroadcastFlags(void);
+			void				setBroadcastFlags(uint32_t newFlags) { m_BroadcastFlags = newFlags; }
 
 		protected:
 			const sockaddr_in	m_Address;

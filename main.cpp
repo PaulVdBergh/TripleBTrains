@@ -24,11 +24,15 @@
 
 #include "Manager.h"
 
+#include <unistd.h>
+
 using namespace TBT;
 
 int main(int argc, char* argv[])
 {
 	Manager* pManager = new Manager();
+
+	while(1) sleep(1);
 
 	delete pManager;
 

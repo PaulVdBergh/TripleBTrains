@@ -46,11 +46,13 @@ namespace TBT
 			virtual ~Manager();
 
 			Decoder*		findDecoder(uint16_t dccAddress);	//	return NULL if decoder doesn't exists
+																//	we cannot known here which instance to create.
 			void			registerDecoder(Decoder* pDecoder);
 
 			void			broadcastLocInfoChanged(LocDecoder* pLoc);
 
 			void 			setPowerState(PowerState newState);
+			void			setEmergencyStop(bool newState);
 
 			void 			getSystemState(SystemState* pMsg);
 			const uint8_t& 	getCentralState(void) { return m_SystemState.CentralState; }

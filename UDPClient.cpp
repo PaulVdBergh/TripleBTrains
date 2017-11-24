@@ -24,6 +24,8 @@
 
 #include "UDPClient.h"
 
+#include "LocDecoder.h"
+
 namespace TBT
 {
 
@@ -52,6 +54,14 @@ namespace TBT
 			const uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x00, 0x61 };
 			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
 		}
+	}
+
+	void UDPClient::broadcastLocInfoChanged(LocDecoder* pLoc)
+	{
+		uint8_t pMsg[0x0E];
+		pLoc->getLANLocInfo(pMsg);
+
+		sendto(m_MySocket, pMsg, pMsg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
 	}
 
 	uint32_t UDPClient::getBroadcastFlags()

@@ -44,14 +44,15 @@ namespace TBT
 			UDPClientInterface(Manager* pManager, const in_port_t& port = 21105);
 			virtual ~UDPClientInterface();
 
-			int			getMySocket(void) { return m_fdsock_me; }
+			int				getMySocket(void) { return m_fdsock_me; }
 
-			virtual void broadcastPowerStateChange(PowerState newState);
-			virtual void broadcastLocInfoChanged(LocDecoder* pLoc);
+			virtual void 	broadcastPowerStateChange(PowerState newState);
+			virtual void 	broadcastLocInfoChanged(LocDecoder* pLoc);
+			virtual void	broadcastEmergencyStop(bool state);
 
 		protected:
-			UDPClient* 	findClient(const sockaddr_in& address);
-			bool		removeClient(UDPClient* pClient);
+			UDPClient* 		findClient(const sockaddr_in& address);	//	if client doesn't exists, it's created.
+			bool			removeClient(UDPClient* pClient);
 
 		private:
 			void threadFunc(void);
@@ -62,8 +63,8 @@ namespace TBT
 			int			m_fdsock_me;
 			int			m_fdStop;
 
-			static vector<UDPClient*>	sm_Clients;
-			static recursive_mutex		sm_MClients;
+			vector<UDPClient*>	sm_Clients;
+			recursive_mutex		sm_MClients;
 
 	};	/* class UDPInterface */
 

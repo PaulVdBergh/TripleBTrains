@@ -16,39 +16,39 @@
  */
 
 /*
- * Client.h
+ * XpressNetClient.h
  *
- *  Created on: Nov 23, 2017
+ *  Created on: Nov 24, 2017
  *      Author: paul
  */
 
-#ifndef CLIENT_H_
-#define CLIENT_H_
+#ifndef XPRESSNETCLIENT_H_
+#define XPRESSNETCLIENT_H_
 
-#include "ClientInterface.h"
+#include "Client.h"
 
 namespace TBT
 {
 
-	class Client
+	class XpressNetClient: public Client
 	{
 		public:
-			Client(ClientInterface* pInterface);
-			virtual ~Client();
+			XpressNetClient(ClientInterface* pInterface, uint8_t XpressNetAddress);
+			virtual ~XpressNetClient();
 
-			ClientInterface* getInterface(void) { return m_pInterface; }
+			const uint8_t& getAddress(void) { return m_XpressNetAddress; }
 
-			//	pure virtuals
-			virtual void broadcastPowerStateChange(PowerState newState) = 0;
-			virtual void broadcastLocInfoChanged(LocDecoder* pLoc) = 0;
+			//	Virtuals
+			virtual void broadcastPowerStateChange(PowerState newState);
+			virtual void broadcastLocInfoChanged(LocDecoder* pLoc);
 
 		protected:
-			ClientInterface*	m_pInterface;
+			uint8_t	m_XpressNetAddress;
 
 		private:
 
-	};	/* class Client */
+	};	/*	class XpressNetClient	*/
 
 } /* namespace TBT */
 
-#endif /* CLIENT_H_ */
+#endif /* XPRESSNETCLIENT_H_ */

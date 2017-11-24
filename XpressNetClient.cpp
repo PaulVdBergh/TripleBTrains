@@ -16,54 +16,39 @@
  */
 
 /*
- * LocDecoder.cpp
+ * XpressNetClient.cpp
  *
  *  Created on: Nov 24, 2017
  *      Author: paul
  */
 
-#include "LocDecoder.h"
-
-#include <cstring>
+#include "XpressNetClient.h"
 
 namespace TBT
 {
 
-	LocDecoder::LocDecoder(Manager* pManager, uint16_t dccAddress)
-	:	Decoder(pManager, dccAddress)
-	,	m_LocMode(LOCMODE_DCC)
+	XpressNetClient::XpressNetClient(ClientInterface* pInterface, uint8_t XpressNetAddress)
+	:	Client(pInterface)
+	,	m_XpressNetAddress(XpressNetAddress)
 	{
 		// TODO Auto-generated constructor stub
-		m_LocInfo.Addr_MSB = (m_DCCAddress >> 8);
-		m_LocInfo.Addr_LSB = (m_DCCAddress & 0xFF);
+
 	}
 
-	LocDecoder::~LocDecoder()
+	XpressNetClient::~XpressNetClient()
 	{
 		// TODO Auto-generated destructor stub
 	}
 
-	void LocDecoder::getLANLocInfo(uint8_t* pMsg)
-	{ lock_guard<recursive_mutex> guard(m_MLocInfo);
-		m_LocInfo.XOR = 0;
-		for(uint8_t i = 4; i < *((uint8_t*)&m_LocInfo.DataLen); i++)
-		{
-			m_LocInfo.XOR ^= ((uint8_t*)&m_LocInfo)[i];
-		}
-		memcpy(pMsg, &m_LocInfo, *((uint8_t*)&m_LocInfo.DataLen));
+	void XpressNetClient::broadcastPowerStateChange(PowerState newState)
+	{
+		//	TODO implementation
 	}
 
-	uint8_t LocDecoder::setLocMode(uint8_t newMode)
+
+	void XpressNetClient::broadcastLocInfoChanged(LocDecoder* pLoc)
 	{
-		if(256 > m_DCCAddress)
-		{
-			m_LocMode = newMode;
-		}
-		else
-		{
-			m_LocMode = LOCMODE_DCC;
-		}
-		return m_LocMode;
+		//	TODO implementation
 	}
 
 } /* namespace TBT */
