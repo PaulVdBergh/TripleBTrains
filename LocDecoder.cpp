@@ -16,47 +16,54 @@
  */
 
 /*
- * UDPClient.cpp
+ * LocDecoder.cpp
  *
- *  Created on: Nov 23, 2017
+ *  Created on: Nov 24, 2017
  *      Author: paul
  */
 
-#include "UDPClient.h"
+#include "LocDecoder.h"
+
+#include <cstring>
 
 namespace TBT
 {
 
-	UDPClient::UDPClient(UDPClientInterface* pinterface, const sockaddr_in& address)
-	:	Client(pinterface)
-	,	m_Address(address)
-	,	m_BroadcastFlags(0)
+	LocDecoder::LocDecoder(Manager* pManager, uint16_t dccAddress)
+	:	Decoder(pManager, dccAddress)
+	,	m_LocMode(LOCMODE_DCC)
 	{
-		m_MySocket = ((UDPClientInterface*)m_pInterface)->getMySocket();
+		// TODO Auto-generated constructor stub
+		m_LocInfo.Addr_MSB = (m_DCCAddress >> 8);
+		m_LocInfo.Addr_LSB = (m_DCCAddress & 0xFF);
 	}
 
-	UDPClient::~UDPClient()
+	LocDecoder::~LocDecoder()
 	{
 		// TODO Auto-generated destructor stub
 	}
 
-	void UDPClient::broadcastPowerStateChange(PowerState newState)
-	{
-		if(PowerOn == newState)
+	void LocDecoder::getLANLocInfo(uint8_t* pMsg)
+	{ lock_guard<recursive_mutex> guard(m_MLocInfo);
+		m_LocInfo.XOR = 0;
+		for(uint8_t i = 0; i < *((uint8_t*)&m_LocInfo.DataLen); i++)
 		{
-			const uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x01, 0x60 };
-			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+			m_LocInfo.XOR ^= ((uint8_t*)&m_LocInfo)[i];
+		}
+		memcpy(pMsg, &m_LocInfo, *((uint8_t*)&m_LocInfo.DataLen));
+	}
+
+	uint8_t LocDecoder::setLocMode(uint8_t newMode)
+	{
+		if(256 > m_DCCAddress)
+		{
+			m_LocMode = newMode;
 		}
 		else
 		{
-			const uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x00, 0x61 };
-			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+			m_LocMode = LOCMODE_DCC;
 		}
-	}
-
-	uint32_t UDPClient::getBroadcastFlags()
-	{
-		return m_BroadcastFlags;
+		return m_LocMode;
 	}
 
 } /* namespace TBT */

@@ -27,7 +27,7 @@
 namespace TBT
 {
 
-	Client::Client(Interface* pInterface)
+	Client::Client(ClientInterface* pInterface)
 	:	m_pInterface(pInterface)
 	{
 		// TODO Auto-generated constructor stub

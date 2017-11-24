@@ -23,13 +23,14 @@
  */
 
 #include "Manager.h"
-#include "Interface.h"
+#include <cstring>
+#include "ClientInterface.h"
+#include "LocDecoder.h"
 
 namespace TBT
 {
 
 	Manager::Manager()
-	:	m_PowerState(PowerOff)
 	{
 		// TODO Auto-generated constructor stub
 	}
@@ -39,16 +40,67 @@ namespace TBT
 		// TODO Auto-generated destructor stub
 	}
 
+	Decoder* Manager::findDecoder(uint16_t dccAddress)
+	{
+		{
+			lock_guard<recursive_mutex> guard(m_MDecoders);
+			map<uint16_t, Decoder*>::iterator it = m_Decoders.find(dccAddress);
+			if(it == m_Decoders.end())
+			{
+				return NULL;
+			}
+			return it->second;
+		}	//	guard unlocked
+	}
+
+	void Manager::registerDecoder(Decoder* pDecoder)
+	{ lock_guard<recursive_mutex> guard(m_MDecoders);
+		m_Decoders[pDecoder->getDCCAddress()] = pDecoder;
+	}
+
+	void Manager::broadcastLocInfoChanged(LocDecoder* pLoc)
+	{
+		lock_guard<recursive_mutex> guard(m_MClientInterfaces);
+		for(auto interface : m_ClientInterfaces)
+		{
+			interface->broadcastLocInfoChanged(pLoc);
+		}
+	}
+
 	void Manager::setPowerState(PowerState newState)
 	{
-		if(m_PowerState != newState)
+		bool bCurrentState = !(m_SystemState.CentralState & csTrackVoltageOff);
+		bool bNewState = (newState == PowerOn);
+		if(bCurrentState != bNewState)
 		{
-			m_PowerState = newState;
-			for(auto interface : m_Interfaces)
 			{
-				interface->broadcastPowerStateChange(m_PowerState);
-			}
+				lock_guard<recursive_mutex> guard(m_MSystemState);
+				if(bNewState)
+				{
+					m_SystemState.CentralState &= ~(csTrackVoltageOff);
+				}
+				else
+				{
+					m_SystemState.CentralState |= csTrackVoltageOff;
+				}
+			}	//	guard unlocked
+
+			{
+				lock_guard<recursive_mutex> guard(m_MClientInterfaces);
+				for(auto interface : m_ClientInterfaces)
+				{
+					interface->broadcastPowerStateChange(newState);
+				}
+			}	//	guard unlocked
 		}
+	}
+
+	void Manager::getSystemState(SystemState* pMsg)
+	{
+		{
+			lock_guard<recursive_mutex> guard(m_MSystemState);
+			memcpy(pMsg, &m_SystemState, m_SystemState.DataLen);
+		}	//	guard unlocked
 	}
 
 } /* namespace TBT */

@@ -26,7 +26,7 @@
 #define UDPCLIENT_H_
 
 #include "Client.h"
-#include "UDPInterface.h"
+#include "UDPClientInterface.h"
 
 namespace TBT
 {
@@ -34,15 +34,19 @@ namespace TBT
 	class UDPClient: public Client
 	{
 		public:
-			UDPClient(UDPInterface* pinterface, const sockaddr_in& address);
+			UDPClient(UDPClientInterface* pinterface, const sockaddr_in& address);
 			virtual ~UDPClient();
 
 			virtual void broadcastPowerStateChange(PowerState newState);
 
 			const sockaddr_in& getAddress(void) { return m_Address; }
+			uint32_t getBroadcastFlags(void);
+			void	setBroadcastFlags(uint32_t newFlags) { m_BroadcastFlags = newFlags; }
 
 		protected:
 			const sockaddr_in	m_Address;
+			int					m_MySocket;
+			uint32_t			m_BroadcastFlags;
 
 		private:
 

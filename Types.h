@@ -25,6 +25,8 @@
 #ifndef TYPES_H_
 #define TYPES_H_
 
+#include <stdint.h>
+
 namespace TBT
 {
 	enum PowerState
@@ -32,6 +34,37 @@ namespace TBT
 		PowerOn,
 		PowerOff
 	};
+
+	#define csEmergencyStop			0x01
+	#define csTrackVoltageOff		0x02
+	#define csShortCircuit			0x04
+	#define csProgrammingModeActive	0x20
+
+	#define cseHighTemperature		0x01
+	#define csePowerLost			0x02
+	#define cseShortCircuitExternal	0x04
+	#define cseShortCircuitInternal	0x08
+
+	struct SystemState
+	{
+			uint8_t DataLen = 0x14;
+			uint8_t filler1 = 0x00;
+			uint8_t Header = 0x84;
+			uint8_t filler2 = 0x00;
+			int16_t MainCurrent = 0x0000;
+			int16_t ProgCurrent = 0x0000;
+			int16_t FilteredMainCurrent = 0x0000;
+			int16_t Temperature = 0x0000;
+			uint16_t SupplyVoltage = 0x0000;
+			uint16_t VCCVoltage = 0x0000;
+			uint8_t CentralState = csTrackVoltageOff;
+			uint8_t CentralStateEx = 0x00;
+			uint8_t reserved1 = 0x00;
+			uint8_t reserved2 = 0x00;
+	}__attribute__((packed));
+
+	#define LOCMODE_DCC	0
+	#define LOCMODE_MM	1
 
 }	/* namespace TBT */
 

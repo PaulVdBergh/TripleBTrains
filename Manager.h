@@ -25,6 +25,8 @@
 #ifndef MANAGER_H_
 #define MANAGER_H_
 
+#include <map>
+#include <mutex>
 #include <vector>
 using namespace std;
 
@@ -33,7 +35,9 @@ using namespace std;
 namespace TBT
 {
 
-	class Interface;
+	class ClientInterface;	//	forward declaration
+	class Decoder;			//	forward declaration
+	class LocDecoder;		//	forward declaration
 
 	class Manager
 	{
@@ -41,14 +45,27 @@ namespace TBT
 			Manager();
 			virtual ~Manager();
 
-			void setPowerState(PowerState newState);
+			Decoder*		findDecoder(uint16_t dccAddress);	//	return NULL if decoder doesn't exists
+			void			registerDecoder(Decoder* pDecoder);
+
+			void			broadcastLocInfoChanged(LocDecoder* pLoc);
+
+			void 			setPowerState(PowerState newState);
+
+			void 			getSystemState(SystemState* pMsg);
+			const uint8_t& 	getCentralState(void) { return m_SystemState.CentralState; }
 
 		protected:
 
 		private:
-			PowerState	m_PowerState;
+			SystemState		m_SystemState;
+			recursive_mutex	m_MSystemState;
 
-			vector<Interface*>	m_Interfaces;
+			vector<ClientInterface*>	m_ClientInterfaces;
+			recursive_mutex				m_MClientInterfaces;
+
+			map<uint16_t, Decoder*>		m_Decoders;
+			recursive_mutex				m_MDecoders;
 
 	};	/* class Manager */
 

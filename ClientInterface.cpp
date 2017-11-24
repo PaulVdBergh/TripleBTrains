@@ -22,19 +22,19 @@
  *      Author: paul
  */
 
-#include "Interface.h"
+#include "ClientInterface.h"
 
 namespace TBT
 {
 
-	Interface::Interface(Manager* pManager)
+	ClientInterface::ClientInterface(Manager* pManager)
 	:	m_pManager(pManager)
 	{
 	// TODO Auto-generated constructor stub
 
 	}
 
-	Interface::~Interface()
+	ClientInterface::~ClientInterface()
 	{
 	// TODO Auto-generated destructor stub
 	}

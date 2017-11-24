@@ -16,38 +16,37 @@
  */
 
 /*
- * Client.h
+ * Decoder.h
  *
- *  Created on: Nov 23, 2017
+ *  Created on: Nov 24, 2017
  *      Author: paul
  */
 
-#ifndef CLIENT_H_
-#define CLIENT_H_
+#ifndef DECODER_H_
+#define DECODER_H_
 
-#include "ClientInterface.h"
+#include <stdint.h>
+#include "Manager.h"
 
 namespace TBT
 {
 
-	class Client
+	class Decoder
 	{
 		public:
-			Client(ClientInterface* pInterface);
-			virtual ~Client();
+			Decoder(Manager* pManager, uint16_t dccAddress);
+			virtual ~Decoder();
 
-			ClientInterface* getInterface(void) { return m_pInterface; }
-
-			//	pure virtuals
-			virtual void broadcastPowerStateChange(PowerState newState) = 0;
+			const uint16_t		getDCCAddress(void) { return m_DCCAddress; }
 
 		protected:
-			ClientInterface*	m_pInterface;
+			uint16_t			m_DCCAddress;
+			Manager*			m_pManager;
 
 		private:
 
-	};	/* class Client */
+	};	/*	class Decoder	*/
 
 } /* namespace TBT */
 
-#endif /* CLIENT_H_ */
+#endif /* DECODER_H_ */

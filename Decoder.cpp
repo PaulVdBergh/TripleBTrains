@@ -16,36 +16,27 @@
  */
 
 /*
- * Interface.h
+ * Decoder.cpp
  *
- *  Created on: Nov 23, 2017
+ *  Created on: Nov 24, 2017
  *      Author: paul
  */
 
-#ifndef INTERFACE_H_
-#define INTERFACE_H_
-
-#include "Manager.h"
+#include "Decoder.h"
 
 namespace TBT
 {
 
-	class Interface
+	Decoder::Decoder(Manager* pManager, uint16_t dccAddress)
+	:	m_DCCAddress(dccAddress)
+	,	m_pManager(pManager)
 	{
-		public:
-			Interface(Manager* pManager);
-			virtual ~Interface();
+		m_pManager->registerDecoder(this);
+	}
 
-			//	pure virtuals
-			virtual void broadcastPowerStateChange(PowerState newState) = 0;
-
-		protected:
-			Manager*	m_pManager;
-
-		private:
-
-	};	/* class Interface */
+	Decoder::~Decoder()
+	{
+		// TODO Auto-generated destructor stub
+	}
 
 } /* namespace TBT */
-
-#endif /* INTERFACE_H_ */

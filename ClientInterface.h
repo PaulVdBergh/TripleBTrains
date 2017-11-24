@@ -16,38 +16,41 @@
  */
 
 /*
- * Client.h
+ * Interface.h
  *
  *  Created on: Nov 23, 2017
  *      Author: paul
  */
 
-#ifndef CLIENT_H_
-#define CLIENT_H_
+#ifndef CLIENTINTERFACE_H_
+#define CLIENTINTERFACE_H_
 
-#include "ClientInterface.h"
+#include "Manager.h"
 
 namespace TBT
 {
 
-	class Client
+	class LocDecoder;	//	forward declaration
+
+	class ClientInterface
 	{
 		public:
-			Client(ClientInterface* pInterface);
-			virtual ~Client();
+			ClientInterface(Manager* pManager);
+			virtual ~ClientInterface();
 
-			ClientInterface* getInterface(void) { return m_pInterface; }
+			Manager* getManager(void) { return m_pManager; }
 
 			//	pure virtuals
 			virtual void broadcastPowerStateChange(PowerState newState) = 0;
+			virtual void broadcastLocInfoChanged(LocDecoder* pLoc) = 0;
 
 		protected:
-			ClientInterface*	m_pInterface;
+			Manager*	m_pManager;
 
 		private:
 
-	};	/* class Client */
+	};	/* class Interface */
 
 } /* namespace TBT */
 
-#endif /* CLIENT_H_ */
+#endif /* CLIENTINTERFACE_H_ */

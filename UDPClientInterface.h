@@ -22,29 +22,32 @@
  *      Author: paul
  */
 
-#ifndef UDPINTERFACE_H_
-#define UDPINTERFACE_H_
-
-#include "Interface.h"
+#ifndef UDPCLIENTINTERFACE_H_
+#define UDPCLIENTINTERFACE_H_
 
 #include <arpa/inet.h>
 #include <vector>
 #include <mutex>
 #include <thread>
+#include "ClientInterface.h"
 
 using namespace std;
 
 namespace TBT
 {
 	class UDPClient;
+	class LocDecoder;
 
-	class UDPInterface: public Interface
+	class UDPClientInterface: public ClientInterface
 	{
 		public:
-			UDPInterface(Manager* pManager, const in_port_t& port = 21105);
-			virtual ~UDPInterface();
+			UDPClientInterface(Manager* pManager, const in_port_t& port = 21105);
+			virtual ~UDPClientInterface();
+
+			int			getMySocket(void) { return m_fdsock_me; }
 
 			virtual void broadcastPowerStateChange(PowerState newState);
+			virtual void broadcastLocInfoChanged(LocDecoder* pLoc);
 
 		protected:
 			UDPClient* 	findClient(const sockaddr_in& address);
@@ -66,4 +69,4 @@ namespace TBT
 
 } /* namespace TBT */
 
-#endif /* UDPINTERFACE_H_ */
+#endif /* UDPCLIENTINTERFACE_H_ */
