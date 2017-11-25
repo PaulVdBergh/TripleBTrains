@@ -26,6 +26,7 @@
 #include <cstring>
 #include "UDPClientInterface.h"
 #include "XpressNetClientInterface.h"
+#include "WSClientInterface.h"
 #include "LocDecoder.h"
 
 namespace TBT
@@ -38,6 +39,9 @@ namespace TBT
 
 		XpressNetClientInterface* pXpressNetClientIF = new XpressNetClientInterface(this);
 		m_ClientInterfaces.push_back(pXpressNetClientIF);
+
+		WSClientInterface* pWSClientInterface = new WSClientInterface(this);
+		m_ClientInterfaces.push_back(pWSClientInterface);
 	}
 
 	Manager::~Manager()
@@ -71,7 +75,7 @@ namespace TBT
 		lock_guard<recursive_mutex> guard(m_MClientInterfaces);
 		for(auto interface : m_ClientInterfaces)
 		{
-			interface->broadcastLocInfoChanged(pLoc);
+			interface->broadcastLocInfoChange(pLoc);
 		}
 	}
 

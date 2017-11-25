@@ -30,6 +30,67 @@ using namespace TBT;
 
 int main(int argc, char* argv[])
 {
+#ifdef DEAMON
+
+	int maxfd;
+	int fd;
+
+	switch (fork())
+	{
+		case -1:
+		{
+			return -1;
+		}
+		case 0:
+		{
+			break;
+		}
+		default:
+		{
+			_exit(EXIT_SUCCESS);
+		}
+	}
+
+	if (setsid() == -1)
+	return -1;
+
+	switch (fork())
+	{
+		case -1:
+		{
+			return -1;
+		}
+		case 0:
+		{
+			break;
+		}
+		default:
+		{
+			_exit(EXIT_SUCCESS);
+		}
+	}
+
+	umask(0);
+	chdir("/");
+
+	maxfd = sysconf(_SC_OPEN_MAX);
+	if (maxfd == -1)
+	{
+		maxfd = 8192;
+	}
+
+	for (fd = 0; fd < maxfd; fd++)
+	{
+		close(fd);
+	}
+
+	close(STDIN_FILENO);
+	fd = open("/dev/null", O_RDWR);
+	dup2(STDIN_FILENO, STDOUT_FILENO);
+	dup2(STDIN_FILENO, STDERR_FILENO);
+
+#endif // DEAMON
+
 	Manager* pManager = new Manager();
 
 	while(1) sleep(1);

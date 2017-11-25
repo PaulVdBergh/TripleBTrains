@@ -16,42 +16,51 @@
  */
 
 /*
- * Interface.h
+ * WSClientInterface.h
  *
- *  Created on: Nov 23, 2017
+ *  Created on: Nov 25, 2017
  *      Author: paul
  */
 
-#ifndef CLIENTINTERFACE_H_
-#define CLIENTINTERFACE_H_
+#ifndef WSCLIENTINTERFACE_H_
+#define WSCLIENTINTERFACE_H_
 
-#include "Manager.h"
+#include "ClientInterface.h"
+
+#include "mongoose.h"
+
+#include <thread>
+using namespace std;
 
 namespace TBT
 {
 
-	class LocDecoder;	//	forward declaration
+#ifndef WS_PORT
+#define WS_PORT "9030"
+#endif
 
-	class ClientInterface
+	class WSClientInterface: public ClientInterface
 	{
 		public:
-			ClientInterface(Manager* pManager);
-			virtual ~ClientInterface();
+			WSClientInterface(Manager* pManager, const char* port = WS_PORT);
+			virtual ~WSClientInterface();
 
-			Manager* getManager(void) { return m_pManager; }
-
-			//	pure virtuals
-			virtual void broadcastPowerStateChange(PowerState newState) = 0;
-			virtual void broadcastLocInfoChange(LocDecoder* pLoc) = 0;
-			virtual void broadcastEmergencyStop(bool state) = 0;
+			virtual void	broadcastPowerStateChange(PowerState newState);
+			virtual void 	broadcastLocInfoChange(LocDecoder* pLoc);
+			virtual void	broadcastEmergencyStop(bool stop);
 
 		protected:
-			Manager*	m_pManager;
+			char*			m_port;
+			volatile bool	m_bContinue;
+			thread			m_thread;
+			mg_mgr			m_mgr;
+			mg_connection*	m_conn;
 
 		private:
+			void			threadFunc(void);
 
-	};	/* class Interface */
+	};	/* class WSClientInterface */
 
 } /* namespace TBT */
 
-#endif /* CLIENTINTERFACE_H_ */
+#endif /* WSCLIENTINTERFACE_H_ */

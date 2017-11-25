@@ -91,7 +91,7 @@ namespace TBT
 		}
 	}
 
-	void UDPClientInterface::broadcastLocInfoChanged(LocDecoder* pLoc)
+	void UDPClientInterface::broadcastLocInfoChange(LocDecoder* pLoc)
 	{
 		lock_guard<recursive_mutex> guard(sm_MClients);
 
@@ -214,11 +214,14 @@ namespace TBT
 					uint8_t* payload = recvbuffer;
 					while(payload < (recvbuffer + recv_len))
 					{
+						printf("UDP : received %i bytes from %s:%i : ", *payload, inet_ntoa(si_other.sin_addr), si_other.sin_port);
+
 						switch (*(uint32_t*)payload)
 						{
 
 							case 0x00100004: //  LAN_GET_SERIAL_NUMBER
 							{
+								printf("LAN_GET_SERIAL_NUMBER.");
 								static const uint8_t LAN_SERIAL_NUMBER[] = {0x08, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00};
 								sendto(m_fdsock_me, LAN_SERIAL_NUMBER, LAN_SERIAL_NUMBER[0], 0, (sockaddr*)&si_other, sizeof(si_other));
 								break;
@@ -226,6 +229,7 @@ namespace TBT
 
 							case 0x00180004: //  LAN_GET_CODE
 							{
+								printf("LAN_GET_CODE");
 								static const uint8_t LAN_CODE[] = {0x05, 0x00, 0x18, 0x00, 0x00};
 								sendto(m_fdsock_me, LAN_CODE, LAN_CODE[0], 0, (sockaddr*)&si_other, sizeof(si_other));
 								break;
@@ -233,6 +237,7 @@ namespace TBT
 
 							case 0x001A0004: //  LAN_GET_HWINFO
 							{
+								printf("LAN_GET_HWINFO");
 								static const uint8_t LAN_HWINFO[] = {0x0C, 0x00, 0x1A, 0x00, 0x01, 0x02, 0x00, 0x00, 0x30, 0x01, 0x00, 0x00};
 								sendto(m_fdsock_me, LAN_HWINFO, LAN_HWINFO[0], 0, (sockaddr*)&si_other, sizeof(si_other));
 								break;
@@ -240,12 +245,14 @@ namespace TBT
 
 							case 0x00300004: //  LAN_LOGOFF
 							{
+								printf("LAN_LOGOFF");
 								removeClient(pClient);
 								break;
 							}
 
 							case 0x00510004: //  LAN_GET_BROADCASTFLAGS
 							{
+								printf("LAN_GET_BROADCASTFLAGS");
 								static uint8_t LAN_BROADCASTFLAGS[] = {0x08, 0x00, 0x51, 0x00, 0x00, 0x00, 0x00, 0x00};
 								*((uint32_t*)(&LAN_BROADCASTFLAGS[4])) = pClient->getBroadcastFlags();
 								sendto(m_fdsock_me, LAN_BROADCASTFLAGS, LAN_BROADCASTFLAGS[0], 0, (struct sockaddr*)&si_other, sizeof(si_other));
@@ -254,6 +261,7 @@ namespace TBT
 
 							case 0x00850004: //  LAN_SYSTEMSTATE_GETDATA
 							{
+								printf("LAN_SYSTEMSTATE_GETDATA");
 								SystemState state;
 								pClient->getInterface()->getManager()->getSystemState(&state);
 								sendto(m_fdsock_me, &state, sizeof(struct SystemState), 0, (struct sockaddr*)&si_other, sizeof(si_other));
@@ -262,24 +270,28 @@ namespace TBT
 
 							case 0x00A20004: //  LAN_LOCONET_FROM_LAN
 							{
+								printf("LAN_LOCONET_FROM_LAN");
 								//	TODO implementation
 								break;
 							}
 
 							case 0x00810005: //  LAN_RMBUS_GETDATA
 							{
+								printf("LAN_RMBUS_GETDATA");
 								//	TODO implementation
 								break;
 							}
 
 							case 0x00820005: //  LAN_RMBUS_PROGRAMMODULE
 							{
+								printf("LAN_RMBUS_PROGRAMMODULE");
 								//	TODO implementation
 								break;
 							}
 
 							case 0x00600006: //  LAN_GET_LOCMODE
 							{
+								printf("LAN_GET_LOCMODE");
 								Manager* pManager = pClient->getInterface()->getManager();
 								uint16_t locAddress = (payload[4] << 8) + payload[5];
 								Decoder* pDecoder = pManager->findDecoder(locAddress);
@@ -301,6 +313,7 @@ namespace TBT
 
 							case 0x00400006:	//	 LAN_X_SET_STOP
 							{
+								printf("LAN_X_SET_STOP");
 								if(payload[4] == 0x80)
 								{
 									pClient->getInterface()->getManager()->setEmergencyStop(true);
@@ -310,12 +323,14 @@ namespace TBT
 
 							case 0x00700006: //  LAN_GET_TURNOUTMODE
 							{
+								printf("LAN_GET_TURNOUTMODE");
 								//	TODO implementation
 								break;
 							}
 
 							case 0x00A30006: //  LAN_LOCONET_DISPATCH_ADDR
 							{
+								printf("LAN_LOCONET_DISPATCH_ADDR");
 								//	TODO implementation
 								break;
 							}
@@ -326,6 +341,7 @@ namespace TBT
 								{
 									case 0x2121: //  LAN_X_GET_VERSION
 									{
+										printf("LAN_X_GET_VERSION");
 										if (payload[6] == 0x00) //  xor check
 										{
 											const uint8_t LAN_X_VERSION[] = {0x09, 0x00, 0x40, 0x00, 0x63, 0x21, 0x30, 0x12, 0x60};
@@ -336,6 +352,7 @@ namespace TBT
 
 									case 0x2421: //  LAN_X_GET_STATUS
 									{
+										printf("LAN_X_GET_STATUS");
 										if (payload[6] == 0x05)
 										{
 											uint8_t LAN_X_STATUS[] = {0x08, 0x00, 0x40, 0x00, 0x62, 0x22, 0x00, 0x40};
@@ -352,6 +369,7 @@ namespace TBT
 
 									case 0x8021: //  LAN_X_SET_TRACK_POWER_OFF
 									{
+										printf("LAN_X_SET_TRACK_POWER_OFF");
 										if (payload[6] == 0xA1)
 										{
 											pClient->getInterface()->getManager()->setPowerState(PowerOff);
@@ -361,6 +379,7 @@ namespace TBT
 
 									case 0x8121: //  LAN_X_SET_TRACK_POWER_ON
 									{
+										printf("LAN_X_SET_TRACK_POWER_ON");
 										if (payload[6] == 0xA0)
 										{
 											pClient->getInterface()->getManager()->setPowerState(PowerOn);
@@ -370,6 +389,7 @@ namespace TBT
 
 									case 0x0AF1: //  LAN_X_GET_FIRMWARE_VERSION
 									{
+										printf("LAN_X_GET_FIRMWARE_VERSION");
 										if (payload[6] == 0xFB)
 										{
 											const uint8_t LAN_X_FIRMWARE_VERSION[] = {0x09, 0x00, 0x40, 0x00, 0xF3, 0x0A, 0x01, 0x30, 0xC8};
@@ -388,6 +408,7 @@ namespace TBT
 
 							case 0x00610007: //  LAN_SET_LOCOMODE
 							{
+								printf("LAN_SET_LOCOMODE");
 								Manager* pManager = pClient->getInterface()->getManager();
 								uint16_t locAddress = (payload[4] << 8) + payload[5];
 								Decoder* pDecoder = pManager->findDecoder(locAddress);
@@ -405,24 +426,28 @@ namespace TBT
 
 							case 0x00710007: //  LAN_SET_TURNOUTMODE
 							{
+								printf("LAN_SET_TURNOUTMODE");
 								//	TODO implementation
 								break;
 							}
 
 							case 0x00890007: //  LAN_RAILCOM_GETDATA
 							{
+								printf("LAN_RAILCOM_GETDATA");
 								//	TODO implementation
 								break;
 							}
 
 							case 0x00A40007: //  LAN_LOCONET_DETECTOR
 							{
+								printf("LAN_LOCONET_DETECTOR");
 								//	TODO implementation
 								break;
 							}
 
 							case 0x00C40007: //  LAN_CAN_DETECTOR
 							{
+								printf("LAN_CAN_DETECTOR");
 								//	TODO implementation
 								break;
 							}
@@ -435,6 +460,7 @@ namespace TBT
 									{
 										if (payload[5] == 0x11) //  LAN_X_DCC_READ_REGISTER
 										{
+											printf("LAN_X_DCC_READ_REGISTER");
 											//	TODO implementation
 										}
 										break;
@@ -442,6 +468,7 @@ namespace TBT
 
 									case 0x43: //  LAN_X_GET_TURNOUT_INFO
 									{
+										printf("LAN_X_GET_TURNOUT_INFO");
 										//	TODO implementation
 										break;
 									}
@@ -456,6 +483,7 @@ namespace TBT
 
 							case 0x00500008: //  LAN_SET_BROADCASTFLAGS
 							{
+								printf("LAN_SET_BROADCASTFLAGS");
 								pClient->setBroadcastFlags(*(uint32_t*)&payload[4]);
 								break;
 							}
@@ -470,12 +498,14 @@ namespace TBT
 										{
 											case 0x11: //  LAN_X_CV_READ
 											{
+												printf("LAN_X_CV_READ");
 												//	TODO implementation
 												break;
 											}
 
 											case 0x12: //  LAN_X_DCC_WRITE_REGISTER
 											{
+												printf("LAN_X_DCC_WRITE_REGISTER");
 												//	TODO implementation
 												break;
 											}
@@ -489,12 +519,14 @@ namespace TBT
 
 									case 0x53: //  LAN_X_SET_TURNOUT
 									{
+										printf("LAN_X_SET_TURNOUT");
 										//	TODO implementation
 										break;
 									}
 
 									case 0xE3: //  LAN_X_GET_LOCO_INFO
 									{
+										printf("LAN_X_GET_LOCO_INFO");
 										Manager* pManager = pClient->getInterface()->getManager();
 										uint16_t locAddress = ((payload[6] & 0x3F) << 8) + payload[7];
 										Decoder* pDecoder = pManager->findDecoder(locAddress);
@@ -536,6 +568,7 @@ namespace TBT
 									{
 										if (payload[5] == 0xF8) //  LAN_X_SET_LOCO_FUNCTION
 										{
+											printf("LAN_X_SET_LOCO_FUNCTION");
 											uint8_t FunctionIndex = payload[8] & 0x3F;
 											uint8_t Type = payload[8] >> 5;
 											switch (FunctionIndex)
@@ -896,7 +929,30 @@ namespace TBT
 										}
 										else if ((payload[5] & 0xF0) == 0x10) //  LAN_X_SET_LOCO_DRIVE
 										{
-											pLoc->setLocoDrive(payload[8]);
+											printf("LAN_X_SET_LOCO_DRIVE");
+											switch(payload[5] & 0x0F)
+											{
+												case 0:
+												{
+													printf(" (14 Steps) ");
+													pLoc->setLocoDrive14(payload[8]);
+													break;
+												}
+
+												case 2:
+												{
+													printf(" (28 Steps) ");
+													pLoc->setLocoDrive28(payload[8]);
+													break;
+												}
+
+												case 3:
+												{
+													printf(" (128 Steps) ");
+													pLoc->setLocoDrive128(payload[8]);
+													break;
+												}
+											}
 										}
 										else
 										{
@@ -908,10 +964,12 @@ namespace TBT
 								{
 									if (payload[5] == 0x12) //  LAN_X_CV_WRITE
 									{
+										printf("LAN_X_CV_WRITE");
 										//	TODO implementation
 									}
 									else if (payload[5] == 0xFF) //  LAN_X_MM_WRITE_BYTE
 									{
+										printf("LAN_X_MM_WRITE_BYTE");
 										//	TODO	implementation
 									}
 								}
@@ -926,16 +984,19 @@ namespace TBT
 									{
 										if ((payload[8] & 0xFC) == 0xEC) //  LAN_X_CV_POM_WRITE_BYTE
 										{
+											printf("LAN_X_CV_POM_WRITE_BYTE");
 											//	TODO	implementation
 										}
 										else if ((payload[8] & 0xFC) == 0xE8)
 										{
 											if (payload[10] == 0x00) //  LAN_X_POM_READ_BYTE
 											{
+												printf("LAN_X_POM_READ_BYTE");
 												//	TODO	implementation
 											}
 											else //  LAN_X_POM_WRITE_BIT
 											{
+												printf("LAN_X_POM_WRITE_BIT");
 												//	TODO	implementation
 											}
 										}
@@ -946,16 +1007,19 @@ namespace TBT
 									{
 										if ((payload[8] & 0xFC) == 0xEC) //  LAN_X_CV_POM_ACCESSORY_WRITE_BYTE
 										{
+											printf("LAN_X_CV_POM_ACCESSORY_WRITE_BYTE");
 											//	TODO	implementation
 										}
 										else if ((payload[8] & 0xFC) == 0xE8)
 										{
 											if (payload[10] == 0x00) //  LAN_X_POM_ACCESSORY_READ_BYTE
 											{
+												printf("LAN_X_POM_ACCESSORY_READ_BYTE");
 												//	TODO	implementation
 											}
 											else //  LAN_X_POM_ACCESSORY_WRITE_BIT
 											{
+												printf("LAN_X_POM_ACCESSORY_WRITE_BIT");
 												//	TODO	implementation
 											}
 										}
@@ -978,6 +1042,13 @@ namespace TBT
 							}
 
 						}	/*	switch(*(uint32_t*)payload)	*/
+						printf(" ( ");
+						for(uint8_t i = 0; i < payload[0]; i++)
+						{
+							printf("0x%02X ", payload[i]);
+						}
+						printf(").\n");
+
 						payload += payload[0];	//	advance payload pointer to next message
 					}	/*	while(payload <(recv...	*/
 				}	/* if(m_fdsock_me == evlist..... */

@@ -84,7 +84,10 @@ namespace TBT
 
 			void setBusy(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB2 |= 0x08) : (m_LocInfo.DB2 &= ~(0x08)); m_pManager->broadcastLocInfoChanged(this); }
 			void setSpeedsteps(uint8_t value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB2 &= ~(0x07); m_LocInfo.DB2 |= (value & 0x07); m_pManager->broadcastLocInfoChanged(this); }
-			void setLocoDrive(uint8_t value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB3 = value; m_pManager->broadcastLocInfoChanged(this); }
+			void setLocoDrive14(uint8_t value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB3 = value; m_pManager->broadcastLocInfoChanged(this); }
+			void setLocoDrive27(uint8_t value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB3 = value; m_pManager->broadcastLocInfoChanged(this); }
+			void setLocoDrive28(uint8_t value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB3 = value; m_pManager->broadcastLocInfoChanged(this); }
+			void setLocoDrive128(uint8_t value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB3 = value; m_pManager->broadcastLocInfoChanged(this); }
 			void setDirection(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB3 |= 0x80) : (m_LocInfo.DB3 &= ~(0x80)); m_pManager->broadcastLocInfoChanged(this); }
 			void setSpeed(uint8_t value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB3 &= ~(0x7F); m_LocInfo.DB3 |= (value & 0x7F); m_pManager->broadcastLocInfoChanged(this); }
 			void setDualTraction(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB4 |= 0x40) : (m_LocInfo.DB4 &= ~(0x40)); m_pManager->broadcastLocInfoChanged(this); }

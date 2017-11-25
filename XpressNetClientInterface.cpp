@@ -109,7 +109,7 @@ namespace TBT
 		}
 	}
 
-	void XpressNetClientInterface::broadcastLocInfoChanged(LocDecoder* pLoc)
+	void XpressNetClientInterface::broadcastLocInfoChange(LocDecoder* pLoc)
 	{
 		//	TODO implementation
 	}
@@ -215,13 +215,7 @@ namespace TBT
 						}
 						//	Process msg here
 						uint8_t check = 0;
-						printf("Received %i bytes from address %i : ", msg[0], msg[1]);
-						for (uint8_t i = 2; i < msg[0]; i++)
-						{
-							printf("Ox%02X ", msg[i]);
-							check ^= msg[i];
-						}
-						printf("\n");
+						printf("XpressNet : Received %i bytes from address %i : ", msg[0], msg[1]);
 
 						if (check)
 						{
@@ -243,12 +237,14 @@ namespace TBT
 								{
 									case 0x10://	Request for Service Mode results
 									{
+										printf("Request for Service Mode results");
 										//	TODO Implementation
 										break;
 									}
 
 									case 0x21://	Command station software-version request
 									{
+										printf("Command station software-version request");
 										uint8_t response[7] = {0x07, 0x60, 0x63, 0x21, 0x30, 0x00, 0x72};
 										response[1] += msg[1];
 										for (uint8_t x = 0x40; x != 0; x = x >> 1)
@@ -269,6 +265,7 @@ namespace TBT
 
 									case 0x24://	Command station status request
 									{
+										printf("Command station status request");
 										uint8_t response[6] = {0x06, 0x60, 0x62, 0x22, 0x00, 0x00};
 										response[1] += msg[1];
 										for (uint x = 0x40; x != 0; x >>= 1)
@@ -290,12 +287,14 @@ namespace TBT
 
 									case 0x80://	Emergency Off
 									{
+										printf("Emergency Off");
 										pClient->getInterface()->getManager()->setPowerState(PowerOff);
 										break;
 									}
 
 									case 0x81://	Resume operation
 									{
+										printf("Resume operation");
 										pClient->getInterface()->getManager()->setPowerState(PowerOn);
 										pClient->getInterface()->getManager()->setEmergencyStop(false);
 										break;
@@ -315,41 +314,49 @@ namespace TBT
 								{
 									case 0x11://	Register mode Read request
 									{
+										printf("Register mode Read request");
 										break;
 									}
 
 									case 0x14://	Paged mode Read request
 									{
+										printf("Paged mode Read request");
 										break;
 									}
 
 									case 0x15://	Direct mode CV Read request
 									{
+										printf("Direct mode CV Read request");
 										break;
 									}
 
 									case 0x18://	Direct mode CV Read request (CV 1 - 255)
 									{
+										printf("Direct mode CV Read request (CV 1 - 255)");
 										break;
 									}
 
 									case 0x19://	Direct mode CV Read request (CV 256 - 511)
 									{
+										printf("Direct mode CV Read request (CV 256 - 511)");
 										break;
 									}
 
 									case 0x1A://	Direct mode CV Read request (CV 512 - 767)
 									{
+										printf("Direct mode CV Read request (CV 512 - 767)");
 										break;
 									}
 
 									case 0x1B://	Direct mode CV Read request (CV 768 - 1023)
 									{
+										printf("Direct mode CV Read request (CV 768 - 1023)");
 										break;
 									}
 
 									case 0x22://	Set Command station power-up mode
 									{
+										printf("Set Command station power-up mode");
 										break;
 									}
 
@@ -367,36 +374,43 @@ namespace TBT
 								{
 									case 0x12://	Register mode Write request
 									{
+										printf("Register mode Write request");
 										break;
 									}
 
 									case 0x16://	Direct mode CV Write request
 									{
+										printf("Direct mode CV Write request");
 										break;
 									}
 
 									case 0x17://	Paged mode Write request
 									{
+										printf("Paged mode Write request");
 										break;
 									}
 
 									case 0x1C://	Direct mode CV Write request (CV 1 - 255)
 									{
+										printf("Direct mode CV Write request (CV 1 - 255)");
 										break;
 									}
 
 									case 0x1D://	Direct mode CV Write request (CV 256 - 511)
 									{
+										printf("Direct mode CV Write request (CV 256 - 511)");
 										break;
 									}
 
 									case 0x1E://	Direct mode CV Write request (CV 512 - 767)
 									{
+										printf("Direct mode CV Write request (CV 512 - 767)");
 										break;
 									}
 
 									case 0x1F://	Direct mode CV Write request (CV 768 - 1023)
 									{
+										printf("Direct mode CV Write request (CV 768 - 1023)");
 										break;
 									}
 
@@ -410,27 +424,32 @@ namespace TBT
 
 							case 0x42://	Accessory Decoder Information Request
 							{
+								printf("Accessory Decoder Information Request");
 								break;
 							}	//	case 0x42
 
 							case 0x52://	Accessory Decoder operation request
 							{
+								printf("Accessory Decoder operation request");
 								break;
 							}	//	case 0x52
 
 							case 0x80://	Emergency stop
 							{
+								printf("Emergency stop");
 								pClient->getInterface()->getManager()->setEmergencyStop(true);
 								break;
 							}	//	case 0x80
 
 							case 0x92://	Emergency stop a Locomotive
 							{
+								printf("Emergency stop a Locomotive");
 								break;
 							}	//	case 0x92
 
 							case 0xE2://	Address Inquiry Multi-unit request
 							{
+								printf("Address Inquiry Multi-unit request");
 								break;
 							}	//	case 0xE2
 
@@ -440,6 +459,7 @@ namespace TBT
 								{
 									case 0x00://	Locomotive information request
 									{
+										printf("Locomotive information request");
 										uint16_t locAddress = (msg[4] << 8) + msg[5];
 										Decoder* pDecoder = pClient->getInterface()->getManager()->findDecoder(locAddress);
 										if (pDecoder == NULL)
@@ -471,21 +491,25 @@ namespace TBT
 
 									case 0x07://	Function status request
 									{
+										printf("Function status request");
 										break;
 									}
 
 									case 0x08://	Function status request (F13 - F28)
 									{
+										printf("Function status request (F13 - F28)");
 										break;
 									}
 
 									case 0x09://	Function state request (F13 - F28)
 									{
+										printf("Function state request (F13 - F28)");
 										break;
 									}
 
 									case 0x44://	Delete Locomotive from Command Station stack request
 									{
+										printf("Delete Locomotive from Command Station stack request");
 										break;
 									}
 
@@ -505,20 +529,52 @@ namespace TBT
 								switch(msg[3])
 								{
 									case 0x10://	Locomotive Speed and Direction operation (14 steps)
-									case 0x11://	Locomotive Speed and Direction operation (27 steps)
-									case 0x12://	Locomotive Speed and Direction operation (28 steps)
-									case 0x13://	Locomotive Speed and Direction operation (128 steps)
 									{
+										printf("Locomotive Speed and Direction operation (14 steps)");
 										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 										if(pLoc)
 										{
-											pLoc->setLocoDrive(msg[6]);
+											pLoc->setLocoDrive14(msg[6]);
+										}
+										break;
+									}
+
+									case 0x11://	Locomotive Speed and Direction operation (27 steps)
+									{
+										printf("Locomotive Speed and Direction operation (27 steps)");
+										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
+										if(pLoc)
+										{
+											pLoc->setLocoDrive27(msg[6]);
+										}
+										break;
+									}
+
+									case 0x12://	Locomotive Speed and Direction operation (28 steps)
+									{
+										printf("Locomotive Speed and Direction operation (28 steps)");
+										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
+										if(pLoc)
+										{
+											pLoc->setLocoDrive28(msg[6]);
+										}
+										break;
+									}
+
+									case 0x13://	Locomotive Speed and Direction operation (128 steps)
+									{
+										printf("Locomotive Speed and Direction operation (128 steps)");
+										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
+										if(pLoc)
+										{
+											pLoc->setLocoDrive128(msg[6]);
 										}
 										break;
 									}
 
 									case 0x20://	Function operation instruction (F0 - F4)
 									{
+										printf("Function operation instruction (F0 - F4)");
 										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 										if(pLoc)
 										{
@@ -529,6 +585,7 @@ namespace TBT
 
 									case 0x21://	Function operation instruction (F5 - F8)
 									{
+										printf("Function operation instruction (F5 - F8)");
 										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 										if(pLoc)
 										{
@@ -539,6 +596,7 @@ namespace TBT
 
 									case 0x22://	Function operation instruction (F9 - F12)
 									{
+										printf("Function operation instruction (F9 - F12)");
 										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 										if(pLoc)
 										{
@@ -549,6 +607,7 @@ namespace TBT
 
 									case 0x23://	Function operation instruction (F13 - F20)
 									{
+										printf("Function operation instruction (F13 - F20)");
 										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 										if(pLoc)
 										{
@@ -559,6 +618,7 @@ namespace TBT
 
 									case 0x28://	Function operation instruction (F21 - F28)
 									{
+										printf("Function operation instruction (F21 - F28)");
 										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 										if(pLoc)
 										{
@@ -569,6 +629,7 @@ namespace TBT
 
 									case 0x42://	Remove Locomotive from multi-unit request
 									{
+										printf("Remove Locomotive from multi-unit request");
 										break;
 									}
 
@@ -582,11 +643,13 @@ namespace TBT
 
 							case 0xE5://	Establish Double Header
 							{
+								printf("Establish Double Header");
 								break;
 							}	//	case 0xE5
 
 							case 0xE6://	POM mode Write request
 							{
+								printf("POM mode Write request");
 								break;
 							}	//	case 0xE6
 
@@ -597,6 +660,13 @@ namespace TBT
 
 						}	//	switch(msg[2])
 
+						printf(" ( ");
+						for (uint8_t i = 0; i < msg[0]; i++)
+						{
+							printf("Ox%02X ", msg[i]);
+							check ^= msg[i];
+						}
+						printf(" )\n");
 					}
 				}	//	else if (m_fdSerial == evlist[notification].data.fd)
 			}	//	for(int notification = 0; notification < notifications; notification++)
