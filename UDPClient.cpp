@@ -42,14 +42,14 @@ namespace TBT
 		// TODO Auto-generated destructor stub
 	}
 
-	void UDPClient::broadcastPowerStateChange(PowerState newState)
+	void UDPClient::broadcastPowerStateChange(bool newState)
 	{
-		if(PowerOn == newState)
+		if(newState)	//	Track Power On
 		{
 			const uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x01, 0x60 };
 			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
 		}
-		else
+		else	//	Track Power Off
 		{
 			const uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x00, 0x61 };
 			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
@@ -64,13 +64,10 @@ namespace TBT
 		sendto(m_MySocket, pMsg, pMsg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
 	}
 
-	void UDPClient::broadcastEmergencyStop(bool state)
+	void UDPClient::broadcastEmergencyStop(void)
 	{
-		if(state)
-		{
-			uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x81, 0x00, 0x81};
-			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
-		}
+		uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x81, 0x00, 0x81};
+		sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
 	}
 
 	uint32_t UDPClient::getBroadcastFlags()

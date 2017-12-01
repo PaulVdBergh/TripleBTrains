@@ -36,6 +36,8 @@ namespace TBT
 			LocDecoder(Manager* pManager, uint16_t dccAddress);
 			virtual ~LocDecoder();
 
+			virtual bool getDccMessage(uint8_t* pMsg);
+
 			uint8_t getLocMode(void) { return m_LocMode; }
 			void	getLANLocInfo(uint8_t* pMsg);
 			uint8_t	setLocMode(uint8_t newMode);

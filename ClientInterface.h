@@ -41,9 +41,9 @@ namespace TBT
 			Manager* getManager(void) { return m_pManager; }
 
 			//	pure virtuals
-			virtual void broadcastPowerStateChange(PowerState newState) = 0;
+			virtual void broadcastPowerStateChange(bool newState) = 0;
 			virtual void broadcastLocInfoChange(LocDecoder* pLoc) = 0;
-			virtual void broadcastEmergencyStop(bool state) = 0;
+			virtual void broadcastEmergencyStop(void) = 0;
 
 		protected:
 			Manager*	m_pManager;

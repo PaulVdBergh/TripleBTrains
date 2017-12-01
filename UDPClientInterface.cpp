@@ -81,7 +81,7 @@ namespace TBT
 		close(m_fdStop);
 	}
 
-	void UDPClientInterface::broadcastPowerStateChange(PowerState newState)
+	void UDPClientInterface::broadcastPowerStateChange(bool newState)
 	{
 		lock_guard<recursive_mutex> guard(sm_MClients);
 
@@ -101,13 +101,13 @@ namespace TBT
 		}
 	}
 
-	void UDPClientInterface::broadcastEmergencyStop(bool state)
+	void UDPClientInterface::broadcastEmergencyStop()
 	{
 		lock_guard<recursive_mutex> guard(sm_MClients);
 
 		for(auto client : sm_Clients)
 		{
-			client->broadcastEmergencyStop(state);
+			client->broadcastEmergencyStop();
 		}
 	}
 
@@ -316,7 +316,7 @@ namespace TBT
 								printf("LAN_X_SET_STOP");
 								if(payload[4] == 0x80)
 								{
-									pClient->getInterface()->getManager()->setEmergencyStop(true);
+									pClient->getInterface()->getManager()->setEmergencyStop();
 								}
 								break;
 							}
@@ -382,6 +382,7 @@ namespace TBT
 										printf("LAN_X_SET_TRACK_POWER_ON");
 										if (payload[6] == 0xA0)
 										{
+											//pClient->getInterface()->getManager()->setEmergencyStop();
 											pClient->getInterface()->getManager()->setPowerState(PowerOn);
 										}
 										break;
@@ -933,6 +934,7 @@ namespace TBT
 											switch(payload[5] & 0x0F)
 											{
 												case 0:
+												case 1:
 												{
 													printf(" (14 Steps) ");
 													pLoc->setLocoDrive14(payload[8]);
@@ -950,6 +952,12 @@ namespace TBT
 												{
 													printf(" (128 Steps) ");
 													pLoc->setLocoDrive128(payload[8]);
+													break;
+												}
+
+												default:
+												{
+													printf(" !!! UNKNOWN STEPS !!!  ");
 													break;
 												}
 											}

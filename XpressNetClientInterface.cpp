@@ -95,16 +95,17 @@ namespace TBT
 		close(m_fdStop);
 	}
 
-	void XpressNetClientInterface::broadcastPowerStateChange(PowerState newState)
+	void XpressNetClientInterface::broadcastPowerStateChange(bool newState)
 	{
-		if(PowerState::PowerOff == newState)
+		//	if newState == true --> Track Power On --> PowerState --> Off
+		if(newState)
 		{
-			uint8_t msg[] = {0x05, 0x60, 0x61, 0x00, 0x61};
+			uint8_t msg[] = {0x05, 0x60, 0x61, 0x01, 0x60};
 			write(m_fdSerial, msg, msg[0]);
 		}
 		else
 		{
-			uint8_t msg[] = {0x05, 0x60, 0x61, 0x01, 0x60};
+			uint8_t msg[] = {0x05, 0x60, 0x61, 0x00, 0x61};
 			write(m_fdSerial, msg, msg[0]);
 		}
 	}
@@ -114,13 +115,10 @@ namespace TBT
 		//	TODO implementation
 	}
 
-	void XpressNetClientInterface::broadcastEmergencyStop(bool state)
+	void XpressNetClientInterface::broadcastEmergencyStop()
 	{
-		if(true == state)
-		{
-			uint8_t msg[] = {0x05, 0x60, 0x81, 0x00, 0x81};
-			write(m_fdSerial, msg, msg[0]);
-		}
+		uint8_t msg[] = {0x05, 0x60, 0x81, 0x00, 0x81};
+		write(m_fdSerial, msg, msg[0]);
 	}
 
 	XpressNetClient* XpressNetClientInterface::findClient(const uint8_t& address)
@@ -267,7 +265,8 @@ namespace TBT
 									{
 										printf("Command station status request");
 										uint8_t response[6] = {0x06, 0x60, 0x62, 0x22, 0x00, 0x00};
-										response[1] += msg[1];
+										response[1] += msg[1];	//	address
+										uint8_t centralState = pClient->getInterface()->getManager()->getCentralState();
 										for (uint x = 0x40; x != 0; x >>= 1)
 										{
 											if (response[1] & x)
@@ -275,6 +274,9 @@ namespace TBT
 												response[1] ^= 0x80;
 											}
 										}
+
+										response[4] = centralState & 0x03;				// Emergency Stop and Track Voltage Off
+										response[4] |= ((centralState & 0x04) << 1);	// Short Curcuit
 
 										response[5] = response[2] ^ response[3] ^ response[4];
 										ssize_t nbrWritten = write(m_fdSerial, response, response[0]);
@@ -285,9 +287,9 @@ namespace TBT
 										break;
 									}
 
-									case 0x80://	Emergency Off
+									case 0x80://	Track Power Off
 									{
-										printf("Emergency Off");
+										printf("Track Power Off");
 										pClient->getInterface()->getManager()->setPowerState(PowerOff);
 										break;
 									}
@@ -296,7 +298,6 @@ namespace TBT
 									{
 										printf("Resume operation");
 										pClient->getInterface()->getManager()->setPowerState(PowerOn);
-										pClient->getInterface()->getManager()->setEmergencyStop(false);
 										break;
 									}
 
@@ -437,7 +438,7 @@ namespace TBT
 							case 0x80://	Emergency stop
 							{
 								printf("Emergency stop");
-								pClient->getInterface()->getManager()->setEmergencyStop(true);
+								pClient->getInterface()->getManager()->setEmergencyStop();
 								break;
 							}	//	case 0x80
 

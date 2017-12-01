@@ -38,6 +38,7 @@ namespace TBT
 	class ClientInterface;	//	forward declaration
 	class Decoder;			//	forward declaration
 	class LocDecoder;		//	forward declaration
+	class DccGenerator;		//	forward declaration
 
 	class Manager
 	{
@@ -48,11 +49,12 @@ namespace TBT
 			Decoder*		findDecoder(uint16_t dccAddress);	//	return NULL if decoder doesn't exists
 																//	we cannot known here which instance to create.
 			void			registerDecoder(Decoder* pDecoder);
+			void			unregisterDecoder(Decoder* pDecoder);
 
 			void			broadcastLocInfoChanged(LocDecoder* pLoc);
 
 			void 			setPowerState(PowerState newState);
-			void			setEmergencyStop(bool newState);
+			void			setEmergencyStop();
 
 			void 			getSystemState(SystemState* pMsg);
 			const uint8_t& 	getCentralState(void) { return m_SystemState.CentralState; }
@@ -60,14 +62,16 @@ namespace TBT
 		protected:
 
 		private:
-			SystemState		m_SystemState;
-			recursive_mutex	m_MSystemState;
+			SystemState					m_SystemState;
+			recursive_mutex				m_MSystemState;
 
 			vector<ClientInterface*>	m_ClientInterfaces;
 			recursive_mutex				m_MClientInterfaces;
 
 			map<uint16_t, Decoder*>		m_Decoders;
 			recursive_mutex				m_MDecoders;
+
+			DccGenerator*				m_pDccGenerator;
 
 	};	/* class Manager */
 

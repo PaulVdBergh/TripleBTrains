@@ -41,9 +41,9 @@ namespace TBT
 			virtual ~XpressNetClientInterface();
 
 			//	Virtuals
-			virtual void broadcastPowerStateChange(PowerState newState);
+			virtual void broadcastPowerStateChange(bool newState);
 			virtual void broadcastLocInfoChange(LocDecoder* pLoc);
-			virtual void broadcastEmergencyStop(bool state);
+			virtual void broadcastEmergencyStop(void);
 
 		protected:
 			XpressNetClient*	findClient(const uint8_t& address);	//	if client doesn't exists, it's created.

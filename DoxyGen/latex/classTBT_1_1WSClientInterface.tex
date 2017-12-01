@@ -1,0 +1,47 @@
+\hypertarget{classTBT_1_1WSClientInterface}{}\section{T\+BT\+:\+:W\+S\+Client\+Interface Class Reference}
+\label{classTBT_1_1WSClientInterface}\index{T\+B\+T\+::\+W\+S\+Client\+Interface@{T\+B\+T\+::\+W\+S\+Client\+Interface}}
+Inheritance diagram for T\+BT\+:\+:W\+S\+Client\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classTBT_1_1WSClientInterface}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_addd44890c3c54a9700a2385a63105e38}\label{classTBT_1_1WSClientInterface_addd44890c3c54a9700a2385a63105e38}} 
+{\bfseries W\+S\+Client\+Interface} (\hyperlink{classTBT_1_1Manager}{Manager} $\ast$p\+Manager, const char $\ast$port=W\+S\+\_\+\+P\+O\+RT)
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_ad5ff4048859e3bf2fe8c62b9b2c59080}\label{classTBT_1_1WSClientInterface_ad5ff4048859e3bf2fe8c62b9b2c59080}} 
+virtual void {\bfseries broadcast\+Power\+State\+Change} (Power\+State new\+State)
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_a39806206461815c06c517b66d122b4db}\label{classTBT_1_1WSClientInterface_a39806206461815c06c517b66d122b4db}} 
+virtual void {\bfseries broadcast\+Loc\+Info\+Change} (\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$p\+Loc)
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_a328ee22796e058e0da825e5f13349e1f}\label{classTBT_1_1WSClientInterface_a328ee22796e058e0da825e5f13349e1f}} 
+virtual void {\bfseries broadcast\+Emergency\+Stop} (bool stop)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_a5a2b51f344e17b5f3e9b1f3e861b6efe}\label{classTBT_1_1WSClientInterface_a5a2b51f344e17b5f3e9b1f3e861b6efe}} 
+char $\ast$ {\bfseries m\+\_\+port}
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_a888e4be88a311199a3fa890d3abc6a10}\label{classTBT_1_1WSClientInterface_a888e4be88a311199a3fa890d3abc6a10}} 
+volatile bool {\bfseries m\+\_\+b\+Continue}
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_af8db3d6b3e3923b0b61f43cbc2021a92}\label{classTBT_1_1WSClientInterface_af8db3d6b3e3923b0b61f43cbc2021a92}} 
+thread {\bfseries m\+\_\+thread}
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_aba2e99d7dcc90848ce6348ee687affbb}\label{classTBT_1_1WSClientInterface_aba2e99d7dcc90848ce6348ee687affbb}} 
+\hyperlink{structmg__mgr}{mg\+\_\+mgr} {\bfseries m\+\_\+mgr}
+\item 
+\mbox{\Hypertarget{classTBT_1_1WSClientInterface_ae866ad6fbf964a4b6ad1e19895bb24be}\label{classTBT_1_1WSClientInterface_ae866ad6fbf964a4b6ad1e19895bb24be}} 
+\hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$ {\bfseries m\+\_\+conn}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+W\+S\+Client\+Interface.\+h\item 
+W\+S\+Client\+Interface.\+cpp\end{DoxyCompactItemize}

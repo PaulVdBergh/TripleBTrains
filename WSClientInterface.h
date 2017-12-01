@@ -45,9 +45,9 @@ namespace TBT
 			WSClientInterface(Manager* pManager, const char* port = WS_PORT);
 			virtual ~WSClientInterface();
 
-			virtual void	broadcastPowerStateChange(PowerState newState);
+			virtual void	broadcastPowerStateChange(bool newState);
 			virtual void 	broadcastLocInfoChange(LocDecoder* pLoc);
-			virtual void	broadcastEmergencyStop(bool stop);
+			virtual void	broadcastEmergencyStop();
 
 		protected:
 			char*			m_port;
@@ -60,6 +60,11 @@ namespace TBT
 			void			threadFunc(void);
 
 	};	/* class WSClientInterface */
+
+	//	Mongoose callback functions
+	void ev_handler(mg_connection* nc, int ev, void* ev_data);
+	void ev_handler_StateChange(mg_connection* nc, int ev, void* ev_data);
+
 
 } /* namespace TBT */
 

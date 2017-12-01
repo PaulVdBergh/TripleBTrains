@@ -40,7 +40,7 @@ namespace TBT
 		// TODO Auto-generated destructor stub
 	}
 
-	void XpressNetClient::broadcastPowerStateChange(PowerState newState)
+	void XpressNetClient::broadcastPowerStateChange(bool newState)
 	{
 		//	TODO implementation
 	}

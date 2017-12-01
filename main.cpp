@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
 
 	Manager* pManager = new Manager();
 
-	while(1) sleep(1);
+	while(1) sleep(10);
 
 	delete pManager;
 

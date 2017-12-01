@@ -46,9 +46,9 @@ namespace TBT
 
 			int				getMySocket(void) { return m_fdsock_me; }
 
-			virtual void 	broadcastPowerStateChange(PowerState newState);
+			virtual void 	broadcastPowerStateChange(bool newState);
 			virtual void 	broadcastLocInfoChange(LocDecoder* pLoc);
-			virtual void	broadcastEmergencyStop(bool state);
+			virtual void	broadcastEmergencyStop(void);
 
 		protected:
 			UDPClient* 		findClient(const sockaddr_in& address);	//	if client doesn't exists, it's created.

@@ -38,6 +38,7 @@ namespace TBT
 			virtual ~Decoder();
 
 			const uint16_t		getDCCAddress(void) { return m_DCCAddress; }
+			virtual bool		getDccMessage(uint8_t* pMsg) { return false; }
 
 		protected:
 			uint16_t			m_DCCAddress;

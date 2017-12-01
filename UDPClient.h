@@ -37,9 +37,9 @@ namespace TBT
 			UDPClient(UDPClientInterface* pinterface, const sockaddr_in& address);
 			virtual ~UDPClient();
 
-			virtual void 		broadcastPowerStateChange(PowerState newState);
+			virtual void 		broadcastPowerStateChange(bool newState);
 			virtual void		broadcastLocInfoChanged(LocDecoder* pLoc);
-			virtual void		broadcastEmergencyStop(bool state);
+			virtual void		broadcastEmergencyStop(void);
 
 			const sockaddr_in& 	getAddress(void) { return m_Address; }
 			uint32_t 			getBroadcastFlags(void);

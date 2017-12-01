@@ -39,9 +39,9 @@ namespace TBT
 			const uint8_t& getAddress(void) { return m_XpressNetAddress; }
 
 			//	Virtuals
-			virtual void broadcastPowerStateChange(PowerState newState);
+			virtual void broadcastPowerStateChange(bool newState);
 			virtual void broadcastLocInfoChanged(LocDecoder* pLoc);
-			virtual void broadcastEmergencyStop(bool state) {};
+			virtual void broadcastEmergencyStop(void) {};
 
 		protected:
 			uint8_t	m_XpressNetAddress;

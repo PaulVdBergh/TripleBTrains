@@ -1,0 +1,42 @@
+\hypertarget{classTBT_1_1UDPClientInterface}{}\section{T\+BT\+:\+:U\+D\+P\+Client\+Interface Class Reference}
+\label{classTBT_1_1UDPClientInterface}\index{T\+B\+T\+::\+U\+D\+P\+Client\+Interface@{T\+B\+T\+::\+U\+D\+P\+Client\+Interface}}
+Inheritance diagram for T\+BT\+:\+:U\+D\+P\+Client\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classTBT_1_1UDPClientInterface}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClientInterface_ad03356f6abf16596c181851e9fcaf7a9}\label{classTBT_1_1UDPClientInterface_ad03356f6abf16596c181851e9fcaf7a9}} 
+{\bfseries U\+D\+P\+Client\+Interface} (\hyperlink{classTBT_1_1Manager}{Manager} $\ast$p\+Manager, const in\+\_\+port\+\_\+t \&port=21105)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClientInterface_ac25b06823d045631f3c7b76e9c50f22e}\label{classTBT_1_1UDPClientInterface_ac25b06823d045631f3c7b76e9c50f22e}} 
+int {\bfseries get\+My\+Socket} (void)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClientInterface_ad65d92928ce6f459c371c44c5576dbcc}\label{classTBT_1_1UDPClientInterface_ad65d92928ce6f459c371c44c5576dbcc}} 
+virtual void {\bfseries broadcast\+Power\+State\+Change} (Power\+State new\+State)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClientInterface_af4e63115b3156b151d4dfd50342b36e7}\label{classTBT_1_1UDPClientInterface_af4e63115b3156b151d4dfd50342b36e7}} 
+virtual void {\bfseries broadcast\+Loc\+Info\+Change} (\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$p\+Loc)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClientInterface_a7fca1a79378823f67b0f23bbd59dc041}\label{classTBT_1_1UDPClientInterface_a7fca1a79378823f67b0f23bbd59dc041}} 
+virtual void {\bfseries broadcast\+Emergency\+Stop} (bool state)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClientInterface_aea926878d35ed4b37143e320143a84df}\label{classTBT_1_1UDPClientInterface_aea926878d35ed4b37143e320143a84df}} 
+\hyperlink{classTBT_1_1UDPClient}{U\+D\+P\+Client} $\ast$ {\bfseries find\+Client} (const sockaddr\+\_\+in \&address)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClientInterface_a1a80ed1e5670443bc35691c9f3d5ff72}\label{classTBT_1_1UDPClientInterface_a1a80ed1e5670443bc35691c9f3d5ff72}} 
+bool {\bfseries remove\+Client} (\hyperlink{classTBT_1_1UDPClient}{U\+D\+P\+Client} $\ast$p\+Client)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+U\+D\+P\+Client\+Interface.\+h\item 
+U\+D\+P\+Client\+Interface.\+cpp\end{DoxyCompactItemize}

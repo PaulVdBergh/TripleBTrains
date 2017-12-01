@@ -39,9 +39,9 @@ namespace TBT
 			ClientInterface* getInterface(void) { return m_pInterface; }
 
 			//	pure virtuals
-			virtual void broadcastPowerStateChange(PowerState newState) = 0;
+			virtual void broadcastPowerStateChange(bool newState) = 0;
 			virtual void broadcastLocInfoChanged(LocDecoder* pLoc) = 0;
-			virtual void broadcastEmergencyStop(bool state) = 0;
+			virtual void broadcastEmergencyStop(void) = 0;
 
 		protected:
 			ClientInterface*	m_pInterface;

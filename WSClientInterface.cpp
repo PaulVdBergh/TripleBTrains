@@ -29,8 +29,6 @@
 namespace TBT
 {
 
-	static void ev_handler(mg_connection* nc, int ev, void* ev_data);
-
 	WSClientInterface::WSClientInterface(Manager* pManager, const char* port)
 	:	ClientInterface(pManager)
 	,	m_port(new char[strlen(port)] + 1)
@@ -43,12 +41,24 @@ namespace TBT
 
 	WSClientInterface::~WSClientInterface()
 	{
+		m_bContinue = false;
+		m_thread.join();
 		delete [] m_port;
 	}
 
-	void WSClientInterface::broadcastPowerStateChange(PowerState newState)
+	void WSClientInterface::broadcastPowerStateChange(bool newState)
 	{
+		//	if newState == true --> Track Power On --> PowerState --> Off
+		char msg[256];
+		sprintf(msg, "{ \"PowerState\":\"%s\" }", newState ? "OFF" : "ON");
 
+		mg_broadcast(&m_mgr, ev_handler_StateChange, msg, strlen(msg) + 1);
+
+		if(newState)
+		{
+			sprintf(msg, "{\"EmergencyStop\":\"OFF\" }");
+			mg_broadcast(&m_mgr, ev_handler_StateChange, msg, strlen(msg) + 1);
+		}
 	}
 
 	void WSClientInterface::broadcastLocInfoChange(LocDecoder* pLoc)
@@ -56,9 +66,11 @@ namespace TBT
 
 	}
 
-	void WSClientInterface::broadcastEmergencyStop(bool state)
+	void WSClientInterface::broadcastEmergencyStop()
 	{
+		char msg[] = "{ \"EmergencyStop\":\"ON\" }";
 
+		mg_broadcast(&m_mgr, ev_handler_StateChange, msg, strlen(msg) + 1);
 	}
 
 	void WSClientInterface::threadFunc(void)
@@ -81,7 +93,7 @@ namespace TBT
 		mg_mgr_free(&m_mgr);
 	}
 
-	static void ev_handler(mg_connection* nc, int ev, void* ev_data)
+	void ev_handler(mg_connection* nc, int ev, void* ev_data)
 	{
 		switch(ev)
 		{
@@ -94,6 +106,17 @@ namespace TBT
 				//	TODO process messages here
 			}
 		}	/* switch(ev) */
+	}
+
+	void ev_handler_StateChange(mg_connection* nc, int ev, void* ev_data)
+	{
+		switch(ev)
+		{
+			case MG_EV_POLL:
+			{
+				mg_send_websocket_frame(nc, WEBSOCKET_OP_TEXT, ev_data, strlen((char*)ev_data));
+			}
+		}
 	}
 
 } /* namespace TBT */

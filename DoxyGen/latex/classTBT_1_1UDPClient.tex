@@ -1,0 +1,50 @@
+\hypertarget{classTBT_1_1UDPClient}{}\section{T\+BT\+:\+:U\+D\+P\+Client Class Reference}
+\label{classTBT_1_1UDPClient}\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+Inheritance diagram for T\+BT\+:\+:U\+D\+P\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classTBT_1_1UDPClient}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a7b6f7858b9d3a7243bdd48fbf150b9f8}\label{classTBT_1_1UDPClient_a7b6f7858b9d3a7243bdd48fbf150b9f8}} 
+{\bfseries U\+D\+P\+Client} (\hyperlink{classTBT_1_1UDPClientInterface}{U\+D\+P\+Client\+Interface} $\ast$pinterface, const sockaddr\+\_\+in \&address)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_aaf8b77e98494585ea3c44c9e89ec04ec}\label{classTBT_1_1UDPClient_aaf8b77e98494585ea3c44c9e89ec04ec}} 
+virtual void {\bfseries broadcast\+Power\+State\+Change} (Power\+State new\+State)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a90c650259501f341f531ede72210624a}\label{classTBT_1_1UDPClient_a90c650259501f341f531ede72210624a}} 
+virtual void {\bfseries broadcast\+Loc\+Info\+Changed} (\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$p\+Loc)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_aad30cea06b570b6a5e688710cfd53100}\label{classTBT_1_1UDPClient_aad30cea06b570b6a5e688710cfd53100}} 
+virtual void {\bfseries broadcast\+Emergency\+Stop} (bool state)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a8471b71655c61bf074b70b62a6dffbf1}\label{classTBT_1_1UDPClient_a8471b71655c61bf074b70b62a6dffbf1}} 
+const sockaddr\+\_\+in \& {\bfseries get\+Address} (void)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a18da0bdc657f707f4c0af6cd3b1e6031}\label{classTBT_1_1UDPClient_a18da0bdc657f707f4c0af6cd3b1e6031}} 
+uint32\+\_\+t {\bfseries get\+Broadcast\+Flags} (void)
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a23a0b0ecf47f8a2fe018a570f46ecdfe}\label{classTBT_1_1UDPClient_a23a0b0ecf47f8a2fe018a570f46ecdfe}} 
+void {\bfseries set\+Broadcast\+Flags} (uint32\+\_\+t new\+Flags)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a880ede9d0208905a251bbfd221646e3b}\label{classTBT_1_1UDPClient_a880ede9d0208905a251bbfd221646e3b}} 
+const sockaddr\+\_\+in {\bfseries m\+\_\+\+Address}
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_aef66ad83fa20b995152c6f41cb8ba91f}\label{classTBT_1_1UDPClient_aef66ad83fa20b995152c6f41cb8ba91f}} 
+int {\bfseries m\+\_\+\+My\+Socket}
+\item 
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a91eb8f34a9606428eba7230c2bfdb6f6}\label{classTBT_1_1UDPClient_a91eb8f34a9606428eba7230c2bfdb6f6}} 
+uint32\+\_\+t {\bfseries m\+\_\+\+Broadcast\+Flags}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+U\+D\+P\+Client.\+h\item 
+U\+D\+P\+Client.\+cpp\end{DoxyCompactItemize}

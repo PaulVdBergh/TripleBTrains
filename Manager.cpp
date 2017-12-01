@@ -23,11 +23,14 @@
  */
 
 #include "Manager.h"
+
 #include <cstring>
-#include "UDPClientInterface.h"
-#include "XpressNetClientInterface.h"
-#include "WSClientInterface.h"
+
+#include "DccGenerator.h"
 #include "LocDecoder.h"
+#include "UDPClientInterface.h"
+#include "WSClientInterface.h"
+#include "XpressNetClientInterface.h"
 
 namespace TBT
 {
@@ -42,10 +45,14 @@ namespace TBT
 
 		WSClientInterface* pWSClientInterface = new WSClientInterface(this);
 		m_ClientInterfaces.push_back(pWSClientInterface);
+
+		m_pDccGenerator = new DccGenerator(&m_Decoders, &m_MDecoders);
 	}
 
 	Manager::~Manager()
 	{
+		delete m_pDccGenerator;
+
 		for(auto client : m_ClientInterfaces)
 		{
 			delete client;
@@ -70,6 +77,12 @@ namespace TBT
 		m_Decoders[pDecoder->getDCCAddress()] = pDecoder;
 	}
 
+	void Manager::unregisterDecoder(Decoder* pDecoder)
+	{
+		lock_guard<recursive_mutex> guard(m_MDecoders);
+		m_Decoders.erase(pDecoder->getDCCAddress());
+	}
+
 	void Manager::broadcastLocInfoChanged(LocDecoder* pLoc)
 	{
 		lock_guard<recursive_mutex> guard(m_MClientInterfaces);
@@ -81,54 +94,43 @@ namespace TBT
 
 	void Manager::setPowerState(PowerState newState)
 	{
-		bool bCurrentState = !(m_SystemState.CentralState & csTrackVoltageOff);
-		bool bNewState = (newState == PowerOn);
-		if(bCurrentState != bNewState)
 		{
+			lock_guard<recursive_mutex> guard(m_MSystemState);
+			if(newState == PowerOn)
 			{
-				lock_guard<recursive_mutex> guard(m_MSystemState);
-				if(bNewState)
-				{
-					m_SystemState.CentralState &= ~(csTrackVoltageOff);
-				}
-				else
-				{
-					m_SystemState.CentralState |= csTrackVoltageOff;
-				}
-			}	//	guard unlocked
+				m_SystemState.CentralState &= ~(csTrackVoltageOff | csEmergencyStop);
+			}
+			else
+			{
+				m_SystemState.CentralState |= csTrackVoltageOff;
+			}
+		}	//	guard unlocked
 
+		{
+			lock_guard<recursive_mutex> guard(m_MClientInterfaces);
+			for(auto interface : m_ClientInterfaces)
 			{
-				lock_guard<recursive_mutex> guard(m_MClientInterfaces);
-				for(auto interface : m_ClientInterfaces)
-				{
-					interface->broadcastPowerStateChange(newState);
-				}
-			}	//	guard unlocked
-		}
+				interface->broadcastPowerStateChange(newState == PowerOn);
+			}
+		}	//	guard unlocked
 	}
 
-	void Manager::setEmergencyStop(bool newState)
+	void Manager::setEmergencyStop()
 	{
 		bool currentState = m_SystemState.CentralState & csEmergencyStop;
-		if(currentState != newState)
+		if(currentState == false)
 		{
 			{
 				lock_guard<recursive_mutex> guard(m_MSystemState);
-				if(newState)
-				{
-					m_SystemState.CentralState |= csEmergencyStop;
-				}
-				else
-				{
-					m_SystemState.CentralState &= ~(csEmergencyStop);
-				}
+				m_SystemState.CentralState |= csEmergencyStop;
+
 			}
 
 			{
 				lock_guard<recursive_mutex> guard(m_MClientInterfaces);
 				for(auto interface : m_ClientInterfaces)
 				{
-					interface->broadcastEmergencyStop(newState);
+					interface->broadcastEmergencyStop();
 				}
 			}
 		}

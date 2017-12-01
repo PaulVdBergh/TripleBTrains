@@ -43,6 +43,60 @@ namespace TBT
 		// TODO Auto-generated destructor stub
 	}
 
+	bool LocDecoder::getDccMessage(uint8_t* pMsg)
+	{
+		static uint8_t state = 0;
+
+		SystemState systemState;
+
+		m_pManager->getSystemState(&systemState);
+
+		if(systemState.CentralState)
+		{
+			lock_guard<recursive_mutex> lock(m_MLocInfo);
+			pMsg[0] = 4;
+			pMsg[1] = 0x00;
+			pMsg[2] = 0x71;
+			pMsg[3] = pMsg[1] ^ pMsg[2];
+			return true;
+		}
+		else
+		{
+			switch(state)
+			{
+				case 0:
+				{
+					//	Speed message
+					lock_guard<recursive_mutex> lock(m_MLocInfo);
+					pMsg[0] = 4;
+					pMsg[1] = m_LocInfo.Addr_LSB;
+					pMsg[2] = 0x40;
+					if(getDirection()) pMsg[2] |= 0x20;
+					pMsg[2] |= getSpeed();
+					pMsg[3] = pMsg[1] ^ pMsg[2];
+					state++;
+					return true;
+				}
+				case 1:
+				{
+					//	Function (F0 - F4) Message
+					lock_guard<recursive_mutex> lock(m_MLocInfo);
+					pMsg[0] = 4;
+					pMsg[1] = m_LocInfo.Addr_LSB;
+					pMsg[2] = 0x80 | (m_LocInfo.DB4 & 0x1F);
+					pMsg[3] = pMsg[1] ^ pMsg[2];
+					state++;
+					return true;
+				}
+				default:
+				{
+					state = 0;
+				}
+			}
+		}
+		return false;
+	}
+
 	void LocDecoder::getLANLocInfo(uint8_t* pMsg)
 	{ lock_guard<recursive_mutex> guard(m_MLocInfo);
 		m_LocInfo.XOR = 0;
