@@ -215,8 +215,14 @@ namespace TBT
 						uint8_t check = 0;
 						printf("XpressNet : Received %i bytes from address %i : ", msg[0], msg[1]);
 
+						for(uint8_t i = 2; i < msg[0]; i++)
+						{
+							check ^= msg[i];
+						}
+
 						if (check)
 						{
+							printf("--> Checksum Error <--\n");
 							// TODO The message has an invalid checksum.
 							// Notify the client and discard message.
 							//	But, since there is a checksum error, can we be sure the
@@ -665,7 +671,6 @@ namespace TBT
 						for (uint8_t i = 0; i < msg[0]; i++)
 						{
 							printf("Ox%02X ", msg[i]);
-							check ^= msg[i];
 						}
 						printf(" )\n");
 					}

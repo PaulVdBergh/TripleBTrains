@@ -134,21 +134,9 @@ namespace TBT
 			uint8_t m_LocMode;
 
 		private:
-			struct LocInfo
-			{
-				uint32_t DataLen = 0x0040000E;
-				uint8_t X_Header = 0xEF;
-				uint8_t Addr_MSB;
-				uint8_t Addr_LSB;
-				uint8_t DB2;
-				uint8_t DB3;
-				uint8_t DB4;
-				uint8_t DB5;
-				uint8_t DB6;
-				uint8_t DB7;
-				uint8_t XOR;
-			}__attribute__((packed)) m_LocInfo;
-
+			uint8_t	m_DCCState;
+			uint8_t	m_CurrentCVRead;
+			LocInfo m_LocInfo;
 			recursive_mutex m_MLocInfo;
 
 	};

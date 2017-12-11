@@ -47,20 +47,35 @@ namespace TBT
 
 	struct SystemState
 	{
-			uint8_t DataLen = 0x14;
-			uint8_t filler1 = 0x00;
-			uint8_t Header = 0x84;
-			uint8_t filler2 = 0x00;
-			int16_t MainCurrent = 0x0000;
-			int16_t ProgCurrent = 0x0000;
-			int16_t FilteredMainCurrent = 0x0000;
-			int16_t Temperature = 0x0000;
-			uint16_t SupplyVoltage = 0x0000;
-			uint16_t VCCVoltage = 0x0000;
-			uint8_t CentralState = csTrackVoltageOff;
-			uint8_t CentralStateEx = 0x00;
-			uint8_t reserved1 = 0x00;
-			uint8_t reserved2 = 0x00;
+		uint8_t DataLen = 0x14;
+		uint8_t filler1 = 0x00;
+		uint8_t Header = 0x84;
+		uint8_t filler2 = 0x00;
+		int16_t MainCurrent = 0x0000;
+		int16_t ProgCurrent = 0x0000;
+		int16_t FilteredMainCurrent = 0x0000;
+		int16_t Temperature = 0x0000;
+		uint16_t SupplyVoltage = 0x0000;
+		uint16_t VCCVoltage = 0x0000;
+		uint8_t CentralState = csTrackVoltageOff;
+		uint8_t CentralStateEx = 0x00;
+		uint8_t reserved1 = 0x00;
+		uint8_t reserved2 = 0x00;
+	}__attribute__((packed));
+
+	struct LocInfo
+	{
+		uint32_t DataLen = 0x0040000E;
+		uint8_t X_Header = 0xEF;
+		uint8_t Addr_MSB;
+		uint8_t Addr_LSB;
+		uint8_t DB2;
+		uint8_t DB3;
+		uint8_t DB4;
+		uint8_t DB5;
+		uint8_t DB6;
+		uint8_t DB7;
+		uint8_t XOR;
 	}__attribute__((packed));
 
 	#define LOCMODE_DCC	0

@@ -61,19 +61,18 @@ namespace TBT
 
 	Decoder* Manager::findDecoder(uint16_t dccAddress)
 	{
+		lock_guard<recursive_mutex> guard(m_MDecoders);
+		map<uint16_t, Decoder*>::iterator it = m_Decoders.find(dccAddress);
+		if(it == m_Decoders.end())
 		{
-			lock_guard<recursive_mutex> guard(m_MDecoders);
-			map<uint16_t, Decoder*>::iterator it = m_Decoders.find(dccAddress);
-			if(it == m_Decoders.end())
-			{
-				return NULL;
-			}
-			return it->second;
-		}	//	guard unlocked
+			return NULL;
+		}
+		return it->second;
 	}
 
 	void Manager::registerDecoder(Decoder* pDecoder)
-	{ lock_guard<recursive_mutex> guard(m_MDecoders);
+	{
+		lock_guard<recursive_mutex> guard(m_MDecoders);
 		m_Decoders[pDecoder->getDCCAddress()] = pDecoder;
 	}
 

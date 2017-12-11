@@ -3,6 +3,7 @@ var classTBT_1_1LocDecoder =
     [ "LocDecoder", "classTBT_1_1LocDecoder.html#ae8563de74c15f27c40644bf8218d26d9", null ],
     [ "~LocDecoder", "classTBT_1_1LocDecoder.html#aecf37f8d8a0084573e6f10df283750de", null ],
     [ "getBusy", "classTBT_1_1LocDecoder.html#a3ec11c7c270d1eeb00e6893bff8f0831", null ],
+    [ "getDccMessage", "classTBT_1_1LocDecoder.html#a00361e87af456a020bc6ec16c08237ef", null ],
     [ "getDirection", "classTBT_1_1LocDecoder.html#a5c570e65adde5ee526986155d509da47", null ],
     [ "getDualTraction", "classTBT_1_1LocDecoder.html#a7f4c04a5a306ea827494b29789cc401e", null ],
     [ "getF0", "classTBT_1_1LocDecoder.html#add8099fb79a671d02eeb993358f237fc", null ],

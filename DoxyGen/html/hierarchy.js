@@ -18,6 +18,7 @@ var hierarchy =
     [ "cs_md5_ctx", "structcs__md5__ctx.html", null ],
     [ "cs_sha1_ctx", "structcs__sha1__ctx.html", null ],
     [ "ctl_msg", "structctl__msg.html", null ],
+    [ "TBT::DccGenerator", "classTBT_1_1DccGenerator.html", null ],
     [ "TBT::Decoder", "classTBT_1_1Decoder.html", [
       [ "TBT::LocDecoder", "classTBT_1_1LocDecoder.html", null ]
     ] ],
@@ -35,6 +36,7 @@ var hierarchy =
     ] ],
     [ "Json::Features", "classJson_1_1Features.html", null ],
     [ "http_message", "structhttp__message.html", null ],
+    [ "TBT::LocInfo", "structTBT_1_1LocInfo.html", null ],
     [ "TBT::Manager", "classTBT_1_1Manager.html", null ],
     [ "mbuf", "structmbuf.html", null ],
     [ "mg_add_sock_opts", "structmg__add__sock__opts.html", null ],

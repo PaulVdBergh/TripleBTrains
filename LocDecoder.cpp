@@ -32,6 +32,8 @@ namespace TBT
 	LocDecoder::LocDecoder(Manager* pManager, uint16_t dccAddress)
 	:	Decoder(pManager, dccAddress)
 	,	m_LocMode(LOCMODE_DCC)
+	,	m_DCCState(0)
+	,	m_CurrentCVRead(1)
 	{
 		// TODO Auto-generated constructor stub
 		m_LocInfo.Addr_MSB = (m_DCCAddress >> 8);
@@ -45,8 +47,6 @@ namespace TBT
 
 	bool LocDecoder::getDccMessage(uint8_t* pMsg)
 	{
-		static uint8_t state = 0;
-
 		SystemState systemState;
 
 		m_pManager->getSystemState(&systemState);
@@ -62,7 +62,7 @@ namespace TBT
 		}
 		else
 		{
-			switch(state)
+			switch(m_DCCState)
 			{
 				case 0:
 				{
@@ -74,9 +74,10 @@ namespace TBT
 					if(getDirection()) pMsg[2] |= 0x20;
 					pMsg[2] |= getSpeed();
 					pMsg[3] = pMsg[1] ^ pMsg[2];
-					state++;
+					m_DCCState++;
 					return true;
 				}
+
 				case 1:
 				{
 					//	Function (F0 - F4) Message
@@ -85,12 +86,31 @@ namespace TBT
 					pMsg[1] = m_LocInfo.Addr_LSB;
 					pMsg[2] = 0x80 | (m_LocInfo.DB4 & 0x1F);
 					pMsg[3] = pMsg[1] ^ pMsg[2];
-					state++;
+					m_DCCState++;
 					return true;
 				}
+
+				case 100:
+				{
+					//	POM - Read CV
+					pMsg[0] = 6;
+					pMsg[1] = m_LocInfo.Addr_LSB;
+					pMsg[2] = 0xE4;
+					pMsg[3] = m_CurrentCVRead++;
+					pMsg[4] = 0x00;
+					pMsg[5] = pMsg[1] ^ pMsg[2] ^ pMsg[3] ^ pMsg[4];
+//					m_DCCState++;
+					return true;
+				}
+
+				case 101:
+				{
+					return false;
+				}
+
 				default:
 				{
-					state = 0;
+					m_DCCState = 0;
 				}
 			}
 		}

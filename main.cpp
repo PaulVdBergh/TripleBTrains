@@ -52,7 +52,9 @@ int main(int argc, char* argv[])
 	}
 
 	if (setsid() == -1)
-	return -1;
+	{
+		return -1;
+	}
 
 	switch (fork())
 	{
