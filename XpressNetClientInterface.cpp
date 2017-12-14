@@ -670,7 +670,7 @@ namespace TBT
 						printf(" ( ");
 						for (uint8_t i = 0; i < msg[0]; i++)
 						{
-							printf("Ox%02X ", msg[i]);
+							printf("0x%02X ", msg[i]);
 						}
 						printf(" )\n");
 					}

@@ -516,6 +516,7 @@ namespace TBT
 												break;
 											}
 										}
+										break;
 									}
 
 									case 0x53: //  LAN_X_SET_TURNOUT
@@ -995,18 +996,15 @@ namespace TBT
 											printf("LAN_X_CV_POM_WRITE_BYTE");
 											//	TODO	implementation
 										}
-										else if ((payload[8] & 0xFC) == 0xE8)
+										else if ((payload[8] & 0xFC) == 0xE8)//  LAN_X_CV_POM_WRITE_BIT
 										{
-											if (payload[10] == 0x00) //  LAN_X_POM_READ_BYTE
-											{
-												printf("LAN_X_POM_READ_BYTE");
-												//	TODO	implementation
-											}
-											else //  LAN_X_POM_WRITE_BIT
-											{
-												printf("LAN_X_POM_WRITE_BIT");
-												//	TODO	implementation
-											}
+											printf("LAN_X_CV_POM_WRITE_BIT");
+											//	TODO	implementation
+										}
+										else if((payload[8] & 0xFC) == 0xE4) // LAN_X_CV_POM_READ_BYTE
+										{
+											printf("LAN_X_CV_POM_READ_BYTE");
+											//	TODO	implementation
 										}
 										break;
 									}
@@ -1018,18 +1016,15 @@ namespace TBT
 											printf("LAN_X_CV_POM_ACCESSORY_WRITE_BYTE");
 											//	TODO	implementation
 										}
-										else if ((payload[8] & 0xFC) == 0xE8)
+										else if ((payload[8] & 0xFC) == 0xE8) //  LAN_X_CV_POM_ACCESSORY_WRITE_BIT
 										{
-											if (payload[10] == 0x00) //  LAN_X_POM_ACCESSORY_READ_BYTE
-											{
-												printf("LAN_X_POM_ACCESSORY_READ_BYTE");
-												//	TODO	implementation
-											}
-											else //  LAN_X_POM_ACCESSORY_WRITE_BIT
-											{
-												printf("LAN_X_POM_ACCESSORY_WRITE_BIT");
-												//	TODO	implementation
-											}
+											printf("LAN_X_CV_POM_ACCESSORY_WRITE_BIT");
+											//	TODO	implementation
+										}
+										else if((payload[8] & 0xFC) == 0xE4) //  LAN_X_CV_POM_ACCESSORY_READ_BYTE
+										{
+											printf("LAN_X_CV_POM_ACCESSORY_READ_BYTE");
+											//	TODO	implementation
 										}
 										break;
 									}

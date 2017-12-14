@@ -36,7 +36,34 @@ namespace TBT
 
 	Decoder::~Decoder()
 	{
-		// TODO Auto-generated destructor stub
+		m_pManager->unregisterDecoder(this);
+	}
+
+	uint8_t* Decoder::insertDCCAddress(uint8_t* pMsg)
+	{
+		uint8_t* pCurrent = &pMsg[1];
+		if(m_DCCAddress < 128)
+		{
+			*pCurrent++ = m_DCCAddress & 0xFF;
+		}
+		else
+		{
+			*pCurrent++ = 0x80 + (m_DCCAddress >> 8);
+			*pCurrent++ = m_DCCAddress & 0xFF;
+		}
+
+		return pCurrent;
+	}
+
+	void Decoder::insertXOR(uint8_t* pMsg)
+	{
+		uint8_t* pXOR = pMsg + (pMsg[0] - 1);
+
+		*pXOR = 0;
+		for(uint8_t* pIndex = &pMsg[1]; pIndex < pXOR; pIndex++)
+		{
+			*pXOR ^= *pIndex;
+		}
 	}
 
 } /* namespace TBT */

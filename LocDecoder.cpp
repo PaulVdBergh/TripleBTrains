@@ -33,11 +33,12 @@ namespace TBT
 	:	Decoder(pManager, dccAddress)
 	,	m_LocMode(LOCMODE_DCC)
 	,	m_DCCState(0)
-	,	m_CurrentCVRead(1)
+	,	m_CurrentCVRead(8)
 	{
 		// TODO Auto-generated constructor stub
 		m_LocInfo.Addr_MSB = (m_DCCAddress >> 8);
 		m_LocInfo.Addr_LSB = (m_DCCAddress & 0xFF);
+		setSpeedsteps(4);
 	}
 
 	LocDecoder::~LocDecoder()
@@ -67,27 +68,49 @@ namespace TBT
 				case 0:
 				{
 					//	Speed message
-					lock_guard<recursive_mutex> lock(m_MLocInfo);
-					pMsg[0] = 4;
-					pMsg[1] = m_LocInfo.Addr_LSB;
-					pMsg[2] = 0x40;
-					if(getDirection()) pMsg[2] |= 0x20;
-					pMsg[2] |= getSpeed();
-					pMsg[3] = pMsg[1] ^ pMsg[2];
+					bool rslt = getDCCSpeedMessage(pMsg);
 					m_DCCState++;
-					return true;
+					return rslt;
 				}
 
 				case 1:
 				{
-					//	Function (F0 - F4) Message
-					lock_guard<recursive_mutex> lock(m_MLocInfo);
-					pMsg[0] = 4;
-					pMsg[1] = m_LocInfo.Addr_LSB;
-					pMsg[2] = 0x80 | (m_LocInfo.DB4 & 0x1F);
-					pMsg[3] = pMsg[1] ^ pMsg[2];
+					//	Function group 1 (F0 - F4) Message
+					bool rslt = getDCCFG1Message(pMsg);
 					m_DCCState++;
-					return true;
+					return rslt;
+				}
+
+				case 2:
+				{
+					//	Function group 2 (F5 - F8) Message
+					bool rslt = getDCCFG2Message(pMsg);
+					m_DCCState++;
+					return rslt;
+				}
+
+				case 3:
+				{
+					//	Function group 3 (F9 - F12) Message
+					bool rslt = getDCCFG3Message(pMsg);
+					m_DCCState++;
+					return rslt;
+				}
+
+				case 4:
+				{
+					//	Function group 4 (F13 - F20) Message
+					bool rslt = getDCCFG4Message(pMsg);
+					m_DCCState++;
+					return rslt;
+				}
+
+				case 5:
+				{
+					//	Function group 5 (F21 - F28) Message
+					bool rslt = getDCCFG5Message(pMsg);
+					m_DCCState++;
+					return rslt;
 				}
 
 				case 100:
@@ -96,7 +119,7 @@ namespace TBT
 					pMsg[0] = 6;
 					pMsg[1] = m_LocInfo.Addr_LSB;
 					pMsg[2] = 0xE4;
-					pMsg[3] = m_CurrentCVRead++;
+					pMsg[3] = m_CurrentCVRead;
 					pMsg[4] = 0x00;
 					pMsg[5] = pMsg[1] ^ pMsg[2] ^ pMsg[3] ^ pMsg[4];
 //					m_DCCState++;
@@ -115,6 +138,96 @@ namespace TBT
 			}
 		}
 		return false;
+	}
+
+	bool LocDecoder::getDCCSpeedMessage(uint8_t* pMsg)
+	{
+		uint8_t* pCurrent = insertDCCAddress(pMsg);
+
+		if(getSpeedsteps() == 0x04)
+		{
+			//	128 speed steps
+			*pCurrent++ = 0x3F;
+			*pCurrent++ = getSpeed() | (getDirection() ? 0x80 : 0x00);
+		}
+		else
+		{
+			//	14 speed steps
+			*pCurrent++ = 0x40 | (getDirection() ? 0x20 : 0x00) | getSpeed();
+		}
+
+		pMsg[0] = 1 + (pCurrent - pMsg);
+
+		insertXOR(pMsg);
+
+		return true;
+	}
+
+	bool LocDecoder::getDCCFG1Message(uint8_t* pMsg)
+	{
+		uint8_t* pCurrent = insertDCCAddress(pMsg);
+
+		*pCurrent++ = 0x80 | getFunctionGroup1();
+
+		pMsg[0] = 1 + (pCurrent - pMsg);
+
+		insertXOR(pMsg);
+
+		return true;
+	}
+
+	bool LocDecoder::getDCCFG2Message(uint8_t* pMsg)
+	{
+		uint8_t* pCurrent = insertDCCAddress(pMsg);
+
+		*pCurrent++ = 0xB0 | getFunctionGroup2();
+
+		pMsg[0] = 1 + (pCurrent - pMsg);
+
+		insertXOR(pMsg);
+
+		return true;
+	}
+
+	bool LocDecoder::getDCCFG3Message(uint8_t* pMsg)
+	{
+		uint8_t* pCurrent = insertDCCAddress(pMsg);
+
+		*pCurrent++ = 0xA0 | getFunctionGroup3();
+
+		pMsg[0] = 1 + (pCurrent - pMsg);
+
+		insertXOR(pMsg);
+
+		return true;
+	}
+
+	bool LocDecoder::getDCCFG4Message(uint8_t* pMsg)
+	{
+		uint8_t* pCurrent = insertDCCAddress(pMsg);
+
+		*pCurrent++ = 0xDE;
+		*pCurrent++ = getFunctionGroup4();
+
+		pMsg[0] = 1 + (pCurrent - pMsg);
+
+		insertXOR(pMsg);
+
+		return true;
+	}
+
+	bool LocDecoder::getDCCFG5Message(uint8_t* pMsg)
+	{
+		uint8_t* pCurrent = insertDCCAddress(pMsg);
+
+		*pCurrent++ = 0xDF;
+		*pCurrent++ = getFunctionGroup5();
+
+		pMsg[0] = 1 + (pCurrent - pMsg);
+
+		insertXOR(pMsg);
+
+		return true;
 	}
 
 	void LocDecoder::getLANLocInfo(uint8_t* pMsg)

@@ -41,6 +41,9 @@ namespace TBT
 			virtual bool		getDccMessage(uint8_t* pMsg) { return false; }
 
 		protected:
+			uint8_t* insertDCCAddress(uint8_t* pMsg);
+			void insertXOR(uint8_t* pMsg);
+
 			uint16_t			m_DCCAddress;
 			Manager*			m_pManager;
 

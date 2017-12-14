@@ -106,7 +106,7 @@ namespace TBT
 			void setF6(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB5 |= 0x02) : (m_LocInfo.DB5 &= ~(0x02)); m_pManager->broadcastLocInfoChanged(this); }
 			void setF7(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB5 |= 0x04) : (m_LocInfo.DB5 &= ~(0x04)); m_pManager->broadcastLocInfoChanged(this); }
 			void setF8(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB5 |= 0x08) : (m_LocInfo.DB5 &= ~(0x08)); m_pManager->broadcastLocInfoChanged(this); }
-			void setFunctionGroup3(const uint8_t& value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB5 &= 0x0F; m_LocInfo.DB5 &= (value << 4); m_pManager->broadcastLocInfoChanged(this); }
+			void setFunctionGroup3(const uint8_t& value) { lock_guard<recursive_mutex> lock(m_MLocInfo); m_LocInfo.DB5 &= 0x0F; m_LocInfo.DB5 |= (value << 4); m_pManager->broadcastLocInfoChanged(this); }
 			void setF9(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB5 |= 0x10) : (m_LocInfo.DB5 &= ~(0x10)); m_pManager->broadcastLocInfoChanged(this); }
 			void setF10(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB5 |= 0x20) : (m_LocInfo.DB5 &= ~(0x20)); m_pManager->broadcastLocInfoChanged(this); }
 			void setF11(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB5 |= 0x40) : (m_LocInfo.DB5 &= ~(0x40)); m_pManager->broadcastLocInfoChanged(this); }
@@ -131,6 +131,13 @@ namespace TBT
 			void setF28(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB7 |= 0x80) : (m_LocInfo.DB7 &= ~(0x80)); m_pManager->broadcastLocInfoChanged(this); }
 
 		protected:
+			bool getDCCSpeedMessage(uint8_t* pMsg);
+			bool getDCCFG1Message(uint8_t* pMsg);
+			bool getDCCFG2Message(uint8_t* pMsg);
+			bool getDCCFG3Message(uint8_t* pMsg);
+			bool getDCCFG4Message(uint8_t* pMsg);
+			bool getDCCFG5Message(uint8_t* pMsg);
+
 			uint8_t m_LocMode;
 
 		private:
