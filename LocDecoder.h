@@ -138,9 +138,8 @@ namespace TBT
 			bool getDCCFG4Message(uint8_t* pMsg);
 			bool getDCCFG5Message(uint8_t* pMsg);
 
-			uint8_t m_LocMode;
-
 		private:
+			uint8_t m_LocMode;
 			uint8_t	m_DCCState;
 			uint8_t	m_CurrentCVRead;
 			LocInfo m_LocInfo;

@@ -137,10 +137,9 @@ namespace TBT
 
 	void Manager::getSystemState(SystemState* pMsg)
 	{
-		{
-			lock_guard<recursive_mutex> guard(m_MSystemState);
-			memcpy(pMsg, &m_SystemState, m_SystemState.DataLen);
-		}	//	guard unlocked
+		lock_guard<recursive_mutex> guard(m_MSystemState);
+		memcpy(pMsg, &m_SystemState, m_SystemState.DataLen);
+		//	guard unlocked
 	}
 
 } /* namespace TBT */

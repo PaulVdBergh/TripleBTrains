@@ -33,7 +33,7 @@ namespace TBT
 	:	Decoder(pManager, dccAddress)
 	,	m_LocMode(LOCMODE_DCC)
 	,	m_DCCState(0)
-	,	m_CurrentCVRead(8)
+	,	m_CurrentCVRead(7)
 	{
 		// TODO Auto-generated constructor stub
 		m_LocInfo.Addr_MSB = (m_DCCAddress >> 8);
@@ -113,9 +113,14 @@ namespace TBT
 					return rslt;
 				}
 
-				case 100:
+				case 6:
+				case 7:
+				case 8:
+				case 9:
+				case 10:
 				{
 					//	POM - Read CV
+/*
 					pMsg[0] = 6;
 					pMsg[1] = m_LocInfo.Addr_LSB;
 					pMsg[2] = 0xE4;
@@ -123,6 +128,14 @@ namespace TBT
 					pMsg[4] = 0x00;
 					pMsg[5] = pMsg[1] ^ pMsg[2] ^ pMsg[3] ^ pMsg[4];
 //					m_DCCState++;
+ */
+					uint8_t* pCurrent = insertDCCAddress(pMsg);
+					*pCurrent++ = 0xE4;
+					*pCurrent++ = m_CurrentCVRead;
+					*pCurrent++ = 0x00;
+					pMsg[0] = 1 + (pCurrent - pMsg);
+					insertXOR(pMsg);
+					m_DCCState++;
 					return true;
 				}
 
@@ -144,16 +157,42 @@ namespace TBT
 	{
 		uint8_t* pCurrent = insertDCCAddress(pMsg);
 
-		if(getSpeedsteps() == 0x04)
+		switch(getSpeedsteps())
 		{
-			//	128 speed steps
-			*pCurrent++ = 0x3F;
-			*pCurrent++ = getSpeed() | (getDirection() ? 0x80 : 0x00);
-		}
-		else
-		{
-			//	14 speed steps
-			*pCurrent++ = 0x40 | (getDirection() ? 0x20 : 0x00) | getSpeed();
+			case 0:
+			case 1:
+			{
+				//	14 speed steps + light
+				*pCurrent++ =	0x40
+							| 	(getDirection() ? 0x20 : 0x00)
+							| 	(getSpeed() & 0x0F)
+							|	(getLight() ? 0x10 : 0x00);
+				break;
+			}
+
+			case 2:
+			{
+				//	28 speed steps
+				*pCurrent++	=	0x40
+							|	(getDirection() ? 0x20 : 0x00)
+							|	((getSpeed() >> 1) & 0x0F)
+							|	((getSpeed() & 0x01) ? 0x10 : 0x00);
+				break;
+			}
+
+			case 4:
+			{
+				//	128 speed steps
+				*pCurrent++ = 0x3F;
+				*pCurrent++ = 	(getSpeed() & 0x7F)
+							| 	(getDirection() ? 0x80 : 0x00);
+				break;
+			}
+
+			default:
+			{
+
+			}
 		}
 
 		pMsg[0] = 1 + (pCurrent - pMsg);

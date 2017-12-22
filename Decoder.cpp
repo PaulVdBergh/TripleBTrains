@@ -48,7 +48,7 @@ namespace TBT
 		}
 		else
 		{
-			*pCurrent++ = 0x80 + (m_DCCAddress >> 8);
+			*pCurrent++ = 0xC0 | ((m_DCCAddress >> 8) & 0x3F);
 			*pCurrent++ = m_DCCAddress & 0xFF;
 		}
 
