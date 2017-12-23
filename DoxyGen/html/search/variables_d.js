@@ -1,0 +1,15 @@
+var searchData=
+[
+  ['name',['name',['../structmg__resolve__async__request_a3d5bd5daeb6672a070322e3cf304eb75.html#a3d5bd5daeb6672a070322e3cf304eb75',1,'mg_resolve_async_request::name()'],['../structmg__dns__resource__record_afd27e187a02127a98a04757013aecd48.html#afd27e187a02127a98a04757013aecd48',1,'mg_dns_resource_record::name()']]],
+  ['nameserver',['nameserver',['../structmg__mgr_a6177e6c1145fe43e36d7cc926a7f0d8c.html#a6177e6c1145fe43e36d7cc926a7f0d8c',1,'mg_mgr::nameserver()'],['../structmg__mgr__init__opts_a1c54576a6dc65d0d1fba5caec53847fd.html#a1c54576a6dc65d0d1fba5caec53847fd',1,'mg_mgr_init_opts::nameserver()'],['../structmg__connect__opts_a53edbf692c49f5ee86d2fe27ebba816c.html#a53edbf692c49f5ee86d2fe27ebba816c',1,'mg_connect_opts::nameserver()'],['../structmg__resolve__async__opts_a2fb7183d887260a2b3576e47641e96dc.html#a2fb7183d887260a2b3576e47641e96dc',1,'mg_resolve_async_opts::nameserver()']]],
+  ['next',['next',['../structmg__http__endpoint_a28fd60f7d7ade3f17130287713340ab7.html#a28fd60f7d7ade3f17130287713340ab7',1,'mg_http_endpoint::next()'],['../structmg__connection_afcfd89f119a87cba6f6dfec2d2eda5d9.html#afcfd89f119a87cba6f6dfec2d2eda5d9',1,'mg_connection::next()']]],
+  ['nodes_5f',['nodes_',['../classJson_1_1OurReader_a19cc4e8c5d17ee6822f752e9a36f4ce3.html#a19cc4e8c5d17ee6822f752e9a36f4ce3',1,'Json::OurReader']]],
+  ['null',['null',['../classJson_1_1Value_a21ddb05b92c60c7548e928bf371e7d45.html#a21ddb05b92c60c7548e928bf371e7d45',1,'Json::Value']]],
+  ['nullref',['nullRef',['../classJson_1_1Value_aaee27e622f87266f861216d644603730.html#aaee27e622f87266f861216d644603730',1,'Json::Value']]],
+  ['nullsymbol_5f',['nullSymbol_',['../structJson_1_1BuiltStyledStreamWriter_a6ccceadf4b1286a519a175cb59cb61d5.html#a6ccceadf4b1286a519a175cb59cb61d5',1,'Json::BuiltStyledStreamWriter']]],
+  ['num_5fanswers',['num_answers',['../structmg__dns__header_a2d577357775702ca340492ca51379b21.html#a2d577357775702ca340492ca51379b21',1,'mg_dns_header::num_answers()'],['../structmg__dns__message_a6ebecefbdcb5c292f439123b7c780517.html#a6ebecefbdcb5c292f439123b7c780517',1,'mg_dns_message::num_answers()']]],
+  ['num_5fauthority_5fprs',['num_authority_prs',['../structmg__dns__header_a90a7621286acf1c8b78d3ee450dce9b6.html#a90a7621286acf1c8b78d3ee450dce9b6',1,'mg_dns_header']]],
+  ['num_5fifaces',['num_ifaces',['../structmg__mgr_a5354db212e2db2b8e115017ecf1060df.html#a5354db212e2db2b8e115017ecf1060df',1,'mg_mgr::num_ifaces()'],['../structmg__mgr__init__opts_a9e6fe35e823019f31446d34e29cc3f4a.html#a9e6fe35e823019f31446d34e29cc3f4a',1,'mg_mgr_init_opts::num_ifaces()']]],
+  ['num_5fother_5fprs',['num_other_prs',['../structmg__dns__header_aed8714aa60f2cc79dc0c81378c2ddb50.html#aed8714aa60f2cc79dc0c81378c2ddb50',1,'mg_dns_header']]],
+  ['num_5fquestions',['num_questions',['../structmg__dns__header_a156d3f5926d1fdb24bcbcba1f273c59a.html#a156d3f5926d1fdb24bcbcba1f273c59a',1,'mg_dns_header::num_questions()'],['../structmg__dns__message_a035ced22ef43b6b23ad6df3ad3aad126.html#a035ced22ef43b6b23ad6df3ad3aad126',1,'mg_dns_message::num_questions()']]]
+];

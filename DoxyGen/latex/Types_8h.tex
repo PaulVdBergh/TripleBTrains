@@ -1,0 +1,323 @@
+\hypertarget{Types_8h}{}\section{Types.\+h File Reference}
+\label{Types_8h}\index{Types.\+h@{Types.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structTBT_1_1SystemState}{T\+B\+T\+::\+System\+State}
+\item 
+struct \hyperlink{structTBT_1_1LocInfo}{T\+B\+T\+::\+Loc\+Info}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceTBT}{T\+BT}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Types_8h_a74760a776ba4f1bd931f71d00c667fbd_a74760a776ba4f1bd931f71d00c667fbd}{cs\+Emergency\+Stop}~0x01
+\item 
+\#define \hyperlink{Types_8h_a2b9d2f770953d435f6232ff515818db2_a2b9d2f770953d435f6232ff515818db2}{cs\+Track\+Voltage\+Off}~0x02
+\item 
+\#define \hyperlink{Types_8h_a101b07de73e2169fa0946b2d098d6612_a101b07de73e2169fa0946b2d098d6612}{cs\+Short\+Circuit}~0x04
+\item 
+\#define \hyperlink{Types_8h_afc39d30fa2f483fc45bdac230c4567c7_afc39d30fa2f483fc45bdac230c4567c7}{cs\+Programming\+Mode\+Active}~0x20
+\item 
+\#define \hyperlink{Types_8h_a8b82915a94d18345e9c5424211821f84_a8b82915a94d18345e9c5424211821f84}{cse\+High\+Temperature}~0x01
+\item 
+\#define \hyperlink{Types_8h_a2161ac32a6a51b5afd011e164b264d9a_a2161ac32a6a51b5afd011e164b264d9a}{cse\+Power\+Lost}~0x02
+\item 
+\#define \hyperlink{Types_8h_a5a8a30a40e8d1745bd61061a80c92c93_a5a8a30a40e8d1745bd61061a80c92c93}{cse\+Short\+Circuit\+External}~0x04
+\item 
+\#define \hyperlink{Types_8h_a213afb4c9f5e3ae05d8f48c44d90f6ec_a213afb4c9f5e3ae05d8f48c44d90f6ec}{cse\+Short\+Circuit\+Internal}~0x08
+\item 
+\#define \hyperlink{Types_8h_ae176adc04ea694e1b76d4458ae6e86e6_ae176adc04ea694e1b76d4458ae6e86e6}{L\+O\+C\+M\+O\+D\+E\+\_\+\+D\+CC}~0
+\item 
+\#define \hyperlink{Types_8h_afbab193e9bdc1fa51e85424df88d88a1_afbab193e9bdc1fa51e85424df88d88a1}{L\+O\+C\+M\+O\+D\+E\+\_\+\+MM}~1
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceTBT_a05cc33b74a68fb6eaf5962b5979716d4_a05cc33b74a68fb6eaf5962b5979716d4}{T\+B\+T\+::\+Power\+State} \{ \hyperlink{namespaceTBT_a05cc33b74a68fb6eaf5962b5979716d4_a05cc33b74a68fb6eaf5962b5979716d4a7f5f78db5644978b8cb2604877141abb}{T\+B\+T\+::\+Power\+On}, 
+\hyperlink{namespaceTBT_a05cc33b74a68fb6eaf5962b5979716d4_a05cc33b74a68fb6eaf5962b5979716d4a9e3c943b1f180e12dc8446b56ee86467}{T\+B\+T\+::\+Power\+Off}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structTBT_1_1SystemState}{T\+B\+T\+::\+System\+State} \hyperlink{namespaceTBT_a024865ff220c7dd9f7def06e2a61c13f_a024865ff220c7dd9f7def06e2a61c13f}{T\+B\+T\+::\+\_\+\+\_\+attribute\+\_\+\+\_\+} ((packed))
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a5ba9b456e08a42438e29cc9c4373b529_a5ba9b456e08a42438e29cc9c4373b529}{Data\+Len} = 0x14
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a39a59b6c1472f906b670beae834c6646_a39a59b6c1472f906b670beae834c6646}{filler1} = 0x00
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a99382f56d1a6a2948348d150612424f5_a99382f56d1a6a2948348d150612424f5}{Header} = 0x84
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a3446cdb6d8f8325e91b0758e90747083_a3446cdb6d8f8325e91b0758e90747083}{filler2} = 0x00
+\item 
+int16\+\_\+t \hyperlink{Types_8h_a9513debfec358a3fcbc05469746adf8d_a9513debfec358a3fcbc05469746adf8d}{Main\+Current} = 0x0000
+\item 
+int16\+\_\+t \hyperlink{Types_8h_a602e4f21d6b11dd5815aee6b26e34d65_a602e4f21d6b11dd5815aee6b26e34d65}{Prog\+Current} = 0x0000
+\item 
+int16\+\_\+t \hyperlink{Types_8h_a1d6653a6a4514062c7a3ed709dfa1eee_a1d6653a6a4514062c7a3ed709dfa1eee}{Filtered\+Main\+Current} = 0x0000
+\item 
+int16\+\_\+t \hyperlink{Types_8h_aa17132856ceccb81be2abb39e22cd3f8_aa17132856ceccb81be2abb39e22cd3f8}{Temperature} = 0x0000
+\item 
+uint16\+\_\+t \hyperlink{Types_8h_aa4ab8246a2190e61eace4da40ded459c_aa4ab8246a2190e61eace4da40ded459c}{Supply\+Voltage} = 0x0000
+\item 
+uint16\+\_\+t \hyperlink{Types_8h_a7a070d40bc067de5aac2077f21caef65_a7a070d40bc067de5aac2077f21caef65}{V\+C\+C\+Voltage} = 0x0000
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a5adb3b9b3325d9b85d0d8f4e4145bfdc_a5adb3b9b3325d9b85d0d8f4e4145bfdc}{Central\+State} = \hyperlink{Types_8h_a2b9d2f770953d435f6232ff515818db2_a2b9d2f770953d435f6232ff515818db2}{cs\+Track\+Voltage\+Off}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_ae13069b7af25221902dac9a474510193_ae13069b7af25221902dac9a474510193}{Central\+State\+Ex} = 0x00
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a2a2556147677ece60b8aadf4a0d608ed_a2a2556147677ece60b8aadf4a0d608ed}{reserved1} = 0x00
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a646df3514a24749a0f54731bf41c6c67_a646df3514a24749a0f54731bf41c6c67}{reserved2} = 0x00
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a931695aa7699035dd4c05b809731d1d8_a931695aa7699035dd4c05b809731d1d8}{X\+\_\+\+Header} = 0x\+EF
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_ab5e93a3c48924e3d0760e52ad7498f7b_ab5e93a3c48924e3d0760e52ad7498f7b}{Addr\+\_\+\+M\+SB}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a2e20f1c4e847c96d432fa4caeceffddc_a2e20f1c4e847c96d432fa4caeceffddc}{Addr\+\_\+\+L\+SB}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_ad0172a834e604459694daf2b9eee7f29_ad0172a834e604459694daf2b9eee7f29}{D\+B2}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_ad95f3980bdc1fe81f28ba98ff8f0a4b3_ad95f3980bdc1fe81f28ba98ff8f0a4b3}{D\+B3}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a632a9f756be4e96fcd1eb2a276376049_a632a9f756be4e96fcd1eb2a276376049}{D\+B4}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_a3365b14b93e330d3bf94e60b2cbb68b0_a3365b14b93e330d3bf94e60b2cbb68b0}{D\+B5}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_acf49258637588c673872ffadc0c35d4d_acf49258637588c673872ffadc0c35d4d}{D\+B6}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_ae07b8f199f70ab7a35cba31f853cd018_ae07b8f199f70ab7a35cba31f853cd018}{D\+B7}
+\item 
+uint8\+\_\+t \hyperlink{Types_8h_ac8b80c088326003c15d18550f024585b_ac8b80c088326003c15d18550f024585b}{X\+OR}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{Types_8h_a8b82915a94d18345e9c5424211821f84_a8b82915a94d18345e9c5424211821f84}\label{Types_8h_a8b82915a94d18345e9c5424211821f84_a8b82915a94d18345e9c5424211821f84}} 
+\index{Types.\+h@{Types.\+h}!cse\+High\+Temperature@{cse\+High\+Temperature}}
+\index{cse\+High\+Temperature@{cse\+High\+Temperature}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{cse\+High\+Temperature}{cseHighTemperature}}
+{\footnotesize\ttfamily \#define cse\+High\+Temperature~0x01}
+
+\mbox{\Hypertarget{Types_8h_a74760a776ba4f1bd931f71d00c667fbd_a74760a776ba4f1bd931f71d00c667fbd}\label{Types_8h_a74760a776ba4f1bd931f71d00c667fbd_a74760a776ba4f1bd931f71d00c667fbd}} 
+\index{Types.\+h@{Types.\+h}!cs\+Emergency\+Stop@{cs\+Emergency\+Stop}}
+\index{cs\+Emergency\+Stop@{cs\+Emergency\+Stop}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{cs\+Emergency\+Stop}{csEmergencyStop}}
+{\footnotesize\ttfamily \#define cs\+Emergency\+Stop~0x01}
+
+
+
+Referenced by T\+B\+T\+::\+Manager\+::set\+Emergency\+Stop(), and T\+B\+T\+::\+Manager\+::set\+Power\+State().
+
+\mbox{\Hypertarget{Types_8h_a2161ac32a6a51b5afd011e164b264d9a_a2161ac32a6a51b5afd011e164b264d9a}\label{Types_8h_a2161ac32a6a51b5afd011e164b264d9a_a2161ac32a6a51b5afd011e164b264d9a}} 
+\index{Types.\+h@{Types.\+h}!cse\+Power\+Lost@{cse\+Power\+Lost}}
+\index{cse\+Power\+Lost@{cse\+Power\+Lost}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{cse\+Power\+Lost}{csePowerLost}}
+{\footnotesize\ttfamily \#define cse\+Power\+Lost~0x02}
+
+\mbox{\Hypertarget{Types_8h_a5a8a30a40e8d1745bd61061a80c92c93_a5a8a30a40e8d1745bd61061a80c92c93}\label{Types_8h_a5a8a30a40e8d1745bd61061a80c92c93_a5a8a30a40e8d1745bd61061a80c92c93}} 
+\index{Types.\+h@{Types.\+h}!cse\+Short\+Circuit\+External@{cse\+Short\+Circuit\+External}}
+\index{cse\+Short\+Circuit\+External@{cse\+Short\+Circuit\+External}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{cse\+Short\+Circuit\+External}{cseShortCircuitExternal}}
+{\footnotesize\ttfamily \#define cse\+Short\+Circuit\+External~0x04}
+
+\mbox{\Hypertarget{Types_8h_a213afb4c9f5e3ae05d8f48c44d90f6ec_a213afb4c9f5e3ae05d8f48c44d90f6ec}\label{Types_8h_a213afb4c9f5e3ae05d8f48c44d90f6ec_a213afb4c9f5e3ae05d8f48c44d90f6ec}} 
+\index{Types.\+h@{Types.\+h}!cse\+Short\+Circuit\+Internal@{cse\+Short\+Circuit\+Internal}}
+\index{cse\+Short\+Circuit\+Internal@{cse\+Short\+Circuit\+Internal}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{cse\+Short\+Circuit\+Internal}{cseShortCircuitInternal}}
+{\footnotesize\ttfamily \#define cse\+Short\+Circuit\+Internal~0x08}
+
+\mbox{\Hypertarget{Types_8h_afc39d30fa2f483fc45bdac230c4567c7_afc39d30fa2f483fc45bdac230c4567c7}\label{Types_8h_afc39d30fa2f483fc45bdac230c4567c7_afc39d30fa2f483fc45bdac230c4567c7}} 
+\index{Types.\+h@{Types.\+h}!cs\+Programming\+Mode\+Active@{cs\+Programming\+Mode\+Active}}
+\index{cs\+Programming\+Mode\+Active@{cs\+Programming\+Mode\+Active}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{cs\+Programming\+Mode\+Active}{csProgrammingModeActive}}
+{\footnotesize\ttfamily \#define cs\+Programming\+Mode\+Active~0x20}
+
+\mbox{\Hypertarget{Types_8h_a101b07de73e2169fa0946b2d098d6612_a101b07de73e2169fa0946b2d098d6612}\label{Types_8h_a101b07de73e2169fa0946b2d098d6612_a101b07de73e2169fa0946b2d098d6612}} 
+\index{Types.\+h@{Types.\+h}!cs\+Short\+Circuit@{cs\+Short\+Circuit}}
+\index{cs\+Short\+Circuit@{cs\+Short\+Circuit}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{cs\+Short\+Circuit}{csShortCircuit}}
+{\footnotesize\ttfamily \#define cs\+Short\+Circuit~0x04}
+
+\mbox{\Hypertarget{Types_8h_a2b9d2f770953d435f6232ff515818db2_a2b9d2f770953d435f6232ff515818db2}\label{Types_8h_a2b9d2f770953d435f6232ff515818db2_a2b9d2f770953d435f6232ff515818db2}} 
+\index{Types.\+h@{Types.\+h}!cs\+Track\+Voltage\+Off@{cs\+Track\+Voltage\+Off}}
+\index{cs\+Track\+Voltage\+Off@{cs\+Track\+Voltage\+Off}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{cs\+Track\+Voltage\+Off}{csTrackVoltageOff}}
+{\footnotesize\ttfamily \#define cs\+Track\+Voltage\+Off~0x02}
+
+
+
+Referenced by T\+B\+T\+::\+Manager\+::set\+Power\+State().
+
+\mbox{\Hypertarget{Types_8h_ae176adc04ea694e1b76d4458ae6e86e6_ae176adc04ea694e1b76d4458ae6e86e6}\label{Types_8h_ae176adc04ea694e1b76d4458ae6e86e6_ae176adc04ea694e1b76d4458ae6e86e6}} 
+\index{Types.\+h@{Types.\+h}!L\+O\+C\+M\+O\+D\+E\+\_\+\+D\+CC@{L\+O\+C\+M\+O\+D\+E\+\_\+\+D\+CC}}
+\index{L\+O\+C\+M\+O\+D\+E\+\_\+\+D\+CC@{L\+O\+C\+M\+O\+D\+E\+\_\+\+D\+CC}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{L\+O\+C\+M\+O\+D\+E\+\_\+\+D\+CC}{LOCMODE\_DCC}}
+{\footnotesize\ttfamily \#define L\+O\+C\+M\+O\+D\+E\+\_\+\+D\+CC~0}
+
+
+
+Referenced by T\+B\+T\+::\+Loc\+Decoder\+::set\+Loc\+Mode().
+
+\mbox{\Hypertarget{Types_8h_afbab193e9bdc1fa51e85424df88d88a1_afbab193e9bdc1fa51e85424df88d88a1}\label{Types_8h_afbab193e9bdc1fa51e85424df88d88a1_afbab193e9bdc1fa51e85424df88d88a1}} 
+\index{Types.\+h@{Types.\+h}!L\+O\+C\+M\+O\+D\+E\+\_\+\+MM@{L\+O\+C\+M\+O\+D\+E\+\_\+\+MM}}
+\index{L\+O\+C\+M\+O\+D\+E\+\_\+\+MM@{L\+O\+C\+M\+O\+D\+E\+\_\+\+MM}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{L\+O\+C\+M\+O\+D\+E\+\_\+\+MM}{LOCMODE\_MM}}
+{\footnotesize\ttfamily \#define L\+O\+C\+M\+O\+D\+E\+\_\+\+MM~1}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{Types_8h_a2e20f1c4e847c96d432fa4caeceffddc_a2e20f1c4e847c96d432fa4caeceffddc}\label{Types_8h_a2e20f1c4e847c96d432fa4caeceffddc_a2e20f1c4e847c96d432fa4caeceffddc}} 
+\index{Types.\+h@{Types.\+h}!Addr\+\_\+\+L\+SB@{Addr\+\_\+\+L\+SB}}
+\index{Addr\+\_\+\+L\+SB@{Addr\+\_\+\+L\+SB}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Addr\+\_\+\+L\+SB}{Addr\_LSB}}
+{\footnotesize\ttfamily uint8\+\_\+t Addr\+\_\+\+L\+SB}
+
+\mbox{\Hypertarget{Types_8h_ab5e93a3c48924e3d0760e52ad7498f7b_ab5e93a3c48924e3d0760e52ad7498f7b}\label{Types_8h_ab5e93a3c48924e3d0760e52ad7498f7b_ab5e93a3c48924e3d0760e52ad7498f7b}} 
+\index{Types.\+h@{Types.\+h}!Addr\+\_\+\+M\+SB@{Addr\+\_\+\+M\+SB}}
+\index{Addr\+\_\+\+M\+SB@{Addr\+\_\+\+M\+SB}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Addr\+\_\+\+M\+SB}{Addr\_MSB}}
+{\footnotesize\ttfamily uint8\+\_\+t Addr\+\_\+\+M\+SB}
+
+\mbox{\Hypertarget{Types_8h_a5adb3b9b3325d9b85d0d8f4e4145bfdc_a5adb3b9b3325d9b85d0d8f4e4145bfdc}\label{Types_8h_a5adb3b9b3325d9b85d0d8f4e4145bfdc_a5adb3b9b3325d9b85d0d8f4e4145bfdc}} 
+\index{Types.\+h@{Types.\+h}!Central\+State@{Central\+State}}
+\index{Central\+State@{Central\+State}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Central\+State}{CentralState}}
+{\footnotesize\ttfamily uint8\+\_\+t Central\+State = \hyperlink{Types_8h_a2b9d2f770953d435f6232ff515818db2_a2b9d2f770953d435f6232ff515818db2}{cs\+Track\+Voltage\+Off}}
+
+\mbox{\Hypertarget{Types_8h_ae13069b7af25221902dac9a474510193_ae13069b7af25221902dac9a474510193}\label{Types_8h_ae13069b7af25221902dac9a474510193_ae13069b7af25221902dac9a474510193}} 
+\index{Types.\+h@{Types.\+h}!Central\+State\+Ex@{Central\+State\+Ex}}
+\index{Central\+State\+Ex@{Central\+State\+Ex}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Central\+State\+Ex}{CentralStateEx}}
+{\footnotesize\ttfamily uint8\+\_\+t Central\+State\+Ex = 0x00}
+
+\mbox{\Hypertarget{Types_8h_a5ba9b456e08a42438e29cc9c4373b529_a5ba9b456e08a42438e29cc9c4373b529}\label{Types_8h_a5ba9b456e08a42438e29cc9c4373b529_a5ba9b456e08a42438e29cc9c4373b529}} 
+\index{Types.\+h@{Types.\+h}!Data\+Len@{Data\+Len}}
+\index{Data\+Len@{Data\+Len}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Data\+Len}{DataLen}}
+{\footnotesize\ttfamily uint32\+\_\+t Data\+Len = 0x14}
+
+\mbox{\Hypertarget{Types_8h_ad0172a834e604459694daf2b9eee7f29_ad0172a834e604459694daf2b9eee7f29}\label{Types_8h_ad0172a834e604459694daf2b9eee7f29_ad0172a834e604459694daf2b9eee7f29}} 
+\index{Types.\+h@{Types.\+h}!D\+B2@{D\+B2}}
+\index{D\+B2@{D\+B2}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{D\+B2}{DB2}}
+{\footnotesize\ttfamily uint8\+\_\+t D\+B2}
+
+\mbox{\Hypertarget{Types_8h_ad95f3980bdc1fe81f28ba98ff8f0a4b3_ad95f3980bdc1fe81f28ba98ff8f0a4b3}\label{Types_8h_ad95f3980bdc1fe81f28ba98ff8f0a4b3_ad95f3980bdc1fe81f28ba98ff8f0a4b3}} 
+\index{Types.\+h@{Types.\+h}!D\+B3@{D\+B3}}
+\index{D\+B3@{D\+B3}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{D\+B3}{DB3}}
+{\footnotesize\ttfamily uint8\+\_\+t D\+B3}
+
+\mbox{\Hypertarget{Types_8h_a632a9f756be4e96fcd1eb2a276376049_a632a9f756be4e96fcd1eb2a276376049}\label{Types_8h_a632a9f756be4e96fcd1eb2a276376049_a632a9f756be4e96fcd1eb2a276376049}} 
+\index{Types.\+h@{Types.\+h}!D\+B4@{D\+B4}}
+\index{D\+B4@{D\+B4}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{D\+B4}{DB4}}
+{\footnotesize\ttfamily uint8\+\_\+t D\+B4}
+
+\mbox{\Hypertarget{Types_8h_a3365b14b93e330d3bf94e60b2cbb68b0_a3365b14b93e330d3bf94e60b2cbb68b0}\label{Types_8h_a3365b14b93e330d3bf94e60b2cbb68b0_a3365b14b93e330d3bf94e60b2cbb68b0}} 
+\index{Types.\+h@{Types.\+h}!D\+B5@{D\+B5}}
+\index{D\+B5@{D\+B5}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{D\+B5}{DB5}}
+{\footnotesize\ttfamily uint8\+\_\+t D\+B5}
+
+\mbox{\Hypertarget{Types_8h_acf49258637588c673872ffadc0c35d4d_acf49258637588c673872ffadc0c35d4d}\label{Types_8h_acf49258637588c673872ffadc0c35d4d_acf49258637588c673872ffadc0c35d4d}} 
+\index{Types.\+h@{Types.\+h}!D\+B6@{D\+B6}}
+\index{D\+B6@{D\+B6}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{D\+B6}{DB6}}
+{\footnotesize\ttfamily uint8\+\_\+t D\+B6}
+
+\mbox{\Hypertarget{Types_8h_ae07b8f199f70ab7a35cba31f853cd018_ae07b8f199f70ab7a35cba31f853cd018}\label{Types_8h_ae07b8f199f70ab7a35cba31f853cd018_ae07b8f199f70ab7a35cba31f853cd018}} 
+\index{Types.\+h@{Types.\+h}!D\+B7@{D\+B7}}
+\index{D\+B7@{D\+B7}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{D\+B7}{DB7}}
+{\footnotesize\ttfamily uint8\+\_\+t D\+B7}
+
+\mbox{\Hypertarget{Types_8h_a39a59b6c1472f906b670beae834c6646_a39a59b6c1472f906b670beae834c6646}\label{Types_8h_a39a59b6c1472f906b670beae834c6646_a39a59b6c1472f906b670beae834c6646}} 
+\index{Types.\+h@{Types.\+h}!filler1@{filler1}}
+\index{filler1@{filler1}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{filler1}{filler1}}
+{\footnotesize\ttfamily uint8\+\_\+t filler1 = 0x00}
+
+\mbox{\Hypertarget{Types_8h_a3446cdb6d8f8325e91b0758e90747083_a3446cdb6d8f8325e91b0758e90747083}\label{Types_8h_a3446cdb6d8f8325e91b0758e90747083_a3446cdb6d8f8325e91b0758e90747083}} 
+\index{Types.\+h@{Types.\+h}!filler2@{filler2}}
+\index{filler2@{filler2}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{filler2}{filler2}}
+{\footnotesize\ttfamily uint8\+\_\+t filler2 = 0x00}
+
+\mbox{\Hypertarget{Types_8h_a1d6653a6a4514062c7a3ed709dfa1eee_a1d6653a6a4514062c7a3ed709dfa1eee}\label{Types_8h_a1d6653a6a4514062c7a3ed709dfa1eee_a1d6653a6a4514062c7a3ed709dfa1eee}} 
+\index{Types.\+h@{Types.\+h}!Filtered\+Main\+Current@{Filtered\+Main\+Current}}
+\index{Filtered\+Main\+Current@{Filtered\+Main\+Current}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Filtered\+Main\+Current}{FilteredMainCurrent}}
+{\footnotesize\ttfamily int16\+\_\+t Filtered\+Main\+Current = 0x0000}
+
+\mbox{\Hypertarget{Types_8h_a99382f56d1a6a2948348d150612424f5_a99382f56d1a6a2948348d150612424f5}\label{Types_8h_a99382f56d1a6a2948348d150612424f5_a99382f56d1a6a2948348d150612424f5}} 
+\index{Types.\+h@{Types.\+h}!Header@{Header}}
+\index{Header@{Header}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Header}{Header}}
+{\footnotesize\ttfamily uint8\+\_\+t Header = 0x84}
+
+\mbox{\Hypertarget{Types_8h_a9513debfec358a3fcbc05469746adf8d_a9513debfec358a3fcbc05469746adf8d}\label{Types_8h_a9513debfec358a3fcbc05469746adf8d_a9513debfec358a3fcbc05469746adf8d}} 
+\index{Types.\+h@{Types.\+h}!Main\+Current@{Main\+Current}}
+\index{Main\+Current@{Main\+Current}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Main\+Current}{MainCurrent}}
+{\footnotesize\ttfamily int16\+\_\+t Main\+Current = 0x0000}
+
+\mbox{\Hypertarget{Types_8h_a602e4f21d6b11dd5815aee6b26e34d65_a602e4f21d6b11dd5815aee6b26e34d65}\label{Types_8h_a602e4f21d6b11dd5815aee6b26e34d65_a602e4f21d6b11dd5815aee6b26e34d65}} 
+\index{Types.\+h@{Types.\+h}!Prog\+Current@{Prog\+Current}}
+\index{Prog\+Current@{Prog\+Current}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Prog\+Current}{ProgCurrent}}
+{\footnotesize\ttfamily int16\+\_\+t Prog\+Current = 0x0000}
+
+\mbox{\Hypertarget{Types_8h_a2a2556147677ece60b8aadf4a0d608ed_a2a2556147677ece60b8aadf4a0d608ed}\label{Types_8h_a2a2556147677ece60b8aadf4a0d608ed_a2a2556147677ece60b8aadf4a0d608ed}} 
+\index{Types.\+h@{Types.\+h}!reserved1@{reserved1}}
+\index{reserved1@{reserved1}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{reserved1}{reserved1}}
+{\footnotesize\ttfamily uint8\+\_\+t reserved1 = 0x00}
+
+\mbox{\Hypertarget{Types_8h_a646df3514a24749a0f54731bf41c6c67_a646df3514a24749a0f54731bf41c6c67}\label{Types_8h_a646df3514a24749a0f54731bf41c6c67_a646df3514a24749a0f54731bf41c6c67}} 
+\index{Types.\+h@{Types.\+h}!reserved2@{reserved2}}
+\index{reserved2@{reserved2}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{reserved2}{reserved2}}
+{\footnotesize\ttfamily uint8\+\_\+t reserved2 = 0x00}
+
+\mbox{\Hypertarget{Types_8h_aa4ab8246a2190e61eace4da40ded459c_aa4ab8246a2190e61eace4da40ded459c}\label{Types_8h_aa4ab8246a2190e61eace4da40ded459c_aa4ab8246a2190e61eace4da40ded459c}} 
+\index{Types.\+h@{Types.\+h}!Supply\+Voltage@{Supply\+Voltage}}
+\index{Supply\+Voltage@{Supply\+Voltage}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Supply\+Voltage}{SupplyVoltage}}
+{\footnotesize\ttfamily uint16\+\_\+t Supply\+Voltage = 0x0000}
+
+\mbox{\Hypertarget{Types_8h_aa17132856ceccb81be2abb39e22cd3f8_aa17132856ceccb81be2abb39e22cd3f8}\label{Types_8h_aa17132856ceccb81be2abb39e22cd3f8_aa17132856ceccb81be2abb39e22cd3f8}} 
+\index{Types.\+h@{Types.\+h}!Temperature@{Temperature}}
+\index{Temperature@{Temperature}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{Temperature}{Temperature}}
+{\footnotesize\ttfamily int16\+\_\+t Temperature = 0x0000}
+
+\mbox{\Hypertarget{Types_8h_a7a070d40bc067de5aac2077f21caef65_a7a070d40bc067de5aac2077f21caef65}\label{Types_8h_a7a070d40bc067de5aac2077f21caef65_a7a070d40bc067de5aac2077f21caef65}} 
+\index{Types.\+h@{Types.\+h}!V\+C\+C\+Voltage@{V\+C\+C\+Voltage}}
+\index{V\+C\+C\+Voltage@{V\+C\+C\+Voltage}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{V\+C\+C\+Voltage}{VCCVoltage}}
+{\footnotesize\ttfamily uint16\+\_\+t V\+C\+C\+Voltage = 0x0000}
+
+\mbox{\Hypertarget{Types_8h_a931695aa7699035dd4c05b809731d1d8_a931695aa7699035dd4c05b809731d1d8}\label{Types_8h_a931695aa7699035dd4c05b809731d1d8_a931695aa7699035dd4c05b809731d1d8}} 
+\index{Types.\+h@{Types.\+h}!X\+\_\+\+Header@{X\+\_\+\+Header}}
+\index{X\+\_\+\+Header@{X\+\_\+\+Header}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{X\+\_\+\+Header}{X\_Header}}
+{\footnotesize\ttfamily uint8\+\_\+t X\+\_\+\+Header = 0x\+EF}
+
+\mbox{\Hypertarget{Types_8h_ac8b80c088326003c15d18550f024585b_ac8b80c088326003c15d18550f024585b}\label{Types_8h_ac8b80c088326003c15d18550f024585b_ac8b80c088326003c15d18550f024585b}} 
+\index{Types.\+h@{Types.\+h}!X\+OR@{X\+OR}}
+\index{X\+OR@{X\+OR}!Types.\+h@{Types.\+h}}
+\subsubsection{\texorpdfstring{X\+OR}{XOR}}
+{\footnotesize\ttfamily uint8\+\_\+t X\+OR}
+

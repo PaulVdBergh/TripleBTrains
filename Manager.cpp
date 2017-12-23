@@ -35,6 +35,25 @@
 namespace TBT
 {
 
+	/**
+	 *	Default constructor for class Manager.
+	 *
+	 *	Create a new Manager instance with the following interfaces:
+	 *
+	 *	-	UDPClientInterface
+	 *	-	XpressNetClientInterface
+	 *	-	WSClientInterface
+	 *
+	 *	then, create and start a DccGenerator
+	 *
+	 *	@param	none
+	 *
+	 *	@return	none, a new Manager instance is created
+	 *
+	 *	\warning	It is quite obvious that there should be just one and only one instance
+	 *	of this class in the running application.
+	 *	Maybe I implement it as a singleton, don't know for now...
+	 */
 	Manager::Manager()
 	{
 		UDPClientInterface* pUDPClientIF = new UDPClientInterface(this);
@@ -49,6 +68,16 @@ namespace TBT
 		m_pDccGenerator = new DccGenerator(&m_Decoders, &m_MDecoders);
 	}
 
+	/**
+	 *	Destructor for class Manager
+	 *
+	 *	Destroy the instance by first deleting the DccGenerator and then
+	 *	deleting all clientInterfaces.
+	 *
+	 *	@param	none
+	 *
+	 *	@return	none, the Manager instance is deleted.
+	 */
 	Manager::~Manager()
 	{
 		delete m_pDccGenerator;
@@ -59,6 +88,18 @@ namespace TBT
 		}
 	}
 
+	/**
+	 * Manager::findDecoder returns a pointer to the registered decoder with the
+	 * specified DCC address.  If the decoder isn't found, return NULL.
+	 *
+	 * At this point we cannot create a new decoder instance because there is no
+	 * way to determine what kind of decoder to create.  (class Decoder is virtual)
+	 *
+	 * @param	dccAddress:	the DCC address of the decoder to find
+	 *
+	 * @return	pointer to the decoder or NULL if the decoder doesn't appear in the
+	 * list of registered decoders.
+	 */
 	Decoder* Manager::findDecoder(uint16_t dccAddress)
 	{
 		lock_guard<recursive_mutex> guard(m_MDecoders);
@@ -70,18 +111,47 @@ namespace TBT
 		return it->second;
 	}
 
+	/**
+	 * Manager::registerDecoder registers (add) the decoder pointed to by pDecoder
+	 * into the pool of decoders.  If there already exists a decoder with the same
+	 * address in the pool, the existing pointer will be overwritten.
+	 * \warning This situation can lead to a memoryleak.
+	 *
+	 * @param	pDecoder: pointer to the decoder to add into the pool
+	 *
+	 * @return	void
+	 */
 	void Manager::registerDecoder(Decoder* pDecoder)
 	{
 		lock_guard<recursive_mutex> guard(m_MDecoders);
 		m_Decoders[pDecoder->getDCCAddress()] = pDecoder;
 	}
 
+	/**
+	 * Manager::unregisterDecoder unregisters (remove) the decoder pointed to by pDecoder
+	 * from the pool of decoders.  If the decoder wasn't prevoiusly registerd, i.e. it
+	 * isn't in the pool, nothing changes.
+	 *
+	 * @param	pDecoder:	pointer to the decoder to remove from the pool
+	 *
+	 * @return	void
+	 */
 	void Manager::unregisterDecoder(Decoder* pDecoder)
 	{
 		lock_guard<recursive_mutex> guard(m_MDecoders);
 		m_Decoders.erase(pDecoder->getDCCAddress());
 	}
 
+
+	/**
+	 * Manager::broadcastLocInfoChanged itterates over the pool of interfaces
+	 * and informs each of them about the change in the state of LocDecoder pointed to
+	 * by pLoc.
+	 *
+	 * @param	pLoc:	pointer to LocDecoder who's state changed.
+	 *
+	 * @return	void
+	 */
 	void Manager::broadcastLocInfoChanged(LocDecoder* pLoc)
 	{
 		lock_guard<recursive_mutex> guard(m_MClientInterfaces);
@@ -91,6 +161,15 @@ namespace TBT
 		}
 	}
 
+	/**
+	 * Manager::setPowerState set the powerstate of the system to the new state indicated by
+	 * newState and informs each interface about the new state.  In the case that newState is
+	 * PowerOn, this function will cancel any pending emergencystop.
+	 *
+	 * @param	newState:	member of enum PowerState
+	 *
+	 * @return	void
+	 */
 	void Manager::setPowerState(PowerState newState)
 	{
 		{
@@ -114,6 +193,14 @@ namespace TBT
 		}	//	guard unlocked
 	}
 
+	/**
+	 * Manager::setEmergencyStop raises an emergencystop condition.  All locdecoders
+	 * shall be stopped immediatly but the power will remain on the tracks.
+	 *
+	 * @param	none
+	 *
+	 * @return	void
+	 */
 	void Manager::setEmergencyStop()
 	{
 		bool currentState = m_SystemState.CentralState & csEmergencyStop;
@@ -135,6 +222,15 @@ namespace TBT
 		}
 	}
 
+	/**
+	 * Manager::getSystemState generate the UDP message (Z21 LAN protocol)
+	 * about the unit's systemstate.  The user is responsible for allocating a buffer
+	 * big enough to contain the returned message.
+	 *
+	 * @param	pMsg	: pointer to a struct SystemState variable.
+	 *
+	 * @return	void
+	 */
 	void Manager::getSystemState(SystemState* pMsg)
 	{
 		lock_guard<recursive_mutex> guard(m_MSystemState);

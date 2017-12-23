@@ -9,19 +9,34 @@ Inheritance diagram for Json\+:\+:Our\+Char\+Reader\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classJson_1_1OurCharReader_a5015506620e7ba7bab417756fa1ca9fe}\label{classJson_1_1OurCharReader_a5015506620e7ba7bab417756fa1ca9fe}} 
-{\bfseries Our\+Char\+Reader} (bool collect\+Comments, \hyperlink{classJson_1_1OurFeatures}{Our\+Features} const \&features)
+\hyperlink{classJson_1_1OurCharReader_a5015506620e7ba7bab417756fa1ca9fe_a5015506620e7ba7bab417756fa1ca9fe}{Our\+Char\+Reader} (bool collect\+Comments, \hyperlink{classJson_1_1OurFeatures}{Our\+Features} const \&features)
 \item 
-bool \hyperlink{classJson_1_1OurCharReader_a547f08ec5a9951ca69e8bb2e90296c83}{parse} (char const $\ast$begin\+Doc, char const $\ast$end\+Doc, \hyperlink{classJson_1_1Value}{Value} $\ast$root, J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG $\ast$errs) J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+V\+E\+R\+R\+I\+DE
+bool \hyperlink{classJson_1_1OurCharReader_a547f08ec5a9951ca69e8bb2e90296c83_a547f08ec5a9951ca69e8bb2e90296c83}{parse} (char const $\ast$begin\+Doc, char const $\ast$end\+Doc, \hyperlink{classJson_1_1Value}{Value} $\ast$root, \hyperlink{json_8h_a1e723f95759de062585bc4a8fd3fa4be_a1e723f95759de062585bc4a8fd3fa4be}{J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG} $\ast$errs) \hyperlink{json_8h_a824d6199c91488107e443226fa6022c5_a824d6199c91488107e443226fa6022c5}{J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+V\+E\+R\+R\+I\+DE}
 \begin{DoxyCompactList}\small\item\em Read a \hyperlink{classJson_1_1Value}{Value} from a \href{http://www.json.org}{\tt J\+S\+ON} document. The document must be a U\+T\+F-\/8 encoded string containing the document to read. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool const \hyperlink{classJson_1_1OurCharReader_aa6afd3d0f754cadad0f6d2be38bcfee0_aa6afd3d0f754cadad0f6d2be38bcfee0}{collect\+Comments\+\_\+}
+\item 
+\hyperlink{classJson_1_1OurReader}{Our\+Reader} \hyperlink{classJson_1_1OurCharReader_aedd4520b8570654ed7aa0726075ee58d_aedd4520b8570654ed7aa0726075ee58d}{reader\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJson_1_1OurCharReader_a5015506620e7ba7bab417756fa1ca9fe_a5015506620e7ba7bab417756fa1ca9fe}\label{classJson_1_1OurCharReader_a5015506620e7ba7bab417756fa1ca9fe_a5015506620e7ba7bab417756fa1ca9fe}} 
+\index{Json\+::\+Our\+Char\+Reader@{Json\+::\+Our\+Char\+Reader}!Our\+Char\+Reader@{Our\+Char\+Reader}}
+\index{Our\+Char\+Reader@{Our\+Char\+Reader}!Json\+::\+Our\+Char\+Reader@{Json\+::\+Our\+Char\+Reader}}
+\subsubsection{\texorpdfstring{Our\+Char\+Reader()}{OurCharReader()}}
+{\footnotesize\ttfamily Json\+::\+Our\+Char\+Reader\+::\+Our\+Char\+Reader (\begin{DoxyParamCaption}\item[{bool}]{collect\+Comments,  }\item[{\hyperlink{classJson_1_1OurFeatures}{Our\+Features} const \&}]{features }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classJson_1_1OurCharReader_a547f08ec5a9951ca69e8bb2e90296c83}\label{classJson_1_1OurCharReader_a547f08ec5a9951ca69e8bb2e90296c83}} 
+\mbox{\Hypertarget{classJson_1_1OurCharReader_a547f08ec5a9951ca69e8bb2e90296c83_a547f08ec5a9951ca69e8bb2e90296c83}\label{classJson_1_1OurCharReader_a547f08ec5a9951ca69e8bb2e90296c83_a547f08ec5a9951ca69e8bb2e90296c83}} 
 \index{Json\+::\+Our\+Char\+Reader@{Json\+::\+Our\+Char\+Reader}!parse@{parse}}
 \index{parse@{parse}!Json\+::\+Our\+Char\+Reader@{Json\+::\+Our\+Char\+Reader}}
 \subsubsection{\texorpdfstring{parse()}{parse()}}
-{\footnotesize\ttfamily bool Json\+::\+Our\+Char\+Reader\+::parse (\begin{DoxyParamCaption}\item[{char const $\ast$}]{begin\+Doc,  }\item[{char const $\ast$}]{end\+Doc,  }\item[{\hyperlink{classJson_1_1Value}{Value} $\ast$}]{root,  }\item[{J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG $\ast$}]{errs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool Json\+::\+Our\+Char\+Reader\+::parse (\begin{DoxyParamCaption}\item[{char const $\ast$}]{begin\+Doc,  }\item[{char const $\ast$}]{end\+Doc,  }\item[{\hyperlink{classJson_1_1Value}{Value} $\ast$}]{root,  }\item[{\hyperlink{json_8h_a1e723f95759de062585bc4a8fd3fa4be_a1e723f95759de062585bc4a8fd3fa4be}{J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG} $\ast$}]{errs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -43,10 +58,29 @@ Read a \hyperlink{classJson_1_1Value}{Value} from a \href{http://www.json.org}{\
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classJson_1_1CharReader_a7983680d50fd0745f371c43b162e78e1}{Json\+::\+Char\+Reader}.
+Implements \hyperlink{classJson_1_1CharReader_a7983680d50fd0745f371c43b162e78e1_a7983680d50fd0745f371c43b162e78e1}{Json\+::\+Char\+Reader}.
+
+
+
+References Json\+::\+Our\+Reader\+::get\+Formatted\+Error\+Messages(), and Json\+::\+Our\+Reader\+::parse().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classJson_1_1OurCharReader_aa6afd3d0f754cadad0f6d2be38bcfee0_aa6afd3d0f754cadad0f6d2be38bcfee0}\label{classJson_1_1OurCharReader_aa6afd3d0f754cadad0f6d2be38bcfee0_aa6afd3d0f754cadad0f6d2be38bcfee0}} 
+\index{Json\+::\+Our\+Char\+Reader@{Json\+::\+Our\+Char\+Reader}!collect\+Comments\+\_\+@{collect\+Comments\+\_\+}}
+\index{collect\+Comments\+\_\+@{collect\+Comments\+\_\+}!Json\+::\+Our\+Char\+Reader@{Json\+::\+Our\+Char\+Reader}}
+\subsubsection{\texorpdfstring{collect\+Comments\+\_\+}{collectComments\_}}
+{\footnotesize\ttfamily bool const Json\+::\+Our\+Char\+Reader\+::collect\+Comments\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classJson_1_1OurCharReader_aedd4520b8570654ed7aa0726075ee58d_aedd4520b8570654ed7aa0726075ee58d}\label{classJson_1_1OurCharReader_aedd4520b8570654ed7aa0726075ee58d_aedd4520b8570654ed7aa0726075ee58d}} 
+\index{Json\+::\+Our\+Char\+Reader@{Json\+::\+Our\+Char\+Reader}!reader\+\_\+@{reader\+\_\+}}
+\index{reader\+\_\+@{reader\+\_\+}!Json\+::\+Our\+Char\+Reader@{Json\+::\+Our\+Char\+Reader}}
+\subsubsection{\texorpdfstring{reader\+\_\+}{reader\_}}
+{\footnotesize\ttfamily \hyperlink{classJson_1_1OurReader}{Our\+Reader} Json\+::\+Our\+Char\+Reader\+::reader\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-jsoncpp.\+cpp\end{DoxyCompactItemize}
+\hyperlink{jsoncpp_8cpp}{jsoncpp.\+cpp}\end{DoxyCompactItemize}

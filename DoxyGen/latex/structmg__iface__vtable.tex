@@ -1,58 +1,209 @@
 \hypertarget{structmg__iface__vtable}{}\section{mg\+\_\+iface\+\_\+vtable Struct Reference}
 \label{structmg__iface__vtable}\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+
+
+{\ttfamily \#include $<$mongoose.\+h$>$}
+
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a66915ed7fbcef057c33bb6dfa3d8a8ee}\label{structmg__iface__vtable_a66915ed7fbcef057c33bb6dfa3d8a8ee}} 
-void($\ast$ {\bfseries init} )(struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface)
+void($\ast$ \hyperlink{structmg__iface__vtable_a66915ed7fbcef057c33bb6dfa3d8a8ee_a66915ed7fbcef057c33bb6dfa3d8a8ee}{init} )(struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a267ee7de0f5c3f0eedee5ee5d093a810}\label{structmg__iface__vtable_a267ee7de0f5c3f0eedee5ee5d093a810}} 
-void($\ast$ {\bfseries free} )(struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface)
+void($\ast$ \hyperlink{structmg__iface__vtable_a267ee7de0f5c3f0eedee5ee5d093a810_a267ee7de0f5c3f0eedee5ee5d093a810}{free} )(struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a1b09df656c627c217c4f8efebef85a1e}\label{structmg__iface__vtable_a1b09df656c627c217c4f8efebef85a1e}} 
-void($\ast$ {\bfseries add\+\_\+conn} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
+void($\ast$ \hyperlink{structmg__iface__vtable_a1b09df656c627c217c4f8efebef85a1e_a1b09df656c627c217c4f8efebef85a1e}{add\+\_\+conn} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a3b76727f620579f2e5b2b18c346e71b4}\label{structmg__iface__vtable_a3b76727f620579f2e5b2b18c346e71b4}} 
-void($\ast$ {\bfseries remove\+\_\+conn} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
+void($\ast$ \hyperlink{structmg__iface__vtable_a3b76727f620579f2e5b2b18c346e71b4_a3b76727f620579f2e5b2b18c346e71b4}{remove\+\_\+conn} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a11baf939815da0f0fc71f27692f907a5}\label{structmg__iface__vtable_a11baf939815da0f0fc71f27692f907a5}} 
-time\+\_\+t($\ast$ {\bfseries poll} )(struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface, int timeout\+\_\+ms)
+time\+\_\+t($\ast$ \hyperlink{structmg__iface__vtable_a11baf939815da0f0fc71f27692f907a5_a11baf939815da0f0fc71f27692f907a5}{poll} )(struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface, int timeout\+\_\+ms)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a8b75b7e0f1ebd12f00580756ffdbda28}\label{structmg__iface__vtable_a8b75b7e0f1ebd12f00580756ffdbda28}} 
-int($\ast$ {\bfseries listen\+\_\+tcp} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)
+int($\ast$ \hyperlink{structmg__iface__vtable_a8b75b7e0f1ebd12f00580756ffdbda28_a8b75b7e0f1ebd12f00580756ffdbda28}{listen\+\_\+tcp} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a940fbc2eecb7353136647724d6f4cb39}\label{structmg__iface__vtable_a940fbc2eecb7353136647724d6f4cb39}} 
-int($\ast$ {\bfseries listen\+\_\+udp} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)
+int($\ast$ \hyperlink{structmg__iface__vtable_a940fbc2eecb7353136647724d6f4cb39_a940fbc2eecb7353136647724d6f4cb39}{listen\+\_\+udp} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a9dfae9823c533b3a3cf22501f7794f0a}\label{structmg__iface__vtable_a9dfae9823c533b3a3cf22501f7794f0a}} 
-void($\ast$ {\bfseries connect\+\_\+tcp} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)
+void($\ast$ \hyperlink{structmg__iface__vtable_a9dfae9823c533b3a3cf22501f7794f0a_a9dfae9823c533b3a3cf22501f7794f0a}{connect\+\_\+tcp} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a254b3a4b9c6d71ad2e28b634938ff039}\label{structmg__iface__vtable_a254b3a4b9c6d71ad2e28b634938ff039}} 
-void($\ast$ {\bfseries connect\+\_\+udp} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
+void($\ast$ \hyperlink{structmg__iface__vtable_a254b3a4b9c6d71ad2e28b634938ff039_a254b3a4b9c6d71ad2e28b634938ff039}{connect\+\_\+udp} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a73eaa7dd92a2be5503f947972deb3e2c}\label{structmg__iface__vtable_a73eaa7dd92a2be5503f947972deb3e2c}} 
-void($\ast$ {\bfseries tcp\+\_\+send} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const void $\ast$buf, size\+\_\+t len)
+void($\ast$ \hyperlink{structmg__iface__vtable_a73eaa7dd92a2be5503f947972deb3e2c_a73eaa7dd92a2be5503f947972deb3e2c}{tcp\+\_\+send} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const void $\ast$buf, size\+\_\+t len)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a0b9b282504e25ca9d64fcd2425a5fe41}\label{structmg__iface__vtable_a0b9b282504e25ca9d64fcd2425a5fe41}} 
-void($\ast$ {\bfseries udp\+\_\+send} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const void $\ast$buf, size\+\_\+t len)
+void($\ast$ \hyperlink{structmg__iface__vtable_a0b9b282504e25ca9d64fcd2425a5fe41_a0b9b282504e25ca9d64fcd2425a5fe41}{udp\+\_\+send} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const void $\ast$buf, size\+\_\+t len)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_af8c7c999331da0f1d0ac1fda3846b61d}\label{structmg__iface__vtable_af8c7c999331da0f1d0ac1fda3846b61d}} 
-void($\ast$ {\bfseries recved} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, size\+\_\+t len)
+void($\ast$ \hyperlink{structmg__iface__vtable_af8c7c999331da0f1d0ac1fda3846b61d_af8c7c999331da0f1d0ac1fda3846b61d}{recved} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, size\+\_\+t len)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a06792b088f508f37cca62ffa1a6ca133}\label{structmg__iface__vtable_a06792b088f508f37cca62ffa1a6ca133}} 
-int($\ast$ {\bfseries create\+\_\+conn} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
+int($\ast$ \hyperlink{structmg__iface__vtable_a06792b088f508f37cca62ffa1a6ca133_a06792b088f508f37cca62ffa1a6ca133}{create\+\_\+conn} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a807f493abe8b61ee2188b36a16a5ecd0}\label{structmg__iface__vtable_a807f493abe8b61ee2188b36a16a5ecd0}} 
-void($\ast$ {\bfseries destroy\+\_\+conn} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
+void($\ast$ \hyperlink{structmg__iface__vtable_a807f493abe8b61ee2188b36a16a5ecd0_a807f493abe8b61ee2188b36a16a5ecd0}{destroy\+\_\+conn} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a1cca4d335d41b5f40573a657fa022575}\label{structmg__iface__vtable_a1cca4d335d41b5f40573a657fa022575}} 
-void($\ast$ {\bfseries sock\+\_\+set} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, sock\+\_\+t sock)
+void($\ast$ \hyperlink{structmg__iface__vtable_a1cca4d335d41b5f40573a657fa022575_a1cca4d335d41b5f40573a657fa022575}{sock\+\_\+set} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, sock\+\_\+t sock)
 \item 
-\mbox{\Hypertarget{structmg__iface__vtable_a7b83f83b265b8d10bb85fafd726aab9d}\label{structmg__iface__vtable_a7b83f83b265b8d10bb85fafd726aab9d}} 
-void($\ast$ {\bfseries get\+\_\+conn\+\_\+addr} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, int remote, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)
+void($\ast$ \hyperlink{structmg__iface__vtable_a7b83f83b265b8d10bb85fafd726aab9d_a7b83f83b265b8d10bb85fafd726aab9d}{get\+\_\+conn\+\_\+addr} )(struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, int remote, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structmg__iface__vtable_a1b09df656c627c217c4f8efebef85a1e_a1b09df656c627c217c4f8efebef85a1e}\label{structmg__iface__vtable_a1b09df656c627c217c4f8efebef85a1e_a1b09df656c627c217c4f8efebef85a1e}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!add\+\_\+conn@{add\+\_\+conn}}
+\index{add\+\_\+conn@{add\+\_\+conn}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{add\+\_\+conn}{add\_conn}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::add\+\_\+conn) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)}
+
+
+
+Referenced by mg\+\_\+add\+\_\+conn().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a9dfae9823c533b3a3cf22501f7794f0a_a9dfae9823c533b3a3cf22501f7794f0a}\label{structmg__iface__vtable_a9dfae9823c533b3a3cf22501f7794f0a_a9dfae9823c533b3a3cf22501f7794f0a}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!connect\+\_\+tcp@{connect\+\_\+tcp}}
+\index{connect\+\_\+tcp@{connect\+\_\+tcp}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{connect\+\_\+tcp}{connect\_tcp}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::connect\+\_\+tcp) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)}
+
+
+
+Referenced by mg\+\_\+do\+\_\+connect().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a254b3a4b9c6d71ad2e28b634938ff039_a254b3a4b9c6d71ad2e28b634938ff039}\label{structmg__iface__vtable_a254b3a4b9c6d71ad2e28b634938ff039_a254b3a4b9c6d71ad2e28b634938ff039}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!connect\+\_\+udp@{connect\+\_\+udp}}
+\index{connect\+\_\+udp@{connect\+\_\+udp}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{connect\+\_\+udp}{connect\_udp}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::connect\+\_\+udp) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)}
+
+
+
+Referenced by mg\+\_\+do\+\_\+connect().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a06792b088f508f37cca62ffa1a6ca133_a06792b088f508f37cca62ffa1a6ca133}\label{structmg__iface__vtable_a06792b088f508f37cca62ffa1a6ca133_a06792b088f508f37cca62ffa1a6ca133}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!create\+\_\+conn@{create\+\_\+conn}}
+\index{create\+\_\+conn@{create\+\_\+conn}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{create\+\_\+conn}{create\_conn}}
+{\footnotesize\ttfamily int($\ast$ mg\+\_\+iface\+\_\+vtable\+::create\+\_\+conn) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)}
+
+
+
+Referenced by mg\+\_\+create\+\_\+connection().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a807f493abe8b61ee2188b36a16a5ecd0_a807f493abe8b61ee2188b36a16a5ecd0}\label{structmg__iface__vtable_a807f493abe8b61ee2188b36a16a5ecd0_a807f493abe8b61ee2188b36a16a5ecd0}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!destroy\+\_\+conn@{destroy\+\_\+conn}}
+\index{destroy\+\_\+conn@{destroy\+\_\+conn}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{destroy\+\_\+conn}{destroy\_conn}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::destroy\+\_\+conn) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)}
+
+
+
+Referenced by mg\+\_\+close\+\_\+conn(), and mg\+\_\+destroy\+\_\+conn().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a267ee7de0f5c3f0eedee5ee5d093a810_a267ee7de0f5c3f0eedee5ee5d093a810}\label{structmg__iface__vtable_a267ee7de0f5c3f0eedee5ee5d093a810_a267ee7de0f5c3f0eedee5ee5d093a810}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!free@{free}}
+\index{free@{free}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{free}{free}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::free) (struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface)}
+
+
+
+Referenced by mg\+\_\+mgr\+\_\+free().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a7b83f83b265b8d10bb85fafd726aab9d_a7b83f83b265b8d10bb85fafd726aab9d}\label{structmg__iface__vtable_a7b83f83b265b8d10bb85fafd726aab9d_a7b83f83b265b8d10bb85fafd726aab9d}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!get\+\_\+conn\+\_\+addr@{get\+\_\+conn\+\_\+addr}}
+\index{get\+\_\+conn\+\_\+addr@{get\+\_\+conn\+\_\+addr}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{get\+\_\+conn\+\_\+addr}{get\_conn\_addr}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::get\+\_\+conn\+\_\+addr) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, int remote, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)}
+
+
+
+Referenced by mg\+\_\+if\+\_\+get\+\_\+conn\+\_\+addr().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a66915ed7fbcef057c33bb6dfa3d8a8ee_a66915ed7fbcef057c33bb6dfa3d8a8ee}\label{structmg__iface__vtable_a66915ed7fbcef057c33bb6dfa3d8a8ee_a66915ed7fbcef057c33bb6dfa3d8a8ee}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!init@{init}}
+\index{init@{init}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{init}{init}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::init) (struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface)}
+
+
+
+Referenced by mg\+\_\+mgr\+\_\+init\+\_\+opt().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a8b75b7e0f1ebd12f00580756ffdbda28_a8b75b7e0f1ebd12f00580756ffdbda28}\label{structmg__iface__vtable_a8b75b7e0f1ebd12f00580756ffdbda28_a8b75b7e0f1ebd12f00580756ffdbda28}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!listen\+\_\+tcp@{listen\+\_\+tcp}}
+\index{listen\+\_\+tcp@{listen\+\_\+tcp}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{listen\+\_\+tcp}{listen\_tcp}}
+{\footnotesize\ttfamily int($\ast$ mg\+\_\+iface\+\_\+vtable\+::listen\+\_\+tcp) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)}
+
+
+
+Referenced by mg\+\_\+bind\+\_\+opt().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a940fbc2eecb7353136647724d6f4cb39_a940fbc2eecb7353136647724d6f4cb39}\label{structmg__iface__vtable_a940fbc2eecb7353136647724d6f4cb39_a940fbc2eecb7353136647724d6f4cb39}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!listen\+\_\+udp@{listen\+\_\+udp}}
+\index{listen\+\_\+udp@{listen\+\_\+udp}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{listen\+\_\+udp}{listen\_udp}}
+{\footnotesize\ttfamily int($\ast$ mg\+\_\+iface\+\_\+vtable\+::listen\+\_\+udp) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, union \hyperlink{unionsocket__address}{socket\+\_\+address} $\ast$sa)}
+
+
+
+Referenced by mg\+\_\+bind\+\_\+opt().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a11baf939815da0f0fc71f27692f907a5_a11baf939815da0f0fc71f27692f907a5}\label{structmg__iface__vtable_a11baf939815da0f0fc71f27692f907a5_a11baf939815da0f0fc71f27692f907a5}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!poll@{poll}}
+\index{poll@{poll}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{poll}{poll}}
+{\footnotesize\ttfamily time\+\_\+t($\ast$ mg\+\_\+iface\+\_\+vtable\+::poll) (struct \hyperlink{structmg__iface}{mg\+\_\+iface} $\ast$iface, int timeout\+\_\+ms)}
+
+
+
+Referenced by mg\+\_\+mgr\+\_\+poll().
+
+\mbox{\Hypertarget{structmg__iface__vtable_af8c7c999331da0f1d0ac1fda3846b61d_af8c7c999331da0f1d0ac1fda3846b61d}\label{structmg__iface__vtable_af8c7c999331da0f1d0ac1fda3846b61d_af8c7c999331da0f1d0ac1fda3846b61d}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!recved@{recved}}
+\index{recved@{recved}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{recved}{recved}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::recved) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, size\+\_\+t len)}
+
+
+
+Referenced by mg\+\_\+call(), and mg\+\_\+if\+\_\+recv\+\_\+udp\+\_\+cb().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a3b76727f620579f2e5b2b18c346e71b4_a3b76727f620579f2e5b2b18c346e71b4}\label{structmg__iface__vtable_a3b76727f620579f2e5b2b18c346e71b4_a3b76727f620579f2e5b2b18c346e71b4}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!remove\+\_\+conn@{remove\+\_\+conn}}
+\index{remove\+\_\+conn@{remove\+\_\+conn}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{remove\+\_\+conn}{remove\_conn}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::remove\+\_\+conn) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc)}
+
+
+
+Referenced by mg\+\_\+remove\+\_\+conn().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a1cca4d335d41b5f40573a657fa022575_a1cca4d335d41b5f40573a657fa022575}\label{structmg__iface__vtable_a1cca4d335d41b5f40573a657fa022575_a1cca4d335d41b5f40573a657fa022575}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!sock\+\_\+set@{sock\+\_\+set}}
+\index{sock\+\_\+set@{sock\+\_\+set}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{sock\+\_\+set}{sock\_set}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::sock\+\_\+set) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, sock\+\_\+t sock)}
+
+
+
+Referenced by mg\+\_\+sock\+\_\+set().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a73eaa7dd92a2be5503f947972deb3e2c_a73eaa7dd92a2be5503f947972deb3e2c}\label{structmg__iface__vtable_a73eaa7dd92a2be5503f947972deb3e2c_a73eaa7dd92a2be5503f947972deb3e2c}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!tcp\+\_\+send@{tcp\+\_\+send}}
+\index{tcp\+\_\+send@{tcp\+\_\+send}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{tcp\+\_\+send}{tcp\_send}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::tcp\+\_\+send) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const void $\ast$buf, size\+\_\+t len)}
+
+
+
+Referenced by mg\+\_\+send().
+
+\mbox{\Hypertarget{structmg__iface__vtable_a0b9b282504e25ca9d64fcd2425a5fe41_a0b9b282504e25ca9d64fcd2425a5fe41}\label{structmg__iface__vtable_a0b9b282504e25ca9d64fcd2425a5fe41_a0b9b282504e25ca9d64fcd2425a5fe41}} 
+\index{mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}!udp\+\_\+send@{udp\+\_\+send}}
+\index{udp\+\_\+send@{udp\+\_\+send}!mg\+\_\+iface\+\_\+vtable@{mg\+\_\+iface\+\_\+vtable}}
+\subsubsection{\texorpdfstring{udp\+\_\+send}{udp\_send}}
+{\footnotesize\ttfamily void($\ast$ mg\+\_\+iface\+\_\+vtable\+::udp\+\_\+send) (struct \hyperlink{structmg__connection}{mg\+\_\+connection} $\ast$nc, const void $\ast$buf, size\+\_\+t len)}
+
+
+
+Referenced by mg\+\_\+send().
+
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-mongoose.\+h\end{DoxyCompactItemize}
+\hyperlink{mongoose_8h}{mongoose.\+h}\end{DoxyCompactItemize}

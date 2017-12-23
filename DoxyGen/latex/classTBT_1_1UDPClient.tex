@@ -1,5 +1,9 @@
 \hypertarget{classTBT_1_1UDPClient}{}\section{T\+BT\+:\+:U\+D\+P\+Client Class Reference}
 \label{classTBT_1_1UDPClient}\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+
+
+{\ttfamily \#include $<$U\+D\+P\+Client.\+h$>$}
+
 Inheritance diagram for T\+BT\+:\+:U\+D\+P\+Client\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,42 +13,255 @@ Inheritance diagram for T\+BT\+:\+:U\+D\+P\+Client\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_a7b6f7858b9d3a7243bdd48fbf150b9f8}\label{classTBT_1_1UDPClient_a7b6f7858b9d3a7243bdd48fbf150b9f8}} 
-{\bfseries U\+D\+P\+Client} (\hyperlink{classTBT_1_1UDPClientInterface}{U\+D\+P\+Client\+Interface} $\ast$pinterface, const sockaddr\+\_\+in \&address)
+\hyperlink{classTBT_1_1UDPClient_a7b6f7858b9d3a7243bdd48fbf150b9f8_a7b6f7858b9d3a7243bdd48fbf150b9f8}{U\+D\+P\+Client} (\hyperlink{classTBT_1_1UDPClientInterface}{U\+D\+P\+Client\+Interface} $\ast$pinterface, const sockaddr\+\_\+in \&address)
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_aafe098769858c054b025bf3b3ccacf30}\label{classTBT_1_1UDPClient_aafe098769858c054b025bf3b3ccacf30}} 
-virtual void {\bfseries broadcast\+Power\+State\+Change} (bool new\+State)
+virtual \hyperlink{classTBT_1_1UDPClient_a65ed6ba0adf48e065e99b31c7d8aec26_a65ed6ba0adf48e065e99b31c7d8aec26}{$\sim$\+U\+D\+P\+Client} ()
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_a90c650259501f341f531ede72210624a}\label{classTBT_1_1UDPClient_a90c650259501f341f531ede72210624a}} 
-virtual void {\bfseries broadcast\+Loc\+Info\+Changed} (\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$p\+Loc)
+virtual void \hyperlink{classTBT_1_1UDPClient_aafe098769858c054b025bf3b3ccacf30_aafe098769858c054b025bf3b3ccacf30}{broadcast\+Power\+State\+Change} (bool new\+State)
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_a378d141aa807a685b1e70adaacd5fc17}\label{classTBT_1_1UDPClient_a378d141aa807a685b1e70adaacd5fc17}} 
-virtual void {\bfseries broadcast\+Emergency\+Stop} (void)
+virtual void \hyperlink{classTBT_1_1UDPClient_a90c650259501f341f531ede72210624a_a90c650259501f341f531ede72210624a}{broadcast\+Loc\+Info\+Changed} (\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$p\+Loc)
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_a8471b71655c61bf074b70b62a6dffbf1}\label{classTBT_1_1UDPClient_a8471b71655c61bf074b70b62a6dffbf1}} 
-const sockaddr\+\_\+in \& {\bfseries get\+Address} (void)
+virtual void \hyperlink{classTBT_1_1UDPClient_a378d141aa807a685b1e70adaacd5fc17_a378d141aa807a685b1e70adaacd5fc17}{broadcast\+Emergency\+Stop} (void)
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_a18da0bdc657f707f4c0af6cd3b1e6031}\label{classTBT_1_1UDPClient_a18da0bdc657f707f4c0af6cd3b1e6031}} 
-uint32\+\_\+t {\bfseries get\+Broadcast\+Flags} (void)
+const sockaddr\+\_\+in \& \hyperlink{classTBT_1_1UDPClient_a8471b71655c61bf074b70b62a6dffbf1_a8471b71655c61bf074b70b62a6dffbf1}{get\+Address} (void)
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_a23a0b0ecf47f8a2fe018a570f46ecdfe}\label{classTBT_1_1UDPClient_a23a0b0ecf47f8a2fe018a570f46ecdfe}} 
-void {\bfseries set\+Broadcast\+Flags} (uint32\+\_\+t new\+Flags)
+uint32\+\_\+t \hyperlink{classTBT_1_1UDPClient_a18da0bdc657f707f4c0af6cd3b1e6031_a18da0bdc657f707f4c0af6cd3b1e6031}{get\+Broadcast\+Flags} (void)
+\item 
+void \hyperlink{classTBT_1_1UDPClient_a23a0b0ecf47f8a2fe018a570f46ecdfe_a23a0b0ecf47f8a2fe018a570f46ecdfe}{set\+Broadcast\+Flags} (uint32\+\_\+t new\+Flags)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_a880ede9d0208905a251bbfd221646e3b}\label{classTBT_1_1UDPClient_a880ede9d0208905a251bbfd221646e3b}} 
-const sockaddr\+\_\+in {\bfseries m\+\_\+\+Address}
+const sockaddr\+\_\+in \hyperlink{classTBT_1_1UDPClient_a880ede9d0208905a251bbfd221646e3b_a880ede9d0208905a251bbfd221646e3b}{m\+\_\+\+Address}
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_aef66ad83fa20b995152c6f41cb8ba91f}\label{classTBT_1_1UDPClient_aef66ad83fa20b995152c6f41cb8ba91f}} 
-int {\bfseries m\+\_\+\+My\+Socket}
+int \hyperlink{classTBT_1_1UDPClient_aef66ad83fa20b995152c6f41cb8ba91f_aef66ad83fa20b995152c6f41cb8ba91f}{m\+\_\+\+My\+Socket}
 \item 
-\mbox{\Hypertarget{classTBT_1_1UDPClient_a91eb8f34a9606428eba7230c2bfdb6f6}\label{classTBT_1_1UDPClient_a91eb8f34a9606428eba7230c2bfdb6f6}} 
-uint32\+\_\+t {\bfseries m\+\_\+\+Broadcast\+Flags}
+uint32\+\_\+t \hyperlink{classTBT_1_1UDPClient_a91eb8f34a9606428eba7230c2bfdb6f6_a91eb8f34a9606428eba7230c2bfdb6f6}{m\+\_\+\+Broadcast\+Flags}
 \end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a7b6f7858b9d3a7243bdd48fbf150b9f8_a7b6f7858b9d3a7243bdd48fbf150b9f8}\label{classTBT_1_1UDPClient_a7b6f7858b9d3a7243bdd48fbf150b9f8_a7b6f7858b9d3a7243bdd48fbf150b9f8}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!U\+D\+P\+Client@{U\+D\+P\+Client}}
+\index{U\+D\+P\+Client@{U\+D\+P\+Client}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{U\+D\+P\+Client()}{UDPClient()}}
+{\footnotesize\ttfamily T\+B\+T\+::\+U\+D\+P\+Client\+::\+U\+D\+P\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{classTBT_1_1UDPClientInterface}{U\+D\+P\+Client\+Interface} $\ast$}]{pinterface,  }\item[{const sockaddr\+\_\+in \&}]{address }\end{DoxyParamCaption})}
+
+
+
+References m\+\_\+\+My\+Socket, and T\+B\+T\+::\+Client\+::m\+\_\+p\+Interface.
+
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a65ed6ba0adf48e065e99b31c7d8aec26_a65ed6ba0adf48e065e99b31c7d8aec26}\label{classTBT_1_1UDPClient_a65ed6ba0adf48e065e99b31c7d8aec26_a65ed6ba0adf48e065e99b31c7d8aec26}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!````~U\+D\+P\+Client@{$\sim$\+U\+D\+P\+Client}}
+\index{````~U\+D\+P\+Client@{$\sim$\+U\+D\+P\+Client}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{$\sim$\+U\+D\+P\+Client()}{~UDPClient()}}
+{\footnotesize\ttfamily T\+B\+T\+::\+U\+D\+P\+Client\+::$\sim$\+U\+D\+P\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a378d141aa807a685b1e70adaacd5fc17_a378d141aa807a685b1e70adaacd5fc17}\label{classTBT_1_1UDPClient_a378d141aa807a685b1e70adaacd5fc17_a378d141aa807a685b1e70adaacd5fc17}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!broadcast\+Emergency\+Stop@{broadcast\+Emergency\+Stop}}
+\index{broadcast\+Emergency\+Stop@{broadcast\+Emergency\+Stop}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{broadcast\+Emergency\+Stop()}{broadcastEmergencyStop()}}
+{\footnotesize\ttfamily void T\+B\+T\+::\+U\+D\+P\+Client\+::broadcast\+Emergency\+Stop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{7}{|X[-1]}|}
+\caption{response\+: L\+A\+N\+\_\+\+X\+\_\+\+B\+C\+\_\+\+S\+T\+O\+P\+P\+ED}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endhead
+\multirow{2}{\linewidth}{0x07}&\multirow{2}{\linewidth}{0x00}&\multirow{2}{\linewidth}{0x40}&\multirow{2}{\linewidth}{0x00}&\textbf{ X-\/\+Header}&\textbf{ D\+B0}&\textbf{ X\+O\+R-\/\+Byte }\\\cline{5-7}
+&&&&0x81&0x00&0x81 \\\cline{1-7}
+\end{longtabu}
+
+
+Implements \hyperlink{classTBT_1_1Client_a59459df809a663bcbbb6d31fbfa09402_a59459df809a663bcbbb6d31fbfa09402}{T\+B\+T\+::\+Client}.
+
+
+
+References m\+\_\+\+Address, and m\+\_\+\+My\+Socket.
+
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a90c650259501f341f531ede72210624a_a90c650259501f341f531ede72210624a}\label{classTBT_1_1UDPClient_a90c650259501f341f531ede72210624a_a90c650259501f341f531ede72210624a}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!broadcast\+Loc\+Info\+Changed@{broadcast\+Loc\+Info\+Changed}}
+\index{broadcast\+Loc\+Info\+Changed@{broadcast\+Loc\+Info\+Changed}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{broadcast\+Loc\+Info\+Changed()}{broadcastLocInfoChanged()}}
+{\footnotesize\ttfamily void T\+B\+T\+::\+U\+D\+P\+Client\+::broadcast\+Loc\+Info\+Changed (\begin{DoxyParamCaption}\item[{\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$}]{p\+Loc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classTBT_1_1Client_aeb3b63a37edc6b95872df54a57c27a71_aeb3b63a37edc6b95872df54a57c27a71}{T\+B\+T\+::\+Client}.
+
+
+
+References T\+B\+T\+::\+Loc\+Decoder\+::get\+L\+A\+N\+Loc\+Info(), m\+\_\+\+Address, and m\+\_\+\+My\+Socket.
+
+\mbox{\Hypertarget{classTBT_1_1UDPClient_aafe098769858c054b025bf3b3ccacf30_aafe098769858c054b025bf3b3ccacf30}\label{classTBT_1_1UDPClient_aafe098769858c054b025bf3b3ccacf30_aafe098769858c054b025bf3b3ccacf30}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!broadcast\+Power\+State\+Change@{broadcast\+Power\+State\+Change}}
+\index{broadcast\+Power\+State\+Change@{broadcast\+Power\+State\+Change}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{broadcast\+Power\+State\+Change()}{broadcastPowerStateChange()}}
+{\footnotesize\ttfamily void T\+B\+T\+::\+U\+D\+P\+Client\+::broadcast\+Power\+State\+Change (\begin{DoxyParamCaption}\item[{bool}]{new\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{7}{|X[-1]}|}
+\caption{response\+: L\+A\+N\+\_\+\+X\+\_\+\+B\+C\+\_\+\+T\+R\+A\+C\+K\+\_\+\+P\+O\+W\+E\+R\+\_\+\+ON}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endhead
+\multirow{2}{\linewidth}{0x07}&\multirow{2}{\linewidth}{0x00}&\multirow{2}{\linewidth}{0x40}&\multirow{2}{\linewidth}{0x00}&\textbf{ X-\/\+Header}&\textbf{ D\+B0}&\textbf{ X\+O\+R-\/\+Byte }\\\cline{5-7}
+&&&&0x61&0x01&0x60 \\\cline{1-7}
+\end{longtabu}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{7}{|X[-1]}|}
+\caption{response\+: L\+A\+N\+\_\+\+X\+\_\+\+B\+C\+\_\+\+T\+R\+A\+C\+K\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endhead
+\multirow{2}{\linewidth}{0x07}&\multirow{2}{\linewidth}{0x00}&\multirow{2}{\linewidth}{0x40}&\multirow{2}{\linewidth}{0x00}&\textbf{ X-\/\+Header}&\textbf{ D\+B0}&\textbf{ X\+O\+R-\/\+Byte }\\\cline{5-7}
+&&&&0x61&0x00&0x61 \\\cline{1-7}
+\end{longtabu}
+
+
+Implements \hyperlink{classTBT_1_1Client_ad64588b494ec98154ea261ed4f3b3643_ad64588b494ec98154ea261ed4f3b3643}{T\+B\+T\+::\+Client}.
+
+
+
+References m\+\_\+\+Address, and m\+\_\+\+My\+Socket.
+
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a8471b71655c61bf074b70b62a6dffbf1_a8471b71655c61bf074b70b62a6dffbf1}\label{classTBT_1_1UDPClient_a8471b71655c61bf074b70b62a6dffbf1_a8471b71655c61bf074b70b62a6dffbf1}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!get\+Address@{get\+Address}}
+\index{get\+Address@{get\+Address}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{get\+Address()}{getAddress()}}
+{\footnotesize\ttfamily const sockaddr\+\_\+in\& T\+B\+T\+::\+U\+D\+P\+Client\+::get\+Address (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+References get\+Broadcast\+Flags(), and m\+\_\+\+Address.
+
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a18da0bdc657f707f4c0af6cd3b1e6031_a18da0bdc657f707f4c0af6cd3b1e6031}\label{classTBT_1_1UDPClient_a18da0bdc657f707f4c0af6cd3b1e6031_a18da0bdc657f707f4c0af6cd3b1e6031}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!get\+Broadcast\+Flags@{get\+Broadcast\+Flags}}
+\index{get\+Broadcast\+Flags@{get\+Broadcast\+Flags}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{get\+Broadcast\+Flags()}{getBroadcastFlags()}}
+{\footnotesize\ttfamily uint32\+\_\+t T\+B\+T\+::\+U\+D\+P\+Client\+::get\+Broadcast\+Flags (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\caption{Broadcast flags is an OR combination of the following values\+:}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Value}&\textbf{ Meaning }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Value}&\textbf{ Meaning }\\\cline{1-2}
+\endhead
+0x00000001&Automatically generated broadcasts and messages about driving and switching are delivered to the registered client. The following messages are subscribed here\+:
+\begin{DoxyItemize}
+\item L\+A\+N\+\_\+\+X\+\_\+\+B\+C\+\_\+\+T\+R\+A\+C\+K\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF
+\item L\+A\+N\+\_\+\+X\+\_\+\+B\+C\+\_\+\+T\+R\+A\+C\+K\+\_\+\+P\+O\+W\+E\+R\+\_\+\+ON
+\item L\+A\+N\+\_\+\+X\+\_\+\+B\+C\+\_\+\+P\+R\+O\+G\+R\+A\+M\+M\+I\+N\+G\+\_\+\+M\+O\+DE
+\item L\+A\+N\+\_\+\+X\+\_\+\+B\+C\+\_\+\+T\+R\+A\+C\+K\+\_\+\+S\+H\+O\+R\+T\+\_\+\+C\+I\+R\+C\+U\+IT
+\item L\+A\+N\+\_\+\+X\+\_\+\+B\+C\+\_\+\+S\+T\+O\+P\+P\+ED
+\item L\+A\+N\+\_\+\+X\+\_\+\+L\+O\+C\+O\+\_\+\+I\+N\+FO (the relevant locomotive address must also be subscribed)
+\item L\+A\+N\+\_\+\+X\+\_\+\+T\+U\+R\+N\+O\+U\+T\+\_\+\+I\+N\+FO 
+\end{DoxyItemize}\\\cline{1-2}
+0x00000002&Changes to the feedback on the R-\/\+Bus are sent automatically. Broadcast message of Z21 see L\+A\+N\+\_\+\+R\+M\+B\+U\+S\+\_\+\+D\+A\+T\+A\+C\+H\+A\+N\+G\+ED \\\cline{1-2}
+0x00000004&Changes to Rail\+Com data of the subscribed locomotives will be sent automatically. Broadcast message of Z21 see L\+A\+N\+\_\+\+R\+A\+I\+L\+C\+O\+M\+\_\+\+D\+A\+T\+A\+C\+H\+A\+N\+G\+ED \\\cline{1-2}
+0x00000100&Changes to the Z21 system state are sent automatically. Broadcast message of Z21 see L\+A\+N\+\_\+\+S\+Y\+S\+T\+E\+M\+S\+T\+A\+T\+E\+\_\+\+D\+A\+T\+A\+C\+H\+A\+N\+G\+ED \\\cline{1-2}
+\multicolumn{2}{|p{(\linewidth-\tabcolsep*2-\arrayrulewidth*1)*2/2}|}{{\bfseries From Z21 FW Version 1.\+20\+:} }\\\cline{1-2}
+0x00010000&Replaces flag 0x00000001; \hyperlink{classTBT_1_1Client}{Client} now gets L\+A\+N\+\_\+\+X\+\_\+\+L\+O\+C\+O\+\_\+\+I\+N\+FO without first having to subscribe to the corresponding loco addresses, i.\+e. for all controlled locomotives! Due to the high network traffic, this flag may only be used in full PC controlled applications and is by no means intended for mobile handheld controllers.
+\begin{DoxyItemize}
+\item From FW V1.\+20 to V1.\+23\+: L\+A\+N\+\_\+\+X\+\_\+\+L\+O\+C\+O\+\_\+\+I\+N\+FO is sent for all locomotives.
+\item From FW V1.\+24\+: L\+A\+N\+\_\+\+X\+\_\+\+L\+O\+C\+O\+\_\+\+I\+N\+FO will be sent for all modified locos. 
+\end{DoxyItemize}\\\cline{1-2}
+0x01000000&Forward messages from the Loco\+Net bus to the L\+AN client without locos and points. \\\cline{1-2}
+0x02000000&Forward Loco-\/\+Specific Loco\+Net Messages to L\+AN \hyperlink{classTBT_1_1Client}{Client}\+: O\+P\+C\+\_\+\+L\+O\+C\+O\+\_\+\+S\+PD, O\+P\+C\+\_\+\+L\+O\+C\+O\+\_\+\+D\+I\+RF, O\+P\+C\+\_\+\+L\+O\+C\+O\+\_\+\+S\+ND, O\+P\+C\+\_\+\+L\+O\+C\+O\+\_\+\+F912, O\+P\+C\+\_\+\+E\+X\+P\+\_\+\+C\+MD \\\cline{1-2}
+0x04000000&Route turnout-\/specific Loco\+Net messages to L\+AN client\+: O\+P\+C\+\_\+\+S\+W\+\_\+\+R\+EQ, O\+P\+C\+\_\+\+S\+W\+\_\+\+R\+EP, O\+P\+C\+\_\+\+S\+W\+\_\+\+A\+CK, O\+P\+C\+\_\+\+S\+W\+\_\+\+S\+T\+A\+TE \\\cline{1-2}
+\multicolumn{2}{|p{(\linewidth-\tabcolsep*2-\arrayrulewidth*1)*2/2}|}{{\bfseries From Z21 FW Version 1.\+22\+:} }\\\cline{1-2}
+0x08000000&Send status messages from track occupancy detectors on the Loco\+Net bus to the L\+AN client. See L\+A\+N\+\_\+\+L\+O\+C\+O\+N\+E\+T\+\_\+\+D\+E\+T\+E\+C\+T\+OR \\\cline{1-2}
+\multicolumn{2}{|p{(\linewidth-\tabcolsep*2-\arrayrulewidth*1)*2/2}|}{{\bfseries From Z21 FW Version 1.\+29\+:} }\\\cline{1-2}
+0x00040000&Changes to Rail\+Com data are sent automatically. \hyperlink{classTBT_1_1Client}{Client} gets L\+A\+N\+\_\+\+R\+A\+I\+L\+C\+O\+M\+\_\+\+D\+A\+T\+A\+C\+H\+A\+N\+G\+ED, even without having to subscribe to the locomotive addresses beforehand, i.\+e. for all controlled locomotives! Due to the high network traffic, this flag may only be used in full PC controlled applications and is by no means intended for mobile handheld controllers. Broadcast message of Z21 see L\+A\+N\+\_\+\+R\+A\+I\+L\+C\+O\+M\+\_\+\+D\+A\+T\+A\+C\+H\+A\+N\+G\+ED \\\cline{1-2}
+\multicolumn{2}{|p{(\linewidth-\tabcolsep*2-\arrayrulewidth*1)*2/2}|}{{\bfseries From Z21 FW Version 1.\+30\+:} }\\\cline{1-2}
+0x00080000&Send status messages from track occupancy detectors on the C\+AN bus to the L\+AN client. See L\+A\+N\+\_\+\+C\+A\+N\+\_\+\+D\+E\+T\+E\+C\+T\+OR \\\cline{1-2}
+\end{longtabu}
+
+
+References m\+\_\+\+Broadcast\+Flags.
+
+
+
+Referenced by get\+Address(), and T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::thread\+Func().
+
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a23a0b0ecf47f8a2fe018a570f46ecdfe_a23a0b0ecf47f8a2fe018a570f46ecdfe}\label{classTBT_1_1UDPClient_a23a0b0ecf47f8a2fe018a570f46ecdfe_a23a0b0ecf47f8a2fe018a570f46ecdfe}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!set\+Broadcast\+Flags@{set\+Broadcast\+Flags}}
+\index{set\+Broadcast\+Flags@{set\+Broadcast\+Flags}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{set\+Broadcast\+Flags()}{setBroadcastFlags()}}
+{\footnotesize\ttfamily void T\+B\+T\+::\+U\+D\+P\+Client\+::set\+Broadcast\+Flags (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{new\+Flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+References m\+\_\+\+Broadcast\+Flags.
+
+
+
+Referenced by T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::thread\+Func().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a880ede9d0208905a251bbfd221646e3b_a880ede9d0208905a251bbfd221646e3b}\label{classTBT_1_1UDPClient_a880ede9d0208905a251bbfd221646e3b_a880ede9d0208905a251bbfd221646e3b}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!m\+\_\+\+Address@{m\+\_\+\+Address}}
+\index{m\+\_\+\+Address@{m\+\_\+\+Address}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Address}{m\_Address}}
+{\footnotesize\ttfamily const sockaddr\+\_\+in T\+B\+T\+::\+U\+D\+P\+Client\+::m\+\_\+\+Address\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Referenced by broadcast\+Emergency\+Stop(), broadcast\+Loc\+Info\+Changed(), broadcast\+Power\+State\+Change(), and get\+Address().
+
+\mbox{\Hypertarget{classTBT_1_1UDPClient_a91eb8f34a9606428eba7230c2bfdb6f6_a91eb8f34a9606428eba7230c2bfdb6f6}\label{classTBT_1_1UDPClient_a91eb8f34a9606428eba7230c2bfdb6f6_a91eb8f34a9606428eba7230c2bfdb6f6}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!m\+\_\+\+Broadcast\+Flags@{m\+\_\+\+Broadcast\+Flags}}
+\index{m\+\_\+\+Broadcast\+Flags@{m\+\_\+\+Broadcast\+Flags}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Broadcast\+Flags}{m\_BroadcastFlags}}
+{\footnotesize\ttfamily uint32\+\_\+t T\+B\+T\+::\+U\+D\+P\+Client\+::m\+\_\+\+Broadcast\+Flags\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Referenced by get\+Broadcast\+Flags(), and set\+Broadcast\+Flags().
+
+\mbox{\Hypertarget{classTBT_1_1UDPClient_aef66ad83fa20b995152c6f41cb8ba91f_aef66ad83fa20b995152c6f41cb8ba91f}\label{classTBT_1_1UDPClient_aef66ad83fa20b995152c6f41cb8ba91f_aef66ad83fa20b995152c6f41cb8ba91f}} 
+\index{T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}!m\+\_\+\+My\+Socket@{m\+\_\+\+My\+Socket}}
+\index{m\+\_\+\+My\+Socket@{m\+\_\+\+My\+Socket}!T\+B\+T\+::\+U\+D\+P\+Client@{T\+B\+T\+::\+U\+D\+P\+Client}}
+\subsubsection{\texorpdfstring{m\+\_\+\+My\+Socket}{m\_MySocket}}
+{\footnotesize\ttfamily int T\+B\+T\+::\+U\+D\+P\+Client\+::m\+\_\+\+My\+Socket\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Referenced by broadcast\+Emergency\+Stop(), broadcast\+Loc\+Info\+Changed(), broadcast\+Power\+State\+Change(), and U\+D\+P\+Client().
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-U\+D\+P\+Client.\+h\item 
-U\+D\+P\+Client.\+cpp\end{DoxyCompactItemize}
+\hyperlink{UDPClient_8h}{U\+D\+P\+Client.\+h}\item 
+\hyperlink{UDPClient_8cpp}{U\+D\+P\+Client.\+cpp}\end{DoxyCompactItemize}

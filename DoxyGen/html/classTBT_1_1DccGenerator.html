@@ -81,28 +81,49 @@ $(document).ready(function(){initNavTree('classTBT_1_1DccGenerator.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classTBT_1_1DccGenerator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TBT::DccGenerator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="DccGenerator_8h_source.html">DccGenerator.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a42d23cfab6b78610d329f816ebfea5cf"><td class="memItemLeft" align="right" valign="top"><a id="a42d23cfab6b78610d329f816ebfea5cf"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DccGenerator</b> (map&lt; uint16_t, <a class="el" href="classTBT_1_1Decoder.html">Decoder</a> *&gt; *pDecoders, recursive_mutex *pMutex)</td></tr>
+<tr class="memitem:a42d23cfab6b78610d329f816ebfea5cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1DccGenerator_a42d23cfab6b78610d329f816ebfea5cf.html#a42d23cfab6b78610d329f816ebfea5cf">DccGenerator</a> (map&lt; uint16_t, <a class="el" href="classTBT_1_1Decoder.html">Decoder</a> *&gt; *pDecoders, recursive_mutex *pMutex)</td></tr>
 <tr class="separator:a42d23cfab6b78610d329f816ebfea5cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa84988600a4dbade4c76366131526dc"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1DccGenerator_afa84988600a4dbade4c76366131526dc.html#afa84988600a4dbade4c76366131526dc">~DccGenerator</a> ()</td></tr>
+<tr class="separator:afa84988600a4dbade4c76366131526dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac2053051903fef00b69152184fa6f47d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1DccGenerator_ac2053051903fef00b69152184fa6f47d.html#ac2053051903fef00b69152184fa6f47d">threadFunc</a> (void)</td></tr>
+<tr class="separator:ac2053051903fef00b69152184fa6f47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1cc367d051ac114a03e5295bb4bb7b11"><td class="memItemLeft" align="right" valign="top">map&lt; uint16_t, <a class="el" href="classTBT_1_1Decoder.html">Decoder</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1DccGenerator_a1cc367d051ac114a03e5295bb4bb7b11.html#a1cc367d051ac114a03e5295bb4bb7b11">m_pDecoders</a></td></tr>
+<tr class="separator:a1cc367d051ac114a03e5295bb4bb7b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34515e4cb877858341e0a7c5aa55e5fc"><td class="memItemLeft" align="right" valign="top">recursive_mutex *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1DccGenerator_a34515e4cb877858341e0a7c5aa55e5fc.html#a34515e4cb877858341e0a7c5aa55e5fc">m_pMutex</a></td></tr>
+<tr class="separator:a34515e4cb877858341e0a7c5aa55e5fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a555d6682492a52065f326a1e02451886"><td class="memItemLeft" align="right" valign="top">thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1DccGenerator_a555d6682492a52065f326a1e02451886.html#a555d6682492a52065f326a1e02451886">m_thread</a></td></tr>
+<tr class="separator:a555d6682492a52065f326a1e02451886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d045ceb64e3ceece497459776d7d504"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1DccGenerator_a0d045ceb64e3ceece497459776d7d504.html#a0d045ceb64e3ceece497459776d7d504">m_bContinue</a></td></tr>
+<tr class="separator:a0d045ceb64e3ceece497459776d7d504"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="DccGenerator_8h_source.html">DccGenerator.h</a></li>
-<li>DccGenerator.cpp</li>
+<li><a class="el" href="DccGenerator_8cpp.html">DccGenerator.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>TBT</b></li><li class="navelem"><a class="el" href="classTBT_1_1DccGenerator.html">DccGenerator</a></li>
+    <li class="navelem"><a class="el" href="namespaceTBT.html">TBT</a></li><li class="navelem"><a class="el" href="classTBT_1_1DccGenerator.html">DccGenerator</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

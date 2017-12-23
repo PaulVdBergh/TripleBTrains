@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['name',['name',['../classJson_1_1ValueIteratorBase.html#a522989403c976fdbb94da846b99418db',1,'Json::ValueIteratorBase']]],
-  ['newcharreader',['newCharReader',['../classJson_1_1CharReader_1_1Factory.html#a4c5862a1ffd432372dbe65cf59de98c4',1,'Json::CharReader::Factory::newCharReader()'],['../classJson_1_1CharReaderBuilder.html#a3a262fcc76c1eb8eebfd4718fb4e9722',1,'Json::CharReaderBuilder::newCharReader()']]],
-  ['newstreamwriter',['newStreamWriter',['../classJson_1_1StreamWriter_1_1Factory.html#a9d30ec53e8288cd53befccf1009c5f31',1,'Json::StreamWriter::Factory::newStreamWriter()'],['../classJson_1_1StreamWriterBuilder.html#ab9ee278609f88ae04a7c1a84e1f559e6',1,'Json::StreamWriterBuilder::newStreamWriter()']]],
-  ['nullsingleton',['nullSingleton',['../classJson_1_1Value.html#af2f124567acc35d021a424e53ebdfcab',1,'Json::Value']]]
+  ['jsoncpp_5fdeprecated',['JSONCPP_DEPRECATED',['../namespaceJson_a61b556ffe4c70c4492a9dbe4718ec50b.html#a61b556ffe4c70c4492a9dbe4718ec50b',1,'Json::JSONCPP_DEPRECATED(&quot;Use CharReader and CharReaderBuilder instead&quot;) JSON_API Reader'],['../namespaceJson_a677dd20047c0c6e4eb16c5f1b53f703c.html#a677dd20047c0c6e4eb16c5f1b53f703c',1,'Json::JSONCPP_DEPRECATED(&quot;Use StreamWriter instead&quot;) JSON_API Writer'],['../namespaceJson_a9013c5f4f4ff260225b101a18af45262.html#a9013c5f4f4ff260225b101a18af45262',1,'Json::JSONCPP_DEPRECATED(&quot;Use StreamWriterBuilder instead&quot;) JSON_API StyledStreamWriter']]]
 ];

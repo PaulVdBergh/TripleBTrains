@@ -1,5 +1,9 @@
 \hypertarget{classTBT_1_1ClientInterface}{}\section{T\+BT\+:\+:Client\+Interface Class Reference}
 \label{classTBT_1_1ClientInterface}\index{T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}}
+
+
+{\ttfamily \#include $<$Client\+Interface.\+h$>$}
+
 Inheritance diagram for T\+BT\+:\+:Client\+Interface\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,30 +13,113 @@ Inheritance diagram for T\+BT\+:\+:Client\+Interface\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTBT_1_1ClientInterface_a77cd35b080e78932f2371ea0f897964b}\label{classTBT_1_1ClientInterface_a77cd35b080e78932f2371ea0f897964b}} 
-{\bfseries Client\+Interface} (\hyperlink{classTBT_1_1Manager}{Manager} $\ast$p\+Manager)
+\hyperlink{classTBT_1_1ClientInterface_a77cd35b080e78932f2371ea0f897964b_a77cd35b080e78932f2371ea0f897964b}{Client\+Interface} (\hyperlink{classTBT_1_1Manager}{Manager} $\ast$p\+Manager)
 \item 
-\mbox{\Hypertarget{classTBT_1_1ClientInterface_a26e144856b1253744b20c5638065acf7}\label{classTBT_1_1ClientInterface_a26e144856b1253744b20c5638065acf7}} 
-\hyperlink{classTBT_1_1Manager}{Manager} $\ast$ {\bfseries get\+Manager} (void)
+virtual \hyperlink{classTBT_1_1ClientInterface_aa42abb5947fa0af75eed777325cbff27_aa42abb5947fa0af75eed777325cbff27}{$\sim$\+Client\+Interface} ()
 \item 
-\mbox{\Hypertarget{classTBT_1_1ClientInterface_a7888a3446fb416fad75e5e008a85ca0c}\label{classTBT_1_1ClientInterface_a7888a3446fb416fad75e5e008a85ca0c}} 
-virtual void {\bfseries broadcast\+Power\+State\+Change} (bool new\+State)=0
+\hyperlink{classTBT_1_1Manager}{Manager} $\ast$ \hyperlink{classTBT_1_1ClientInterface_a26e144856b1253744b20c5638065acf7_a26e144856b1253744b20c5638065acf7}{get\+Manager} (void)
 \item 
-\mbox{\Hypertarget{classTBT_1_1ClientInterface_aaede3709fa0dcb23743f43d9c1a5ab04}\label{classTBT_1_1ClientInterface_aaede3709fa0dcb23743f43d9c1a5ab04}} 
-virtual void {\bfseries broadcast\+Loc\+Info\+Change} (\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$p\+Loc)=0
+virtual void \hyperlink{classTBT_1_1ClientInterface_a7888a3446fb416fad75e5e008a85ca0c_a7888a3446fb416fad75e5e008a85ca0c}{broadcast\+Power\+State\+Change} (bool new\+State)=0
 \item 
-\mbox{\Hypertarget{classTBT_1_1ClientInterface_a8d19220baccb47a7c9f45d0288bebcb8}\label{classTBT_1_1ClientInterface_a8d19220baccb47a7c9f45d0288bebcb8}} 
-virtual void {\bfseries broadcast\+Emergency\+Stop} (void)=0
+virtual void \hyperlink{classTBT_1_1ClientInterface_aaede3709fa0dcb23743f43d9c1a5ab04_aaede3709fa0dcb23743f43d9c1a5ab04}{broadcast\+Loc\+Info\+Change} (\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$p\+Loc)=0
+\item 
+virtual void \hyperlink{classTBT_1_1ClientInterface_a8d19220baccb47a7c9f45d0288bebcb8_a8d19220baccb47a7c9f45d0288bebcb8}{broadcast\+Emergency\+Stop} (void)=0
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTBT_1_1ClientInterface_a1d6558ab5cd2ebcc135e5fc37a1844ba}\label{classTBT_1_1ClientInterface_a1d6558ab5cd2ebcc135e5fc37a1844ba}} 
-\hyperlink{classTBT_1_1Manager}{Manager} $\ast$ {\bfseries m\+\_\+p\+Manager}
+\hyperlink{classTBT_1_1Manager}{Manager} $\ast$ \hyperlink{classTBT_1_1ClientInterface_a1d6558ab5cd2ebcc135e5fc37a1844ba_a1d6558ab5cd2ebcc135e5fc37a1844ba}{m\+\_\+p\+Manager}
 \end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTBT_1_1ClientInterface_a77cd35b080e78932f2371ea0f897964b_a77cd35b080e78932f2371ea0f897964b}\label{classTBT_1_1ClientInterface_a77cd35b080e78932f2371ea0f897964b_a77cd35b080e78932f2371ea0f897964b}} 
+\index{T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}!Client\+Interface@{Client\+Interface}}
+\index{Client\+Interface@{Client\+Interface}!T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}}
+\subsubsection{\texorpdfstring{Client\+Interface()}{ClientInterface()}}
+{\footnotesize\ttfamily T\+B\+T\+::\+Client\+Interface\+::\+Client\+Interface (\begin{DoxyParamCaption}\item[{\hyperlink{classTBT_1_1Manager}{Manager} $\ast$}]{p\+Manager }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTBT_1_1ClientInterface_aa42abb5947fa0af75eed777325cbff27_aa42abb5947fa0af75eed777325cbff27}\label{classTBT_1_1ClientInterface_aa42abb5947fa0af75eed777325cbff27_aa42abb5947fa0af75eed777325cbff27}} 
+\index{T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}!````~Client\+Interface@{$\sim$\+Client\+Interface}}
+\index{````~Client\+Interface@{$\sim$\+Client\+Interface}!T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}}
+\subsubsection{\texorpdfstring{$\sim$\+Client\+Interface()}{~ClientInterface()}}
+{\footnotesize\ttfamily T\+B\+T\+::\+Client\+Interface\+::$\sim$\+Client\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTBT_1_1ClientInterface_a8d19220baccb47a7c9f45d0288bebcb8_a8d19220baccb47a7c9f45d0288bebcb8}\label{classTBT_1_1ClientInterface_a8d19220baccb47a7c9f45d0288bebcb8_a8d19220baccb47a7c9f45d0288bebcb8}} 
+\index{T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}!broadcast\+Emergency\+Stop@{broadcast\+Emergency\+Stop}}
+\index{broadcast\+Emergency\+Stop@{broadcast\+Emergency\+Stop}!T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}}
+\subsubsection{\texorpdfstring{broadcast\+Emergency\+Stop()}{broadcastEmergencyStop()}}
+{\footnotesize\ttfamily virtual void T\+B\+T\+::\+Client\+Interface\+::broadcast\+Emergency\+Stop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classTBT_1_1UDPClientInterface_a33a0c51d141a457cda9dacc4d82d5304_a33a0c51d141a457cda9dacc4d82d5304}{T\+B\+T\+::\+U\+D\+P\+Client\+Interface}, \hyperlink{classTBT_1_1WSClientInterface_a2ad439e557711c57c8a978e3b6efcb62_a2ad439e557711c57c8a978e3b6efcb62}{T\+B\+T\+::\+W\+S\+Client\+Interface}, and \hyperlink{classTBT_1_1XpressNetClientInterface_a143641241f4830f22ec5beb78036ce4c_a143641241f4830f22ec5beb78036ce4c}{T\+B\+T\+::\+Xpress\+Net\+Client\+Interface}.
+
+
+
+Referenced by get\+Manager().
+
+\mbox{\Hypertarget{classTBT_1_1ClientInterface_aaede3709fa0dcb23743f43d9c1a5ab04_aaede3709fa0dcb23743f43d9c1a5ab04}\label{classTBT_1_1ClientInterface_aaede3709fa0dcb23743f43d9c1a5ab04_aaede3709fa0dcb23743f43d9c1a5ab04}} 
+\index{T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}!broadcast\+Loc\+Info\+Change@{broadcast\+Loc\+Info\+Change}}
+\index{broadcast\+Loc\+Info\+Change@{broadcast\+Loc\+Info\+Change}!T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}}
+\subsubsection{\texorpdfstring{broadcast\+Loc\+Info\+Change()}{broadcastLocInfoChange()}}
+{\footnotesize\ttfamily virtual void T\+B\+T\+::\+Client\+Interface\+::broadcast\+Loc\+Info\+Change (\begin{DoxyParamCaption}\item[{\hyperlink{classTBT_1_1LocDecoder}{Loc\+Decoder} $\ast$}]{p\+Loc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classTBT_1_1UDPClientInterface_af4e63115b3156b151d4dfd50342b36e7_af4e63115b3156b151d4dfd50342b36e7}{T\+B\+T\+::\+U\+D\+P\+Client\+Interface}, \hyperlink{classTBT_1_1WSClientInterface_a39806206461815c06c517b66d122b4db_a39806206461815c06c517b66d122b4db}{T\+B\+T\+::\+W\+S\+Client\+Interface}, and \hyperlink{classTBT_1_1XpressNetClientInterface_a8e64404cb84913c2d9290d2afb882b39_a8e64404cb84913c2d9290d2afb882b39}{T\+B\+T\+::\+Xpress\+Net\+Client\+Interface}.
+
+
+
+Referenced by get\+Manager().
+
+\mbox{\Hypertarget{classTBT_1_1ClientInterface_a7888a3446fb416fad75e5e008a85ca0c_a7888a3446fb416fad75e5e008a85ca0c}\label{classTBT_1_1ClientInterface_a7888a3446fb416fad75e5e008a85ca0c_a7888a3446fb416fad75e5e008a85ca0c}} 
+\index{T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}!broadcast\+Power\+State\+Change@{broadcast\+Power\+State\+Change}}
+\index{broadcast\+Power\+State\+Change@{broadcast\+Power\+State\+Change}!T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}}
+\subsubsection{\texorpdfstring{broadcast\+Power\+State\+Change()}{broadcastPowerStateChange()}}
+{\footnotesize\ttfamily virtual void T\+B\+T\+::\+Client\+Interface\+::broadcast\+Power\+State\+Change (\begin{DoxyParamCaption}\item[{bool}]{new\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classTBT_1_1UDPClientInterface_a60ddc3657a12b4e6c7ef7db0a31c9e3c_a60ddc3657a12b4e6c7ef7db0a31c9e3c}{T\+B\+T\+::\+U\+D\+P\+Client\+Interface}, \hyperlink{classTBT_1_1WSClientInterface_ad1c7f413c63f04b04d6e20f5d154d1fd_ad1c7f413c63f04b04d6e20f5d154d1fd}{T\+B\+T\+::\+W\+S\+Client\+Interface}, and \hyperlink{classTBT_1_1XpressNetClientInterface_a338da1925ec68f197e87625c7497f472_a338da1925ec68f197e87625c7497f472}{T\+B\+T\+::\+Xpress\+Net\+Client\+Interface}.
+
+
+
+Referenced by get\+Manager().
+
+\mbox{\Hypertarget{classTBT_1_1ClientInterface_a26e144856b1253744b20c5638065acf7_a26e144856b1253744b20c5638065acf7}\label{classTBT_1_1ClientInterface_a26e144856b1253744b20c5638065acf7_a26e144856b1253744b20c5638065acf7}} 
+\index{T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}!get\+Manager@{get\+Manager}}
+\index{get\+Manager@{get\+Manager}!T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}}
+\subsubsection{\texorpdfstring{get\+Manager()}{getManager()}}
+{\footnotesize\ttfamily \hyperlink{classTBT_1_1Manager}{Manager}$\ast$ T\+B\+T\+::\+Client\+Interface\+::get\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+References broadcast\+Emergency\+Stop(), broadcast\+Loc\+Info\+Change(), broadcast\+Power\+State\+Change(), and m\+\_\+p\+Manager.
+
+
+
+Referenced by T\+B\+T\+::\+Xpress\+Net\+Client\+Interface\+::thread\+Func(), and T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::thread\+Func().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classTBT_1_1ClientInterface_a1d6558ab5cd2ebcc135e5fc37a1844ba_a1d6558ab5cd2ebcc135e5fc37a1844ba}\label{classTBT_1_1ClientInterface_a1d6558ab5cd2ebcc135e5fc37a1844ba_a1d6558ab5cd2ebcc135e5fc37a1844ba}} 
+\index{T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}!m\+\_\+p\+Manager@{m\+\_\+p\+Manager}}
+\index{m\+\_\+p\+Manager@{m\+\_\+p\+Manager}!T\+B\+T\+::\+Client\+Interface@{T\+B\+T\+::\+Client\+Interface}}
+\subsubsection{\texorpdfstring{m\+\_\+p\+Manager}{m\_pManager}}
+{\footnotesize\ttfamily \hyperlink{classTBT_1_1Manager}{Manager}$\ast$ T\+B\+T\+::\+Client\+Interface\+::m\+\_\+p\+Manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Referenced by get\+Manager().
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Client\+Interface.\+h\item 
-Client\+Interface.\+cpp\end{DoxyCompactItemize}
+\hyperlink{ClientInterface_8h}{Client\+Interface.\+h}\item 
+\hyperlink{ClientInterface_8cpp}{Client\+Interface.\+cpp}\end{DoxyCompactItemize}

@@ -12,14 +12,16 @@ Lightweight wrapper to tag static string.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classJson_1_1StaticString_afb6baf1ec078ce76f0b0f9b39d19437f}\label{classJson_1_1StaticString_afb6baf1ec078ce76f0b0f9b39d19437f}} 
-{\bfseries Static\+String} (const char $\ast$czstring)
+\hyperlink{classJson_1_1StaticString_afb6baf1ec078ce76f0b0f9b39d19437f_afb6baf1ec078ce76f0b0f9b39d19437f}{Static\+String} (const char $\ast$czstring)
 \item 
-\mbox{\Hypertarget{classJson_1_1StaticString_a256a6cc0c630aef670848a0f11707b62}\label{classJson_1_1StaticString_a256a6cc0c630aef670848a0f11707b62}} 
-{\bfseries operator const char $\ast$} () const
+\hyperlink{classJson_1_1StaticString_a256a6cc0c630aef670848a0f11707b62_a256a6cc0c630aef670848a0f11707b62}{operator const char $\ast$} () const
 \item 
-\mbox{\Hypertarget{classJson_1_1StaticString_ad6be703d432d108623bb0aa06b0b90ca}\label{classJson_1_1StaticString_ad6be703d432d108623bb0aa06b0b90ca}} 
-const char $\ast$ {\bfseries c\+\_\+str} () const
+const char $\ast$ \hyperlink{classJson_1_1StaticString_ad6be703d432d108623bb0aa06b0b90ca_ad6be703d432d108623bb0aa06b0b90ca}{c\+\_\+str} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \hyperlink{classJson_1_1StaticString_a9f0d9e8caee8f8db14e2c8c24760dffd_a9f0d9e8caee8f8db14e2c8c24760dffd}{c\+\_\+str\+\_\+}
 \end{DoxyCompactItemize}
 
 
@@ -30,13 +32,50 @@ Lightweight wrapper to tag static string.
 
 Example of usage\+: 
 \begin{DoxyCode}
-\hyperlink{classJson_1_1Value}{Json::Value} aValue( StaticString(\textcolor{stringliteral}{"some text"}) );
+\hyperlink{classJson_1_1Value}{Json::Value} aValue( \hyperlink{classJson_1_1StaticString_afb6baf1ec078ce76f0b0f9b39d19437f_afb6baf1ec078ce76f0b0f9b39d19437f}{StaticString}(\textcolor{stringliteral}{"some text"}) );
 \hyperlink{classJson_1_1Value}{Json::Value} object;
-\textcolor{keyword}{static} \textcolor{keyword}{const} StaticString code(\textcolor{stringliteral}{"code"});
+\textcolor{keyword}{static} \textcolor{keyword}{const} \hyperlink{classJson_1_1StaticString_afb6baf1ec078ce76f0b0f9b39d19437f_afb6baf1ec078ce76f0b0f9b39d19437f}{StaticString} code(\textcolor{stringliteral}{"code"});
 \textcolor{keywordtype}{object}[code] = 1234;
 \end{DoxyCode}
  
 
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJson_1_1StaticString_afb6baf1ec078ce76f0b0f9b39d19437f_afb6baf1ec078ce76f0b0f9b39d19437f}\label{classJson_1_1StaticString_afb6baf1ec078ce76f0b0f9b39d19437f_afb6baf1ec078ce76f0b0f9b39d19437f}} 
+\index{Json\+::\+Static\+String@{Json\+::\+Static\+String}!Static\+String@{Static\+String}}
+\index{Static\+String@{Static\+String}!Json\+::\+Static\+String@{Json\+::\+Static\+String}}
+\subsubsection{\texorpdfstring{Static\+String()}{StaticString()}}
+{\footnotesize\ttfamily Json\+::\+Static\+String\+::\+Static\+String (\begin{DoxyParamCaption}\item[{const char $\ast$}]{czstring }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classJson_1_1StaticString_ad6be703d432d108623bb0aa06b0b90ca_ad6be703d432d108623bb0aa06b0b90ca}\label{classJson_1_1StaticString_ad6be703d432d108623bb0aa06b0b90ca_ad6be703d432d108623bb0aa06b0b90ca}} 
+\index{Json\+::\+Static\+String@{Json\+::\+Static\+String}!c\+\_\+str@{c\+\_\+str}}
+\index{c\+\_\+str@{c\+\_\+str}!Json\+::\+Static\+String@{Json\+::\+Static\+String}}
+\subsubsection{\texorpdfstring{c\+\_\+str()}{c\_str()}}
+{\footnotesize\ttfamily const char$\ast$ Json\+::\+Static\+String\+::c\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Referenced by Json\+::\+Value\+::operator\mbox{[}$\,$\mbox{]}(), and Json\+::\+Value\+::\+Value().
+
+\mbox{\Hypertarget{classJson_1_1StaticString_a256a6cc0c630aef670848a0f11707b62_a256a6cc0c630aef670848a0f11707b62}\label{classJson_1_1StaticString_a256a6cc0c630aef670848a0f11707b62_a256a6cc0c630aef670848a0f11707b62}} 
+\index{Json\+::\+Static\+String@{Json\+::\+Static\+String}!operator const char $\ast$@{operator const char $\ast$}}
+\index{operator const char $\ast$@{operator const char $\ast$}!Json\+::\+Static\+String@{Json\+::\+Static\+String}}
+\subsubsection{\texorpdfstring{operator const char $\ast$()}{operator const char *()}}
+{\footnotesize\ttfamily Json\+::\+Static\+String\+::operator const char $\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classJson_1_1StaticString_a9f0d9e8caee8f8db14e2c8c24760dffd_a9f0d9e8caee8f8db14e2c8c24760dffd}\label{classJson_1_1StaticString_a9f0d9e8caee8f8db14e2c8c24760dffd_a9f0d9e8caee8f8db14e2c8c24760dffd}} 
+\index{Json\+::\+Static\+String@{Json\+::\+Static\+String}!c\+\_\+str\+\_\+@{c\+\_\+str\+\_\+}}
+\index{c\+\_\+str\+\_\+@{c\+\_\+str\+\_\+}!Json\+::\+Static\+String@{Json\+::\+Static\+String}}
+\subsubsection{\texorpdfstring{c\+\_\+str\+\_\+}{c\_str\_}}
+{\footnotesize\ttfamily const char$\ast$ Json\+::\+Static\+String\+::c\+\_\+str\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-json/json.\+h\end{DoxyCompactItemize}
+json/\hyperlink{json_8h}{json.\+h}\end{DoxyCompactItemize}

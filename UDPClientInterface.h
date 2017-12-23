@@ -38,23 +38,83 @@ namespace TBT
 	class UDPClient;
 	class LocDecoder;
 
+	/**
+	 * Class UDPClientInterface represents the ClientInterface for UDP clients
+	 * using the Z21 Lan Protocol.
+	 *
+	 * # Basics
+	 * ## Communication:
+	 * Communication with the Z21 protocol over UDP port 21105 or 21106.
+	 * Control applications on the client (PC, App, ...) should primarily use port 21105.
+	 * The communication is always asynchronous, i.e. between a request and the
+	 * corresponding response other broadcast messages can occur.
+	 *
+	 * It is expected that each client communicates with the Z21 once per minute, otherwise
+	 * it will be removed from the list of active participants. If possible, a client
+	 * should log off when exiting with the LAN_LOGOFF command.
+	 *
+	 * ## Z21 Datagram layout
+	 * A Z21 datagram, i.e. a request or response is structured as follows:
+	 *
+	 <table>
+	 <caption>Z21 Datagram Layout</caption>
+	 <tr><th>DataLen<th>Header<th>Data
+	 <tr><td>2 Bytes<td>2 Bytes<td>n Bytes
+	 </table>
+	 *	- <b>DataLen</b> (little endian):
+	 *
+	 *		Total length over the entire data set including DataLen, Header and Data,
+	 *		i.e. DataLen = 2 + 2 + n.
+	 *	- <b>Header</b> (little endian):
+	 *
+	 *		Describes the command or protocol group.
+	 *	- <b>Data</b>:
+	 *
+	 *		Structure and length depend on command. Exact description see respective command.
+	 *
+	 * Unless otherwise stated, the byte order is little-endian, i.e. first the low byte, then
+	 * the high byte.
+	 *
+	 */
 	class UDPClientInterface: public ClientInterface
 	{
 		public:
+			/// UDPClientInterface constructor
 			UDPClientInterface(Manager* pManager, const in_port_t& port = 21105);
+
+			/// UDPClientInterface destructor
 			virtual ~UDPClientInterface();
 
+			/**
+			 * returns handle to the socket of the client.
+			 *
+			 * UDPClientInterface::getMySocket returns the handle to the socket on which to
+			 * send responses to the client.
+			 *
+			 * @param	none
+			 *
+			 * @return	int : handle to socket on wich to send responses to.
+			 */
 			int				getMySocket(void) { return m_fdsock_me; }
 
+			///	sends a notification to all clients about a powerstate change.
 			virtual void 	broadcastPowerStateChange(bool newState);
+
+			///	sends a notification to all clients about the locdecoder.
 			virtual void 	broadcastLocInfoChange(LocDecoder* pLoc);
+
+			///	sends a notification to all clients about an emergencystop.
 			virtual void	broadcastEmergencyStop(void);
 
 		protected:
-			UDPClient* 		findClient(const sockaddr_in& address);	//	if client doesn't exists, it's created.
+			/// returns pointer to client with specified address.
+			UDPClient* 		findClient(const sockaddr_in& address);
+
+			/// removes client with specified address and destroys it.
 			bool			removeClient(UDPClient* pClient);
 
 		private:
+			/// does the actual work in a separate thread.
 			void threadFunc(void);
 
 			in_port_t	m_port;

@@ -1,0 +1,281 @@
+\hypertarget{group__Z21LANProtocolSystem}{}\section{Z21\+L\+A\+N\+Protocol\+System}
+\label{group__Z21LANProtocolSystem}\index{Z21\+L\+A\+N\+Protocol\+System@{Z21\+L\+A\+N\+Protocol\+System}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__Z21LANProtocolSystem_gabce6a58e1d8fbb71f9b08e4d5b3871c2_gabce6a58e1d8fbb71f9b08e4d5b3871c2}{T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::thread\+Func} (void)
+\begin{DoxyCompactList}\small\item\em does the actual work in a separate thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class \hyperlink{classTBT_1_1UDPClientInterface}{U\+D\+P\+Client\+Interface} represents the \hyperlink{classTBT_1_1ClientInterface}{Client\+Interface} for U\+DP clients using the Z21 Lan Protocol.
+
+\subsection*{Basics}
+
+\subsubsection*{Communication\+:}
+
+Communication with the Z21 protocol over U\+DP port 21105 or 21106. Control applications on the client (PC, App, ...) should primarily use port 21105. The communication is always asynchronous, i.\+e. between a request and the corresponding response other broadcast messages can occur.
+
+It is expected that each client communicates with the Z21 once per minute, otherwise it will be removed from the list of active participants. If possible, a client should log off when exiting with the L\+A\+N\+\_\+\+L\+O\+G\+O\+FF command.
+
+\subsubsection*{Z21 Datagram layout}
+
+A Z21 datagram, i.\+e. a request or response is structured as follows\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Data\+Len }&\PBS\centering \textbf{ Header }&\PBS\centering \textbf{ Data  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Data\+Len }&\PBS\centering \textbf{ Header }&\PBS\centering \textbf{ Data  }\\\cline{1-3}
+\endhead
+\PBS\centering 2 bytes &\PBS\centering 2 bytes &\PBS\centering n bytes \\\cline{1-3}
+\end{longtabu}
+
+\begin{DoxyItemize}
+\item {\bfseries Data\+Len} (little endian)\+:
+
+Total length over the entire data set including Data\+Len, Header and Data, i.\+e. Data\+Len = 2 + 2 + n.
+\item {\bfseries Header} (little endian)\+:
+
+Describes the command or protocol group.
+\item {\bfseries Data}\+:
+
+Structure and length depend on command. Exact description see respective command.
+\end{DoxyItemize}
+
+Unless otherwise stated, the byte order is little-\/endian, i.\+e. first the low byte, then the high byte.
+
+\subsubsection*{System, Status and Version}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__Z21LANProtocolSystem_gabce6a58e1d8fbb71f9b08e4d5b3871c2_gabce6a58e1d8fbb71f9b08e4d5b3871c2}\label{group__Z21LANProtocolSystem_gabce6a58e1d8fbb71f9b08e4d5b3871c2_gabce6a58e1d8fbb71f9b08e4d5b3871c2}} 
+\index{Z21\+L\+A\+N\+Protocol\+System@{Z21\+L\+A\+N\+Protocol\+System}!thread\+Func@{thread\+Func}}
+\index{thread\+Func@{thread\+Func}!Z21\+L\+A\+N\+Protocol\+System@{Z21\+L\+A\+N\+Protocol\+System}}
+\subsubsection{\texorpdfstring{thread\+Func()}{threadFunc()}}
+{\footnotesize\ttfamily void T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::thread\+Func (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+does the actual work in a separate thread. 
+
+\hyperlink{group__Z21LANProtocolSystem_gabce6a58e1d8fbb71f9b08e4d5b3871c2_gabce6a58e1d8fbb71f9b08e4d5b3871c2}{U\+D\+P\+Client\+Interface\+::thread\+Func} runs in a separate thread. The function listen on the socket (m\+\_\+fdsock\+\_\+me) for incomming datagrams. 
+
+ \paragraph*{L\+A\+N\+\_\+\+G\+E\+T\+\_\+\+S\+E\+R\+I\+A\+L\+\_\+\+N\+U\+M\+B\+ER}
+
+read the serial number from the Z21
+
+\hypertarget{group__Z21LANProtocolSystem_multi_row}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{5}{|X[-1]}|}
+\caption{request\+:}\label{group__Z21LANProtocolSystem_multi_row}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\textbf{ Data }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\textbf{ Data }\\\cline{1-5}
+\endhead
+0x04&0x00&0x10&0x00&-- \\\cline{1-5}
+\end{longtabu}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{5}{|X[-1]}|}
+\caption{response\+:}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\textbf{ Data }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\textbf{ Data }\\\cline{1-5}
+\endhead
+0x08&0x00&0x10&0x00&Serialnumber (32 bit, little endian) \\\cline{1-5}
+\end{longtabu}
+
+
+
+
+ \paragraph*{L\+A\+N\+\_\+\+L\+O\+G\+O\+FF}
+
+Log off this client from the system
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{5}{|X[-1]}|}
+\caption{request\+:}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\textbf{ Data }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*5-\arrayrulewidth*3)*2/5}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\textbf{ Data }\\\cline{1-5}
+\endhead
+0x04&0x00&0x30&0x00&-- \\\cline{1-5}
+\end{longtabu}
+
+
+response\+: none
+
+When logging out, use the same port number as when logging in.
+
+{\bfseries Note}\+: logging in occurs implicitly with the client\textquotesingle{}s first command (e.\+g. L\+A\+N\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+G\+E\+T\+D\+A\+TA, ...).
+
+
+
+ \paragraph*{L\+A\+N\+\_\+\+X\+\_\+\+G\+E\+T\+\_\+\+V\+E\+R\+S\+I\+ON}
+
+With the following command the X-\/\+Bus version of the Z21 can be read out.
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{7}{|X[-1]}|}
+\caption{request\+:}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endhead
+\multirow{2}{\linewidth}{0x07}&\multirow{2}{\linewidth}{0x00}&\multirow{2}{\linewidth}{0x40}&\multirow{2}{\linewidth}{0x00}&X-\/\+Header&D\+B0&X\+O\+R-\/\+Byte \\\cline{5-7}
+&&&&0x21&0x21&0x00 \\\cline{1-7}
+\end{longtabu}
+
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{9}{|X[-1]}|}
+\caption{response\+:}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*9-\arrayrulewidth*3)*2/9}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*9-\arrayrulewidth*3)*2/9}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{5}{p{(\linewidth-\tabcolsep*9-\arrayrulewidth*3)*5/9}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-9}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*9-\arrayrulewidth*3)*2/9}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*9-\arrayrulewidth*3)*2/9}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{5}{p{(\linewidth-\tabcolsep*9-\arrayrulewidth*3)*5/9}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-9}
+\endhead
+\multirow{2}{\linewidth}{0x09}&\multirow{2}{\linewidth}{0x00}&\multirow{2}{\linewidth}{0x40}&\multirow{2}{\linewidth}{0x00}&X-\/\+Header&D\+B0&D\+B1&D\+B2&X\+O\+R-\/\+Byte \\\cline{5-9}
+&&&&0x63&0x21&0x30&0x12&0x60 \\\cline{1-9}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item D\+B1 --$>$ X-\/\+Bus Version (3.\+0)
+\item D\+B2 --$>$ ID (Z21 = 0x12)
+\end{DoxyItemize}
+
+
+
+ \paragraph*{L\+A\+N\+\_\+\+X\+\_\+\+G\+E\+T\+\_\+\+S\+T\+A\+T\+US}
+
+with the following command the system\textquotesingle{}s status can be read out.
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{5}{|X[-1]}|}
+\caption{request\+:}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Data\+Len}&\textbf{ Headers}&\textbf{ Data }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Data\+Len}&\textbf{ Headers}&\textbf{ Data }\\\cline{1-5}
+\endhead
+0x14&0x00&0x84&0x00&\hyperlink{structTBT_1_1SystemState}{System\+State} (16 Bytes) \\\cline{1-5}
+\end{longtabu}
+
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{7}{|X[-1]}|}
+\caption{response\+:}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\multicolumn{2}{|p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data\+Len}}&\multicolumn{2}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*2/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Headers}}&\multicolumn{3}{p{(\linewidth-\tabcolsep*7-\arrayrulewidth*3)*3/7}|}{\cellcolor{\tableheadbgcolor}\textbf{ Data }}\\\cline{1-7}
+\endhead
+\multirow{2}{\linewidth}{0x07}&\multirow{2}{\linewidth}{0x00}&\multirow{2}{\linewidth}{0x40}&\multirow{2}{\linewidth}{0x00}&X-\/\+Header&D\+B0&X\+O\+R-\/\+Byte \\\cline{5-7}
+\end{longtabu}
+
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{5}{|X[-1]}|}
+\caption{{\bfseries \hyperlink{structTBT_1_1SystemState}{System\+State}} layout (I\+N\+T16 is little-\/endian)}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Byte offset}&\textbf{ Type}&\textbf{ Name}&\textbf{ Unit}&\textbf{ note }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Byte offset}&\textbf{ Type}&\textbf{ Name}&\textbf{ Unit}&\textbf{ note }\\\cline{1-5}
+\endhead
+0&int16\+\_\+t&Main\+Current&mA&Main Track Current \\\cline{1-5}
+2&int16\+\_\+t&Prog\+Current&mA&Programm Track Current \\\cline{1-5}
+4&int16\+\_\+t&Filtered\+Main\+Current&mA&Smoothed Main Track Current \\\cline{1-5}
+6&int16\+\_\+t&Temperature&\&\#176;C&Internal temperature \\\cline{1-5}
+8&uint16\+\_\+t&Supply\+Voltage&mV&Supply voltage \\\cline{1-5}
+10&uint16\+\_\+t&V\+C\+C\+Voltage&mV&Voltage at the track \\\cline{1-5}
+12&uint8\+\_\+t&Central\+State&bitmask&see below \\\cline{1-5}
+13&uint8\+\_\+t&Central\+State\+Ex&bitmask&see below \\\cline{1-5}
+14&uint8\+\_\+t&reserved&&\\\cline{1-5}
+15&uint8\+\_\+t&reserved&&\\\cline{1-5}
+\end{longtabu}
+
+
+The system status is identical to the central\+State, which is supplied in System\+Status.
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{8}{|X[-1]}|}
+\caption{Central\+State layout}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ 7}&\textbf{ 6}&\textbf{ 5}&\textbf{ 4}&\textbf{ 3}&\textbf{ 2}&\textbf{ 1}&\textbf{ 0 }\\\cline{1-8}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ 7}&\textbf{ 6}&\textbf{ 5}&\textbf{ 4}&\textbf{ 3}&\textbf{ 2}&\textbf{ 1}&\textbf{ 0 }\\\cline{1-8}
+\endhead
+-\/&-\/&cs\+Programming\+Mode\+Active&-\/&-\/&cs\+Short\+Circuit&cd\+Track\+Voltage\+Off&cs\+Emergency\+Stop \\\cline{1-8}
+\end{longtabu}
+
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{8}{|X[-1]}|}
+\caption{Central\+State\+Ex layout}\label{_}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ 7}&\textbf{ 6}&\textbf{ 5}&\textbf{ 4}&\textbf{ 3}&\textbf{ 2}&\textbf{ 1}&\textbf{ 0 }\\\cline{1-8}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ 7}&\textbf{ 6}&\textbf{ 5}&\textbf{ 4}&\textbf{ 3}&\textbf{ 2}&\textbf{ 1}&\textbf{ 0 }\\\cline{1-8}
+\endhead
+-\/&-\/&-\/&-\/&cse\+Short\+Circuit\+Internal&cse\+Short\+Circuit\+External&cse\+Power\+Lost&cse\+High\+Temperature \\\cline{1-8}
+\end{longtabu}
+
+
+
+
+ \paragraph*{L\+A\+N\+\_\+\+X\+\_\+\+S\+E\+T\+\_\+\+T\+R\+A\+C\+K\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}
+
+References T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::find\+Client(), T\+B\+T\+::\+Manager\+::find\+Decoder(), T\+B\+T\+::\+U\+D\+P\+Client\+::get\+Broadcast\+Flags(), T\+B\+T\+::\+Manager\+::get\+Central\+State(), T\+B\+T\+::\+Decoder\+::get\+D\+C\+C\+Address(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F0(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F1(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F10(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F11(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F12(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F13(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F14(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F15(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F16(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F17(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F18(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F19(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F2(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F20(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F21(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F22(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F23(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F24(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F25(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F26(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F27(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F28(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F3(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F4(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F5(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F6(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F7(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F8(), T\+B\+T\+::\+Loc\+Decoder\+::get\+F9(), T\+B\+T\+::\+Client\+::get\+Interface(), T\+B\+T\+::\+Loc\+Decoder\+::get\+L\+A\+N\+Loc\+Info(), T\+B\+T\+::\+Loc\+Decoder\+::get\+Loc\+Mode(), T\+B\+T\+::\+Client\+Interface\+::get\+Manager(), T\+B\+T\+::\+Manager\+::get\+System\+State(), T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::m\+\_\+fdsock\+\_\+me, T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::m\+\_\+fd\+Stop, T\+B\+T\+::\+Power\+Off, T\+B\+T\+::\+Power\+On, T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::remove\+Client(), T\+B\+T\+::\+U\+D\+P\+Client\+::set\+Broadcast\+Flags(), T\+B\+T\+::\+Manager\+::set\+Emergency\+Stop(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F0(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F1(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F10(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F11(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F12(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F13(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F14(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F15(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F16(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F17(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F18(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F19(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F2(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F20(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F21(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F22(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F23(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F24(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F25(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F26(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F27(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F28(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F3(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F4(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F5(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F6(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F7(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F8(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F9(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Loc\+Mode(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Loco\+Drive128(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Loco\+Drive14(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Loco\+Drive28(), and T\+B\+T\+::\+Manager\+::set\+Power\+State().
+
+
+
+Referenced by T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::\+U\+D\+P\+Client\+Interface().
+

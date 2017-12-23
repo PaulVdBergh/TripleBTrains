@@ -81,12 +81,15 @@ $(document).ready(function(){initNavTree('classTBT_1_1Decoder.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classTBT_1_1Decoder-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TBT::Decoder Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="Decoder_8h_source.html">Decoder.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TBT::Decoder:</div>
 <div class="dyncontent">
@@ -99,35 +102,39 @@ Inheritance diagram for TBT::Decoder:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a69cc50cb8ca993a98802303b1c70eade"><td class="memItemLeft" align="right" valign="top"><a id="a69cc50cb8ca993a98802303b1c70eade"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Decoder</b> (<a class="el" href="classTBT_1_1Manager.html">Manager</a> *pManager, uint16_t dccAddress)</td></tr>
+<tr class="memitem:a69cc50cb8ca993a98802303b1c70eade"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1Decoder_a69cc50cb8ca993a98802303b1c70eade.html#a69cc50cb8ca993a98802303b1c70eade">Decoder</a> (<a class="el" href="classTBT_1_1Manager.html">Manager</a> *pManager, uint16_t dccAddress)</td></tr>
 <tr class="separator:a69cc50cb8ca993a98802303b1c70eade"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad948e489ff1246effdfda3e68d693593"><td class="memItemLeft" align="right" valign="top"><a id="ad948e489ff1246effdfda3e68d693593"></a>
-const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>getDCCAddress</b> (void)</td></tr>
+<tr class="memitem:a44ed2f46ad692e6d7604121ed92e4474"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1Decoder_a44ed2f46ad692e6d7604121ed92e4474.html#a44ed2f46ad692e6d7604121ed92e4474">~Decoder</a> ()</td></tr>
+<tr class="separator:a44ed2f46ad692e6d7604121ed92e4474"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad948e489ff1246effdfda3e68d693593"><td class="memItemLeft" align="right" valign="top">const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1Decoder_ad948e489ff1246effdfda3e68d693593.html#ad948e489ff1246effdfda3e68d693593">getDCCAddress</a> (void)</td></tr>
 <tr class="separator:ad948e489ff1246effdfda3e68d693593"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71c25cd52e7f591ba1771ee0518735ba"><td class="memItemLeft" align="right" valign="top"><a id="a71c25cd52e7f591ba1771ee0518735ba"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>getDccMessage</b> (uint8_t *pMsg)</td></tr>
+<tr class="memitem:a71c25cd52e7f591ba1771ee0518735ba"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1Decoder_a71c25cd52e7f591ba1771ee0518735ba.html#a71c25cd52e7f591ba1771ee0518735ba">getDccMessage</a> (uint8_t *pMsg)</td></tr>
 <tr class="separator:a71c25cd52e7f591ba1771ee0518735ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a67cd8a5abe038afee52578f483b3d4e5"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1Decoder_a67cd8a5abe038afee52578f483b3d4e5.html#a67cd8a5abe038afee52578f483b3d4e5">insertDCCAddress</a> (uint8_t *pMsg)</td></tr>
+<tr class="separator:a67cd8a5abe038afee52578f483b3d4e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa57b9aaf222878861d93a8234a614b5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1Decoder_aa57b9aaf222878861d93a8234a614b5d.html#aa57b9aaf222878861d93a8234a614b5d">insertXOR</a> (uint8_t *pMsg)</td></tr>
+<tr class="separator:aa57b9aaf222878861d93a8234a614b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a14309179167dd46b722982301d651c4d"><td class="memItemLeft" align="right" valign="top"><a id="a14309179167dd46b722982301d651c4d"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>m_DCCAddress</b></td></tr>
+<tr class="memitem:a14309179167dd46b722982301d651c4d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1Decoder_a14309179167dd46b722982301d651c4d.html#a14309179167dd46b722982301d651c4d">m_DCCAddress</a></td></tr>
 <tr class="separator:a14309179167dd46b722982301d651c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a400475d21ba933f8b91e6f7d3053518b"><td class="memItemLeft" align="right" valign="top"><a id="a400475d21ba933f8b91e6f7d3053518b"></a>
-<a class="el" href="classTBT_1_1Manager.html">Manager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_pManager</b></td></tr>
+<tr class="memitem:a400475d21ba933f8b91e6f7d3053518b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTBT_1_1Manager.html">Manager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTBT_1_1Decoder_a400475d21ba933f8b91e6f7d3053518b.html#a400475d21ba933f8b91e6f7d3053518b">m_pManager</a></td></tr>
 <tr class="separator:a400475d21ba933f8b91e6f7d3053518b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Decoder_8h_source.html">Decoder.h</a></li>
-<li>Decoder.cpp</li>
+<li><a class="el" href="Decoder_8cpp.html">Decoder.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>TBT</b></li><li class="navelem"><a class="el" href="classTBT_1_1Decoder.html">Decoder</a></li>
+    <li class="navelem"><a class="el" href="namespaceTBT.html">TBT</a></li><li class="navelem"><a class="el" href="classTBT_1_1Decoder.html">Decoder</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

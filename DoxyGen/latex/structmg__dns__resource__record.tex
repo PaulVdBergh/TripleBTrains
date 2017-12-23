@@ -1,28 +1,89 @@
 \hypertarget{structmg__dns__resource__record}{}\section{mg\+\_\+dns\+\_\+resource\+\_\+record Struct Reference}
 \label{structmg__dns__resource__record}\index{mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}}
+
+
+{\ttfamily \#include $<$mongoose.\+h$>$}
+
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structmg__dns__resource__record_afd27e187a02127a98a04757013aecd48}\label{structmg__dns__resource__record_afd27e187a02127a98a04757013aecd48}} 
-struct \hyperlink{structmg__str}{mg\+\_\+str} {\bfseries name}
+struct \hyperlink{structmg__str}{mg\+\_\+str} \hyperlink{structmg__dns__resource__record_afd27e187a02127a98a04757013aecd48_afd27e187a02127a98a04757013aecd48}{name}
 \item 
-\mbox{\Hypertarget{structmg__dns__resource__record_a9d314632522fcca513858285c639bee9}\label{structmg__dns__resource__record_a9d314632522fcca513858285c639bee9}} 
-int {\bfseries rtype}
+int \hyperlink{structmg__dns__resource__record_a9d314632522fcca513858285c639bee9_a9d314632522fcca513858285c639bee9}{rtype}
 \item 
-\mbox{\Hypertarget{structmg__dns__resource__record_a9be7dc2d7ef4e2dc20413289a55f6ff7}\label{structmg__dns__resource__record_a9be7dc2d7ef4e2dc20413289a55f6ff7}} 
-int {\bfseries rclass}
+int \hyperlink{structmg__dns__resource__record_a9be7dc2d7ef4e2dc20413289a55f6ff7_a9be7dc2d7ef4e2dc20413289a55f6ff7}{rclass}
 \item 
-\mbox{\Hypertarget{structmg__dns__resource__record_aa5d1c1a7ba2d02908c27fab68ded25be}\label{structmg__dns__resource__record_aa5d1c1a7ba2d02908c27fab68ded25be}} 
-int {\bfseries ttl}
+int \hyperlink{structmg__dns__resource__record_aa5d1c1a7ba2d02908c27fab68ded25be_aa5d1c1a7ba2d02908c27fab68ded25be}{ttl}
 \item 
-\mbox{\Hypertarget{structmg__dns__resource__record_a6f9d5dda9d8ae9240a74282c44d4a555}\label{structmg__dns__resource__record_a6f9d5dda9d8ae9240a74282c44d4a555}} 
-enum mg\+\_\+dns\+\_\+resource\+\_\+record\+\_\+kind {\bfseries kind}
+enum \hyperlink{mongoose_8h_abc1e540c922be63eea4488f520e3523d_abc1e540c922be63eea4488f520e3523d}{mg\+\_\+dns\+\_\+resource\+\_\+record\+\_\+kind} \hyperlink{structmg__dns__resource__record_a6f9d5dda9d8ae9240a74282c44d4a555_a6f9d5dda9d8ae9240a74282c44d4a555}{kind}
 \item 
-\mbox{\Hypertarget{structmg__dns__resource__record_ac169801d0c9ce94137fcce9a3f629152}\label{structmg__dns__resource__record_ac169801d0c9ce94137fcce9a3f629152}} 
-struct \hyperlink{structmg__str}{mg\+\_\+str} {\bfseries rdata}
+struct \hyperlink{structmg__str}{mg\+\_\+str} \hyperlink{structmg__dns__resource__record_ac169801d0c9ce94137fcce9a3f629152_ac169801d0c9ce94137fcce9a3f629152}{rdata}
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structmg__dns__resource__record_a6f9d5dda9d8ae9240a74282c44d4a555_a6f9d5dda9d8ae9240a74282c44d4a555}\label{structmg__dns__resource__record_a6f9d5dda9d8ae9240a74282c44d4a555_a6f9d5dda9d8ae9240a74282c44d4a555}} 
+\index{mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}!kind@{kind}}
+\index{kind@{kind}!mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}}
+\subsubsection{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily enum \hyperlink{mongoose_8h_abc1e540c922be63eea4488f520e3523d_abc1e540c922be63eea4488f520e3523d}{mg\+\_\+dns\+\_\+resource\+\_\+record\+\_\+kind} mg\+\_\+dns\+\_\+resource\+\_\+record\+::kind}
+
+
+
+Referenced by mg\+\_\+dns\+\_\+encode\+\_\+record(), mg\+\_\+parse\+\_\+dns\+\_\+resource\+\_\+record(), mg\+\_\+send\+\_\+dns\+\_\+query(), and mg\+\_\+set\+\_\+protocol\+\_\+dns().
+
+\mbox{\Hypertarget{structmg__dns__resource__record_afd27e187a02127a98a04757013aecd48_afd27e187a02127a98a04757013aecd48}\label{structmg__dns__resource__record_afd27e187a02127a98a04757013aecd48_afd27e187a02127a98a04757013aecd48}} 
+\index{mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}!name@{name}}
+\index{name@{name}!mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily struct \hyperlink{structmg__str}{mg\+\_\+str} mg\+\_\+dns\+\_\+resource\+\_\+record\+::name}
+
+
+
+Referenced by mg\+\_\+dns\+\_\+copy\+\_\+questions(), mg\+\_\+dns\+\_\+encode\+\_\+name(), mg\+\_\+parse\+\_\+dns\+\_\+resource\+\_\+record(), and mg\+\_\+set\+\_\+protocol\+\_\+dns().
+
+\mbox{\Hypertarget{structmg__dns__resource__record_a9be7dc2d7ef4e2dc20413289a55f6ff7_a9be7dc2d7ef4e2dc20413289a55f6ff7}\label{structmg__dns__resource__record_a9be7dc2d7ef4e2dc20413289a55f6ff7_a9be7dc2d7ef4e2dc20413289a55f6ff7}} 
+\index{mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}!rclass@{rclass}}
+\index{rclass@{rclass}!mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}}
+\subsubsection{\texorpdfstring{rclass}{rclass}}
+{\footnotesize\ttfamily int mg\+\_\+dns\+\_\+resource\+\_\+record\+::rclass}
+
+
+
+Referenced by mg\+\_\+dns\+\_\+encode\+\_\+record(), mg\+\_\+parse\+\_\+dns\+\_\+resource\+\_\+record(), and mg\+\_\+send\+\_\+dns\+\_\+query().
+
+\mbox{\Hypertarget{structmg__dns__resource__record_ac169801d0c9ce94137fcce9a3f629152_ac169801d0c9ce94137fcce9a3f629152}\label{structmg__dns__resource__record_ac169801d0c9ce94137fcce9a3f629152_ac169801d0c9ce94137fcce9a3f629152}} 
+\index{mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}!rdata@{rdata}}
+\index{rdata@{rdata}!mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}}
+\subsubsection{\texorpdfstring{rdata}{rdata}}
+{\footnotesize\ttfamily struct \hyperlink{structmg__str}{mg\+\_\+str} mg\+\_\+dns\+\_\+resource\+\_\+record\+::rdata}
+
+
+
+Referenced by mg\+\_\+dns\+\_\+parse\+\_\+record\+\_\+data(), and mg\+\_\+parse\+\_\+dns\+\_\+resource\+\_\+record().
+
+\mbox{\Hypertarget{structmg__dns__resource__record_a9d314632522fcca513858285c639bee9_a9d314632522fcca513858285c639bee9}\label{structmg__dns__resource__record_a9d314632522fcca513858285c639bee9_a9d314632522fcca513858285c639bee9}} 
+\index{mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}!rtype@{rtype}}
+\index{rtype@{rtype}!mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}}
+\subsubsection{\texorpdfstring{rtype}{rtype}}
+{\footnotesize\ttfamily int mg\+\_\+dns\+\_\+resource\+\_\+record\+::rtype}
+
+
+
+Referenced by mg\+\_\+dns\+\_\+encode\+\_\+record(), mg\+\_\+dns\+\_\+next\+\_\+record(), mg\+\_\+dns\+\_\+parse\+\_\+record\+\_\+data(), mg\+\_\+parse\+\_\+dns\+\_\+resource\+\_\+record(), mg\+\_\+send\+\_\+dns\+\_\+query(), and resolve\+\_\+cb().
+
+\mbox{\Hypertarget{structmg__dns__resource__record_aa5d1c1a7ba2d02908c27fab68ded25be_aa5d1c1a7ba2d02908c27fab68ded25be}\label{structmg__dns__resource__record_aa5d1c1a7ba2d02908c27fab68ded25be_aa5d1c1a7ba2d02908c27fab68ded25be}} 
+\index{mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}!ttl@{ttl}}
+\index{ttl@{ttl}!mg\+\_\+dns\+\_\+resource\+\_\+record@{mg\+\_\+dns\+\_\+resource\+\_\+record}}
+\subsubsection{\texorpdfstring{ttl}{ttl}}
+{\footnotesize\ttfamily int mg\+\_\+dns\+\_\+resource\+\_\+record\+::ttl}
+
+
+
+Referenced by mg\+\_\+dns\+\_\+encode\+\_\+record(), and mg\+\_\+parse\+\_\+dns\+\_\+resource\+\_\+record().
+
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-mongoose.\+h\end{DoxyCompactItemize}
+\hyperlink{mongoose_8h}{mongoose.\+h}\end{DoxyCompactItemize}

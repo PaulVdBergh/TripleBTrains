@@ -1,22 +1,65 @@
 \hypertarget{structcs__base64__ctx}{}\section{cs\+\_\+base64\+\_\+ctx Struct Reference}
 \label{structcs__base64__ctx}\index{cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}}
+
+
+{\ttfamily \#include $<$mongoose.\+h$>$}
+
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structcs__base64__ctx_a59b8384fbdd1681555a9dd18ed6585ae}\label{structcs__base64__ctx_a59b8384fbdd1681555a9dd18ed6585ae}} 
-cs\+\_\+base64\+\_\+putc\+\_\+t {\bfseries b64\+\_\+putc}
+\hyperlink{mongoose_8h_ab2260ef7657f28e31f29dcc1313f1e8d_ab2260ef7657f28e31f29dcc1313f1e8d}{cs\+\_\+base64\+\_\+putc\+\_\+t} \hyperlink{structcs__base64__ctx_a59b8384fbdd1681555a9dd18ed6585ae_a59b8384fbdd1681555a9dd18ed6585ae}{b64\+\_\+putc}
 \item 
-\mbox{\Hypertarget{structcs__base64__ctx_a209b5eff716d6a1850cca128ed5b070e}\label{structcs__base64__ctx_a209b5eff716d6a1850cca128ed5b070e}} 
-unsigned char {\bfseries chunk} \mbox{[}3\mbox{]}
+unsigned char \hyperlink{structcs__base64__ctx_a209b5eff716d6a1850cca128ed5b070e_a209b5eff716d6a1850cca128ed5b070e}{chunk} \mbox{[}3\mbox{]}
 \item 
-\mbox{\Hypertarget{structcs__base64__ctx_a5753baf57fe83161369e2270d57e4a9e}\label{structcs__base64__ctx_a5753baf57fe83161369e2270d57e4a9e}} 
-int {\bfseries chunk\+\_\+size}
+int \hyperlink{structcs__base64__ctx_a5753baf57fe83161369e2270d57e4a9e_a5753baf57fe83161369e2270d57e4a9e}{chunk\+\_\+size}
 \item 
-\mbox{\Hypertarget{structcs__base64__ctx_ac6023cc2887001835a99b6a71db9f43b}\label{structcs__base64__ctx_ac6023cc2887001835a99b6a71db9f43b}} 
-void $\ast$ {\bfseries user\+\_\+data}
+void $\ast$ \hyperlink{structcs__base64__ctx_ac6023cc2887001835a99b6a71db9f43b_ac6023cc2887001835a99b6a71db9f43b}{user\+\_\+data}
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structcs__base64__ctx_a59b8384fbdd1681555a9dd18ed6585ae_a59b8384fbdd1681555a9dd18ed6585ae}\label{structcs__base64__ctx_a59b8384fbdd1681555a9dd18ed6585ae_a59b8384fbdd1681555a9dd18ed6585ae}} 
+\index{cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}!b64\+\_\+putc@{b64\+\_\+putc}}
+\index{b64\+\_\+putc@{b64\+\_\+putc}!cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}}
+\subsubsection{\texorpdfstring{b64\+\_\+putc}{b64\_putc}}
+{\footnotesize\ttfamily \hyperlink{mongoose_8h_ab2260ef7657f28e31f29dcc1313f1e8d_ab2260ef7657f28e31f29dcc1313f1e8d}{cs\+\_\+base64\+\_\+putc\+\_\+t} cs\+\_\+base64\+\_\+ctx\+::b64\+\_\+putc}
+
+
+
+Referenced by cs\+\_\+base64\+\_\+emit\+\_\+code(), cs\+\_\+base64\+\_\+finish(), and cs\+\_\+base64\+\_\+init().
+
+\mbox{\Hypertarget{structcs__base64__ctx_a209b5eff716d6a1850cca128ed5b070e_a209b5eff716d6a1850cca128ed5b070e}\label{structcs__base64__ctx_a209b5eff716d6a1850cca128ed5b070e_a209b5eff716d6a1850cca128ed5b070e}} 
+\index{cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}!chunk@{chunk}}
+\index{chunk@{chunk}!cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}}
+\subsubsection{\texorpdfstring{chunk}{chunk}}
+{\footnotesize\ttfamily unsigned char cs\+\_\+base64\+\_\+ctx\+::chunk\mbox{[}3\mbox{]}}
+
+
+
+Referenced by cs\+\_\+base64\+\_\+emit\+\_\+chunk(), cs\+\_\+base64\+\_\+finish(), and cs\+\_\+base64\+\_\+update().
+
+\mbox{\Hypertarget{structcs__base64__ctx_a5753baf57fe83161369e2270d57e4a9e_a5753baf57fe83161369e2270d57e4a9e}\label{structcs__base64__ctx_a5753baf57fe83161369e2270d57e4a9e_a5753baf57fe83161369e2270d57e4a9e}} 
+\index{cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}!chunk\+\_\+size@{chunk\+\_\+size}}
+\index{chunk\+\_\+size@{chunk\+\_\+size}!cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}}
+\subsubsection{\texorpdfstring{chunk\+\_\+size}{chunk\_size}}
+{\footnotesize\ttfamily int cs\+\_\+base64\+\_\+ctx\+::chunk\+\_\+size}
+
+
+
+Referenced by cs\+\_\+base64\+\_\+emit\+\_\+chunk(), cs\+\_\+base64\+\_\+finish(), cs\+\_\+base64\+\_\+init(), and cs\+\_\+base64\+\_\+update().
+
+\mbox{\Hypertarget{structcs__base64__ctx_ac6023cc2887001835a99b6a71db9f43b_ac6023cc2887001835a99b6a71db9f43b}\label{structcs__base64__ctx_ac6023cc2887001835a99b6a71db9f43b_ac6023cc2887001835a99b6a71db9f43b}} 
+\index{cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}!user\+\_\+data@{user\+\_\+data}}
+\index{user\+\_\+data@{user\+\_\+data}!cs\+\_\+base64\+\_\+ctx@{cs\+\_\+base64\+\_\+ctx}}
+\subsubsection{\texorpdfstring{user\+\_\+data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ cs\+\_\+base64\+\_\+ctx\+::user\+\_\+data}
+
+
+
+Referenced by cs\+\_\+base64\+\_\+emit\+\_\+code(), cs\+\_\+base64\+\_\+finish(), and cs\+\_\+base64\+\_\+init().
+
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-mongoose.\+h\end{DoxyCompactItemize}
+\hyperlink{mongoose_8h}{mongoose.\+h}\end{DoxyCompactItemize}

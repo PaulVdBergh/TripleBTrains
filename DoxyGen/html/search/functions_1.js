@@ -1,6 +1,20 @@
 var searchData=
 [
-  ['clear',['clear',['../classJson_1_1Value.html#a501a4d67e6c875255c2ecc03ccd2019b',1,'Json::Value']]],
-  ['copy',['copy',['../classJson_1_1Value.html#a1b2c6379664d91b9f1bcd4d1853e5970',1,'Json::Value']]],
-  ['copypayload',['copyPayload',['../classJson_1_1Value.html#ab504d299cfaa440392037fa8a3c54064',1,'Json::Value']]]
+  ['addcomment',['addComment',['../classJson_1_1OurReader_ad7318c37469a9106069a236fb4b10e1f.html#ad7318c37469a9106069a236fb4b10e1f',1,'Json::OurReader']]],
+  ['adderror',['addError',['../classJson_1_1OurReader_aa6a920311e6408ff3a45324d49da18a6.html#aa6a920311e6408ff3a45324d49da18a6',1,'Json::OurReader']]],
+  ['adderrorandrecover',['addErrorAndRecover',['../classJson_1_1OurReader_a074cf3d91e9404fe89e03cfc6a43e6fb.html#a074cf3d91e9404fe89e03cfc6a43e6fb',1,'Json::OurReader']]],
+  ['addpathinarg',['addPathInArg',['../classJson_1_1Path_ae65717a5fbc35b1336cbf783b15aad2e.html#ae65717a5fbc35b1336cbf783b15aad2e',1,'Json::Path']]],
+  ['all',['all',['../classJson_1_1Features_a63894da6e2c100b38741fa933f3d33ae.html#a63894da6e2c100b38741fa933f3d33ae',1,'Json::Features::all()'],['../classJson_1_1OurFeatures_a0686e1406b6677f496529f9f3fe98d1e.html#a0686e1406b6677f496529f9f3fe98d1e',1,'Json::OurFeatures::all()']]],
+  ['append',['append',['../classJson_1_1Value_a7e49ac977e4bcf59745a09d426669f75.html#a7e49ac977e4bcf59745a09d426669f75',1,'Json::Value']]],
+  ['asbool',['asBool',['../classJson_1_1Value_ab693fb7b9b1595bb0adc49658bbf780d.html#ab693fb7b9b1595bb0adc49658bbf780d',1,'Json::Value']]],
+  ['ascstring',['asCString',['../classJson_1_1Value_a16668c8db7ef0a5de040012f0dfd84b0.html#a16668c8db7ef0a5de040012f0dfd84b0',1,'Json::Value']]],
+  ['asdouble',['asDouble',['../classJson_1_1Value_afd24002a18aef907ad746b1cb9eda0a2.html#afd24002a18aef907ad746b1cb9eda0a2',1,'Json::Value']]],
+  ['asfloat',['asFloat',['../classJson_1_1Value_af3a4d10bf575fabdc5440a7135c9649c.html#af3a4d10bf575fabdc5440a7135c9649c',1,'Json::Value']]],
+  ['asint',['asInt',['../classJson_1_1Value_a614d635bc248a592593feb322cd15ab8.html#a614d635bc248a592593feb322cd15ab8',1,'Json::Value']]],
+  ['asint64',['asInt64',['../classJson_1_1Value_aa647ac4fe51a2e325c063ebe32262b44.html#aa647ac4fe51a2e325c063ebe32262b44',1,'Json::Value']]],
+  ['aslargestint',['asLargestInt',['../classJson_1_1Value_ab16f2ea2a117a1b3b576acab8b6a700d.html#ab16f2ea2a117a1b3b576acab8b6a700d',1,'Json::Value']]],
+  ['aslargestuint',['asLargestUInt',['../classJson_1_1Value_ad03548101e0bf3d2d9eac75c64a0b8d7.html#ad03548101e0bf3d2d9eac75c64a0b8d7',1,'Json::Value']]],
+  ['asstring',['asString',['../classJson_1_1Value_ae3f9b0d38f820ccdd8888aa92ea6e792.html#ae3f9b0d38f820ccdd8888aa92ea6e792',1,'Json::Value']]],
+  ['asuint',['asUInt',['../classJson_1_1Value_a74b305583ec3aacf4f9dd06e799dc265.html#a74b305583ec3aacf4f9dd06e799dc265',1,'Json::Value']]],
+  ['asuint64',['asUInt64',['../classJson_1_1Value_a0e44a5a4cd0c099f9570dfa25813eb60.html#a0e44a5a4cd0c099f9570dfa25813eb60',1,'Json::Value']]]
 ];

@@ -1,5 +1,9 @@
 \hypertarget{classTBT_1_1Decoder}{}\section{T\+BT\+:\+:Decoder Class Reference}
 \label{classTBT_1_1Decoder}\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+
+
+{\ttfamily \#include $<$Decoder.\+h$>$}
+
 Inheritance diagram for T\+BT\+:\+:Decoder\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,27 +13,132 @@ Inheritance diagram for T\+BT\+:\+:Decoder\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTBT_1_1Decoder_a69cc50cb8ca993a98802303b1c70eade}\label{classTBT_1_1Decoder_a69cc50cb8ca993a98802303b1c70eade}} 
-{\bfseries Decoder} (\hyperlink{classTBT_1_1Manager}{Manager} $\ast$p\+Manager, uint16\+\_\+t dcc\+Address)
+\hyperlink{classTBT_1_1Decoder_a69cc50cb8ca993a98802303b1c70eade_a69cc50cb8ca993a98802303b1c70eade}{Decoder} (\hyperlink{classTBT_1_1Manager}{Manager} $\ast$p\+Manager, uint16\+\_\+t dcc\+Address)
 \item 
-\mbox{\Hypertarget{classTBT_1_1Decoder_ad948e489ff1246effdfda3e68d693593}\label{classTBT_1_1Decoder_ad948e489ff1246effdfda3e68d693593}} 
-const uint16\+\_\+t {\bfseries get\+D\+C\+C\+Address} (void)
+virtual \hyperlink{classTBT_1_1Decoder_a44ed2f46ad692e6d7604121ed92e4474_a44ed2f46ad692e6d7604121ed92e4474}{$\sim$\+Decoder} ()
 \item 
-\mbox{\Hypertarget{classTBT_1_1Decoder_a71c25cd52e7f591ba1771ee0518735ba}\label{classTBT_1_1Decoder_a71c25cd52e7f591ba1771ee0518735ba}} 
-virtual bool {\bfseries get\+Dcc\+Message} (uint8\+\_\+t $\ast$p\+Msg)
+const uint16\+\_\+t \hyperlink{classTBT_1_1Decoder_ad948e489ff1246effdfda3e68d693593_ad948e489ff1246effdfda3e68d693593}{get\+D\+C\+C\+Address} (void)
+\item 
+virtual bool \hyperlink{classTBT_1_1Decoder_a71c25cd52e7f591ba1771ee0518735ba_a71c25cd52e7f591ba1771ee0518735ba}{get\+Dcc\+Message} (uint8\+\_\+t $\ast$p\+Msg)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t $\ast$ \hyperlink{classTBT_1_1Decoder_a67cd8a5abe038afee52578f483b3d4e5_a67cd8a5abe038afee52578f483b3d4e5}{insert\+D\+C\+C\+Address} (uint8\+\_\+t $\ast$p\+Msg)
+\item 
+void \hyperlink{classTBT_1_1Decoder_aa57b9aaf222878861d93a8234a614b5d_aa57b9aaf222878861d93a8234a614b5d}{insert\+X\+OR} (uint8\+\_\+t $\ast$p\+Msg)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTBT_1_1Decoder_a14309179167dd46b722982301d651c4d}\label{classTBT_1_1Decoder_a14309179167dd46b722982301d651c4d}} 
-uint16\+\_\+t {\bfseries m\+\_\+\+D\+C\+C\+Address}
+uint16\+\_\+t \hyperlink{classTBT_1_1Decoder_a14309179167dd46b722982301d651c4d_a14309179167dd46b722982301d651c4d}{m\+\_\+\+D\+C\+C\+Address}
 \item 
-\mbox{\Hypertarget{classTBT_1_1Decoder_a400475d21ba933f8b91e6f7d3053518b}\label{classTBT_1_1Decoder_a400475d21ba933f8b91e6f7d3053518b}} 
-\hyperlink{classTBT_1_1Manager}{Manager} $\ast$ {\bfseries m\+\_\+p\+Manager}
+\hyperlink{classTBT_1_1Manager}{Manager} $\ast$ \hyperlink{classTBT_1_1Decoder_a400475d21ba933f8b91e6f7d3053518b_a400475d21ba933f8b91e6f7d3053518b}{m\+\_\+p\+Manager}
 \end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTBT_1_1Decoder_a69cc50cb8ca993a98802303b1c70eade_a69cc50cb8ca993a98802303b1c70eade}\label{classTBT_1_1Decoder_a69cc50cb8ca993a98802303b1c70eade_a69cc50cb8ca993a98802303b1c70eade}} 
+\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}!Decoder@{Decoder}}
+\index{Decoder@{Decoder}!T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+\subsubsection{\texorpdfstring{Decoder()}{Decoder()}}
+{\footnotesize\ttfamily T\+B\+T\+::\+Decoder\+::\+Decoder (\begin{DoxyParamCaption}\item[{\hyperlink{classTBT_1_1Manager}{Manager} $\ast$}]{p\+Manager,  }\item[{uint16\+\_\+t}]{dcc\+Address }\end{DoxyParamCaption})}
+
+
+
+References m\+\_\+p\+Manager, and T\+B\+T\+::\+Manager\+::register\+Decoder().
+
+\mbox{\Hypertarget{classTBT_1_1Decoder_a44ed2f46ad692e6d7604121ed92e4474_a44ed2f46ad692e6d7604121ed92e4474}\label{classTBT_1_1Decoder_a44ed2f46ad692e6d7604121ed92e4474_a44ed2f46ad692e6d7604121ed92e4474}} 
+\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}!````~Decoder@{$\sim$\+Decoder}}
+\index{````~Decoder@{$\sim$\+Decoder}!T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+\subsubsection{\texorpdfstring{$\sim$\+Decoder()}{~Decoder()}}
+{\footnotesize\ttfamily T\+B\+T\+::\+Decoder\+::$\sim$\+Decoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+References m\+\_\+p\+Manager, and T\+B\+T\+::\+Manager\+::unregister\+Decoder().
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTBT_1_1Decoder_ad948e489ff1246effdfda3e68d693593_ad948e489ff1246effdfda3e68d693593}\label{classTBT_1_1Decoder_ad948e489ff1246effdfda3e68d693593_ad948e489ff1246effdfda3e68d693593}} 
+\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}!get\+D\+C\+C\+Address@{get\+D\+C\+C\+Address}}
+\index{get\+D\+C\+C\+Address@{get\+D\+C\+C\+Address}!T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+\subsubsection{\texorpdfstring{get\+D\+C\+C\+Address()}{getDCCAddress()}}
+{\footnotesize\ttfamily const uint16\+\_\+t T\+B\+T\+::\+Decoder\+::get\+D\+C\+C\+Address (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+References m\+\_\+\+D\+C\+C\+Address.
+
+
+
+Referenced by T\+B\+T\+::\+Manager\+::register\+Decoder(), T\+B\+T\+::\+U\+D\+P\+Client\+Interface\+::thread\+Func(), and T\+B\+T\+::\+Manager\+::unregister\+Decoder().
+
+\mbox{\Hypertarget{classTBT_1_1Decoder_a71c25cd52e7f591ba1771ee0518735ba_a71c25cd52e7f591ba1771ee0518735ba}\label{classTBT_1_1Decoder_a71c25cd52e7f591ba1771ee0518735ba_a71c25cd52e7f591ba1771ee0518735ba}} 
+\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}!get\+Dcc\+Message@{get\+Dcc\+Message}}
+\index{get\+Dcc\+Message@{get\+Dcc\+Message}!T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+\subsubsection{\texorpdfstring{get\+Dcc\+Message()}{getDccMessage()}}
+{\footnotesize\ttfamily virtual bool T\+B\+T\+::\+Decoder\+::get\+Dcc\+Message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classTBT_1_1LocDecoder_a00361e87af456a020bc6ec16c08237ef_a00361e87af456a020bc6ec16c08237ef}{T\+B\+T\+::\+Loc\+Decoder}.
+
+
+
+References insert\+D\+C\+C\+Address(), and insert\+X\+O\+R().
+
+\mbox{\Hypertarget{classTBT_1_1Decoder_a67cd8a5abe038afee52578f483b3d4e5_a67cd8a5abe038afee52578f483b3d4e5}\label{classTBT_1_1Decoder_a67cd8a5abe038afee52578f483b3d4e5_a67cd8a5abe038afee52578f483b3d4e5}} 
+\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}!insert\+D\+C\+C\+Address@{insert\+D\+C\+C\+Address}}
+\index{insert\+D\+C\+C\+Address@{insert\+D\+C\+C\+Address}!T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+\subsubsection{\texorpdfstring{insert\+D\+C\+C\+Address()}{insertDCCAddress()}}
+{\footnotesize\ttfamily uint8\+\_\+t $\ast$ T\+B\+T\+::\+Decoder\+::insert\+D\+C\+C\+Address (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+References m\+\_\+\+D\+C\+C\+Address.
+
+
+
+Referenced by T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G1\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G2\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G3\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G4\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G5\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+Dcc\+Message(), get\+Dcc\+Message(), and T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+Speed\+Message().
+
+\mbox{\Hypertarget{classTBT_1_1Decoder_aa57b9aaf222878861d93a8234a614b5d_aa57b9aaf222878861d93a8234a614b5d}\label{classTBT_1_1Decoder_aa57b9aaf222878861d93a8234a614b5d_aa57b9aaf222878861d93a8234a614b5d}} 
+\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}!insert\+X\+OR@{insert\+X\+OR}}
+\index{insert\+X\+OR@{insert\+X\+OR}!T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+\subsubsection{\texorpdfstring{insert\+X\+O\+R()}{insertXOR()}}
+{\footnotesize\ttfamily void T\+B\+T\+::\+Decoder\+::insert\+X\+OR (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{p\+Msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Referenced by T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G1\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G2\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G3\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G4\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+F\+G5\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::get\+Dcc\+Message(), get\+Dcc\+Message(), and T\+B\+T\+::\+Loc\+Decoder\+::get\+D\+C\+C\+Speed\+Message().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classTBT_1_1Decoder_a14309179167dd46b722982301d651c4d_a14309179167dd46b722982301d651c4d}\label{classTBT_1_1Decoder_a14309179167dd46b722982301d651c4d_a14309179167dd46b722982301d651c4d}} 
+\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}!m\+\_\+\+D\+C\+C\+Address@{m\+\_\+\+D\+C\+C\+Address}}
+\index{m\+\_\+\+D\+C\+C\+Address@{m\+\_\+\+D\+C\+C\+Address}!T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+\subsubsection{\texorpdfstring{m\+\_\+\+D\+C\+C\+Address}{m\_DCCAddress}}
+{\footnotesize\ttfamily uint16\+\_\+t T\+B\+T\+::\+Decoder\+::m\+\_\+\+D\+C\+C\+Address\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Referenced by get\+D\+C\+C\+Address(), insert\+D\+C\+C\+Address(), T\+B\+T\+::\+Loc\+Decoder\+::\+Loc\+Decoder(), and T\+B\+T\+::\+Loc\+Decoder\+::set\+Loc\+Mode().
+
+\mbox{\Hypertarget{classTBT_1_1Decoder_a400475d21ba933f8b91e6f7d3053518b_a400475d21ba933f8b91e6f7d3053518b}\label{classTBT_1_1Decoder_a400475d21ba933f8b91e6f7d3053518b_a400475d21ba933f8b91e6f7d3053518b}} 
+\index{T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}!m\+\_\+p\+Manager@{m\+\_\+p\+Manager}}
+\index{m\+\_\+p\+Manager@{m\+\_\+p\+Manager}!T\+B\+T\+::\+Decoder@{T\+B\+T\+::\+Decoder}}
+\subsubsection{\texorpdfstring{m\+\_\+p\+Manager}{m\_pManager}}
+{\footnotesize\ttfamily \hyperlink{classTBT_1_1Manager}{Manager}$\ast$ T\+B\+T\+::\+Decoder\+::m\+\_\+p\+Manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Referenced by Decoder(), T\+B\+T\+::\+Loc\+Decoder\+::get\+Dcc\+Message(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Busy(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Direction(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Dual\+Traction(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F0(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F1(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F10(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F11(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F12(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F13(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F14(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F15(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F16(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F17(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F18(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F19(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F2(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F20(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F21(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F22(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F23(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F24(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F25(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F26(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F27(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F28(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F3(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F4(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F5(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F6(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F7(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F8(), T\+B\+T\+::\+Loc\+Decoder\+::set\+F9(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Function\+Group1(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Function\+Group2(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Function\+Group3(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Function\+Group4(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Function\+Group5(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Light(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Loco\+Drive128(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Loco\+Drive14(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Loco\+Drive27(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Loco\+Drive28(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Smart\+Search(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Speed(), T\+B\+T\+::\+Loc\+Decoder\+::set\+Speedsteps(), and $\sim$\+Decoder().
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Decoder.\+h\item 
-Decoder.\+cpp\end{DoxyCompactItemize}
+\hyperlink{Decoder_8h}{Decoder.\+h}\item 
+\hyperlink{Decoder_8cpp}{Decoder.\+cpp}\end{DoxyCompactItemize}

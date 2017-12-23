@@ -37,6 +37,20 @@
 namespace TBT
 {
 
+	/**
+	 * The constructor of UDPClientInterface
+	 * 	- initializes its base class
+	 * 	- sets up an event file descriptor (m_fdStop) which is responsible for a clean
+	 * 	shutdown of the worker thread.
+	 * 	- sets up a socket file descriptor (m_fdsock_me) and initializes it for listening
+	 * 	for incomming Z21 portocol datagrams.
+	 * 	- sets up a worker thread and start the threadFunc to listen to incomming datagrams.
+	 *
+	 * @param	pManager : pointer to the Manager instance.
+	 * @param	port : The port on which to listen for incomming messages.
+	 *
+	 * @return	none : a new instance of type class UDPClientInterface is constructed.
+	 */
 	UDPClientInterface::UDPClientInterface(Manager* pManager, const in_port_t& port /* = 21105 */)
 	:	ClientInterface(pManager)
 	,	m_port(port)
@@ -72,6 +86,12 @@ namespace TBT
 		m_thread = thread([this]{ threadFunc(); });
 	}
 
+	/**
+	 * The destructor of UDPClientInterface
+	 * - informs the worker thread to finish processing of incomming datagrams.
+	 * - waits for the worker thread to finish.
+	 * - cleans up open file descriptors
+	 */
 	UDPClientInterface::~UDPClientInterface()
 	{
 		uint64_t stop = 1;
@@ -81,6 +101,14 @@ namespace TBT
 		close(m_fdStop);
 	}
 
+	/**
+	 * UDPClientInterface::broadcastPowerStateChange informs each client about
+	 * a power state change.
+	 *
+	 * @param newState : bool true if the power is applied to the track, false otherwise.
+	 *
+	 * @return void
+	 */
 	void UDPClientInterface::broadcastPowerStateChange(bool newState)
 	{
 		lock_guard<recursive_mutex> guard(sm_MClients);
@@ -91,6 +119,14 @@ namespace TBT
 		}
 	}
 
+	/**
+	 * UDPClientInterface::broadcastLocInfoChange informs each client about
+	 * changes in the state of a LocDecoder.
+	 *
+	 * @param pLoc : pointer to the LocDecoder instance whoes state changed.
+	 *
+	 * @return void
+	 */
 	void UDPClientInterface::broadcastLocInfoChange(LocDecoder* pLoc)
 	{
 		lock_guard<recursive_mutex> guard(sm_MClients);
@@ -101,6 +137,14 @@ namespace TBT
 		}
 	}
 
+	/**
+	 * UDPClinetInterface::broadcastEmergencyStop informs each client about
+	 * the raise of an emergency stop.
+	 *
+	 * @param none
+	 *
+	 * @return void
+	 */
 	void UDPClientInterface::broadcastEmergencyStop()
 	{
 		lock_guard<recursive_mutex> guard(sm_MClients);
@@ -111,6 +155,14 @@ namespace TBT
 		}
 	}
 
+	/**
+	 * UDPClientInterface::findClient returns a pointer to an UDPClient instance
+	 * at the specified address.  If the client doesn't exists, it is created.
+	 *
+	 * @param address : the socket address on which the client is addressed.
+	 *
+	 * @return a pointer to the instance of the UDPClient.
+	 */
 	UDPClient* UDPClientInterface::findClient(const sockaddr_in& address)
 	{
 		lock_guard<recursive_mutex> guard(sm_MClients);
@@ -133,6 +185,16 @@ namespace TBT
 		return *client;
 	}
 
+	/**
+	 * UDPClientInterface::removeClient removes a client from the pool of UDPClients and
+	 * destroys the client if it exists.
+	 *
+	 * @param	pClient : pointer to instance of class UDPClient to remove.
+	 *
+	 * @return
+	 * 			- true if client is removed,
+	 * 			- false if client didn't exists.
+	 */
 	bool UDPClientInterface::removeClient(UDPClient* pClient)
 	{
 		lock_guard<recursive_mutex> guard(sm_MClients);
@@ -147,6 +209,10 @@ namespace TBT
 		return false;
 	}
 
+	/**
+	 * UDPClientInterface::threadFunc runs in a separate thread.  The function listen on the
+	 * socket (m_fdsock_me) for incomming datagrams.
+	 */
 	void UDPClientInterface::threadFunc()
 	{
 		epoll_event ev;
@@ -219,7 +285,23 @@ namespace TBT
 						switch (*(uint32_t*)payload)
 						{
 
-							case 0x00100004: //  LAN_GET_SERIAL_NUMBER
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_GET_SERIAL_NUMBER
+							 * read the serial number from the Z21
+							 *
+							 <table>
+							 <caption id="multi_row">request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x04<td>0x00<td>0x10<td>0x00<td>--
+							 </table>
+							 <table>
+							 <caption>response:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x08<td>0x00<td>0x10<td>0x00<td>Serialnumber (32 bit, little endian)
+							 </table>
+							 */
+							case 0x00100004:
 							{
 								printf("LAN_GET_SERIAL_NUMBER.");
 								static const uint8_t LAN_SERIAL_NUMBER[] = {0x08, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -227,7 +309,35 @@ namespace TBT
 								break;
 							}
 
-							case 0x00180004: //  LAN_GET_CODE
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_GET_CODE
+							 * With this command, the SW feature scope of the Z21 can be checked and read out.
+							 * This command is of particular interest for the hardware version "z21 start" in order
+							 * to check whether driving and switching via LAN is blocked or allowed.
+
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Header<th>Data
+							 <tr><td>0x04<td>0x00<td>0x18<td>0x00<td>-
+							 </table>
+
+							 <table>
+							 <caption>Response:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Header<th>Data
+							 <tr><td>0x05<td>0x00<td>0x18<td>0x00<td>Code (8 Bit)
+							 </table>
+
+
+							 <table>
+							 <caption>Code layout</caption>
+							 <tr><th>define<th>Value<th>Meaning
+							 <tr><td>Z21_NO_LOCK<td>0x00<td>No features locked
+							 <tr><td>Z21_START_LOCKED<td>0x01<td>"z21 start" : Driving and switching disabled via LAN.
+							 <tr><td>Z21_START_UNLOCKED<td>0x02<td>"z21 start" : all feature locks are removed
+			 	 	 	 	 </table>
+							 */
+							case 0x00180004:
 							{
 								printf("LAN_GET_CODE");
 								static const uint8_t LAN_CODE[] = {0x05, 0x00, 0x18, 0x00, 0x00};
@@ -235,6 +345,36 @@ namespace TBT
 								break;
 							}
 
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_GET_HWINFO
+							 * With this command the hardware type and the firmware version of the Z21 can be read out.
+							 *
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Header<th>Data
+							 <tr><td>0x04<td>0x00<td>0x1A<td>0x00<td>-
+							 </table>
+
+							 <table>
+							 <caption>Response:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Header<th colspan="2">Data
+							 <tr><td>0x0C<td>0x00<td>0x1A<td>0x00<td>HwType 32 Bit(little endian)<td>FW Version 32 Bit (little endian)
+							 </table>
+
+
+							 <table>
+							 <caption>HwType 32 Bit</caption>
+							 <tr><th>define<th>Value<th>Meaning
+							 <tr><td>D_HWT_Z21_OLD<td>0x00000200<td>"Black Z21" (Hardware-version from 2012)
+							 <tr><td>D_HWT_Z21_NEW<td>0x00000201<td>"Black Z21" (Hardware-version from 2013)
+							 <tr><td>D_HWT_SMARTRAIL<td>0x00000202<td>"SmartRail" (from 2012)
+							 <tr><td>D_HWT_z21_SMALL<td>0x00000203<td>"White z21" Starterset-version (from 2013)
+							 <tr><td>D_HWT_z21_START<td>0x00000204<td>"z21 start" Starterset-version (from 2016)
+			 	 	 	 	 </table>
+
+			 	 	 	 	 * The FW version is specified in BCD format.
+							 */
 							case 0x001A0004: //  LAN_GET_HWINFO
 							{
 								printf("LAN_GET_HWINFO");
@@ -243,14 +383,52 @@ namespace TBT
 								break;
 							}
 
-							case 0x00300004: //  LAN_LOGOFF
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_LOGOFF
+							 * Log off this client from the system
+							 *
+							 <table>
+							 <caption>request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x04<td>0x00<td>0x30<td>0x00<td>--
+							 </table>
+							 *
+							 * response:
+							 * none
+							 *
+							 * When logging out, use the same port number as when logging in.
+							 *
+							 * <b>Note</b>: logging in occurs implicitly with the client's first command (e.g.
+							 * LAN_SYSTEM_STATE_GETDATA, ...).
+							 */
+							case 0x00300004:
 							{
 								printf("LAN_LOGOFF");
 								removeClient(pClient);
 								break;
 							}
 
-							case 0x00510004: //  LAN_GET_BROADCASTFLAGS
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_GET_BROADCASTFLAGS
+							 * Reading out the broadcast flags in the Z21.
+							 *
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x04<td>0x00<td>0x51<td>0x00<td>--
+							 </table>
+
+							 <table>
+							 <caption>Response:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x08<td>0x00<td>0x51<td>0x00<td>Broadcast-Flags (32 Bit little endian)
+							 </table>
+
+							 * Broadcast-Flags : see UDPClient::getBroadcastFlags
+							 */
+							case 0x00510004:
 							{
 								printf("LAN_GET_BROADCASTFLAGS");
 								static uint8_t LAN_BROADCASTFLAGS[] = {0x08, 0x00, 0x51, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -259,6 +437,19 @@ namespace TBT
 								break;
 							}
 
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_SYSTEMSTATE_GETDATA
+							 * Request the current system state.
+							 *
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x04<td>0x00<td>0x85<td>0x00<td>-
+							 </table>
+
+							 * response : see TBT::SystemState
+							 */
 							case 0x00850004: //  LAN_SYSTEMSTATE_GETDATA
 							{
 								printf("LAN_SYSTEMSTATE_GETDATA");
@@ -268,6 +459,20 @@ namespace TBT
 								break;
 							}
 
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_LOCONET_FROM_LAN
+							 * <b>From Z21 FW version 1.20.</b>
+							 *
+							 * With this message, a LAN client can write a message to the LocoNet bus.
+							 *
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td rowspan="2">0x04 + n<td rowspan="2">0x00<td rowspan="2">0xA2<td rowspan="2">0x00<th>LocoNet message incl. CKSUM
+							 <tr><td>n Bytes
+							 </table>
+							 */
 							case 0x00A20004: //  LAN_LOCONET_FROM_LAN
 							{
 								printf("LAN_LOCONET_FROM_LAN");
@@ -275,6 +480,42 @@ namespace TBT
 								break;
 							}
 
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_RMBUS_GETDATA
+							 *
+							 * Request the current status of the feedback.
+							 *
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x05<td>0x00<td>0x81<td>0x00<td>Group index (1 Byte)
+							 </table>
+
+							 <table>
+							 <caption>Response:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th colspan="2">Data
+							 <tr><td>0x0F<td>0x00<td>0x80<td>0x00<td>Group index (1 Byte)<td>Feedback status (10 bytes)
+							 </table>
+
+							 <b>Group index :</b>
+							  - 0 --> Feedback status for address from  1 to 10
+							  - 1 --> Feedback status for address from 11 to 20
+							  -
+							  -
+
+
+							  <b>Feedback status :</b>
+							   - 1 byte per feedback,
+							   - 1 bit per input.
+
+							   The assignment of feedback address and byte position is statically ascending.
+
+
+							   <b>Example:</b>
+							   GroupIndex = 1 and feedback status = 0x01 0x00 0xC5 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+							   means "feedback 11, contact input 1; Feedback 13, contact input 8,7,3 and 1 "
+							 */
 							case 0x00810005: //  LAN_RMBUS_GETDATA
 							{
 								printf("LAN_RMBUS_GETDATA");
@@ -282,6 +523,29 @@ namespace TBT
 								break;
 							}
 
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_RMBUS_PROGRAMMODULE
+							 *
+							 * Change the feedback address.
+							 *
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x05<td>0x00<td>0x82<td>0x00<td>Address (1 Byte)
+							 </table>
+
+							 <b>Address:</b>
+							 new address for the feedback module to be programmed.
+							 Supported value range: 0 and 1 ... 20.
+
+							 Response: none
+
+							 \warning
+							 The programming command is output on the R-BUS until this command is sent again to Z21 with address = 0.
+							 During the programming process, no other feedback module may be connected on the R-BUS.
+							 *
+							 */
 							case 0x00820005: //  LAN_RMBUS_PROGRAMMODULE
 							{
 								printf("LAN_RMBUS_PROGRAMMODULE");
@@ -289,9 +553,33 @@ namespace TBT
 								break;
 							}
 
-							case 0x00600006: //  LAN_GET_LOCMODE
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_GET_LOCOMODE
+							 *
+							 * Read the output format for a given locomotive address.
+							 *
+							 * The output format (DCC, MM) can be stored persistently per locomotive address in the Z21.
+							 * A maximum of 256 different locomotive addresses can be stored.
+							 * Each address> = 256 is automatically DCC.
+							 *
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x06<td>0x00<td>0x60<td>0x00<td>Loc-Address (16 Bit <b>big endian</b>)
+							 </table>
+
+							 <table>
+							 <caption>Response:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th colspan="2">Data
+							 <tr><td>0x07<td>0x00<td>0x60<td>0x00<td>Loc-Address (16 Bit <b>big endian</b>)<td>Modus (8 bit)
+							 </table>
+
+							 Modus : see LocDecoder::getLocMode
+							 */
+							case 0x00600006: //  LAN_GET_LOCOMODE
 							{
-								printf("LAN_GET_LOCMODE");
+								printf("LAN_GET_LOC0MODE");
 								Manager* pManager = pClient->getInterface()->getManager();
 								uint16_t locAddress = (payload[4] << 8) + payload[5];
 								Decoder* pDecoder = pManager->findDecoder(locAddress);
@@ -311,7 +599,22 @@ namespace TBT
 								break;
 							}
 
-							case 0x00400006:	//	 LAN_X_SET_STOP
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_X_SET_STOP
+							 * With the following command the emergency stop is raised.  All Locs goes into
+							 * speedstep 01, but the power is still feed to the rails.
+							 *
+							 <table>
+							 <caption>request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th colspan="2">Data
+							 <tr><td rowspan="2">0x06<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>XOR-Byte
+							 <tr><td>0x80<td>0x80
+							 </table>
+
+							 response : see UDPClient::broadcastEmergencyStop
+							 */
+							case 0x00400006:
 							{
 								printf("LAN_X_SET_STOP");
 								if(payload[4] == 0x80)
@@ -321,6 +624,33 @@ namespace TBT
 								break;
 							}
 
+							/** @ingroup Z21LANProtocol
+							 * ---
+							 * ### LAN_GET_TURNOUTMODE
+							 * Reading the settings for a given function decoder address ("Function Decoder"
+							 * in the sense of "Accessory Decoder" RP-9.2.1).
+							 * The output format (DCC, MM) can be stored persistently per function decoder
+							 * address in the Z21. A maximum of 256 different
+							 * function decoder addresses can be stored. Each Address> = 256 is automatically DCC.
+							 *
+							 <table>
+							 <caption>Request:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+							 <tr><td>0x06<td>0x00<td>0x70<td>0x00<td>Function Decoder Address (16 Bit <b>big endian</b>)
+							 </table>
+
+							 <table>
+							 <caption>Response:</caption>
+							 <tr><th colspan="2">DataLen<th colspan="2">Headers<th colspan="2">Data
+							 <tr><td>0x07<td>0x00<td>0x70<td>0x00<td>Function Decoder Address (16 Bit <b>big endian</b>)<td>Modus (8 Bit)
+							 </table>
+
+							 Modus : see FunctionDecoder::getMode
+
+							 At the LAN interface and in the Z21, the function decoder addresses are addressed from 0, in the visualization
+							 on the apps or on the multiMaus, however, from 1. This is merely a decision of the visualization. Example:
+							 multiMaus switch address # 3, corresponds on the LAN and Z21 to address # 2.
+							 */
 							case 0x00700006: //  LAN_GET_TURNOUTMODE
 							{
 								printf("LAN_GET_TURNOUTMODE");
@@ -339,6 +669,28 @@ namespace TBT
 							{
 								switch (*(uint16_t*)&payload[4])
 								{
+									/** @ingroup Z21LANProtocol
+									 * ---
+									 * ### LAN_X_GET_VERSION
+									 * With the following command the X-Bus version of the Z21 can be read out.
+									 *
+									 <table>
+									 <caption>request:</caption>
+									 <tr><th colspan="2">DataLen<th colspan="2">Headers<th colspan="3">Data
+									 <tr><td rowspan="2">0x07<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>DB0<th>XOR-Byte
+									 <tr><td>0x21<td>0x21<td>0x00
+									 </table>
+
+									 <table>
+									 <caption>response:</caption>
+									 <tr><th colspan="2">DataLen<th colspan="2">Headers<th colspan="5">Data
+									 <tr><td rowspan="2">0x09<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>DB0<th>DB1<th>DB2<th>XOR-Byte
+									 <tr><td>0x63<td>0x21<td>0x30<td>0x12<td>0x60
+									 </table>
+
+									 - DB1 --> X-Bus Version (3.0)
+									 - DB2 --> ID (Z21 = 0x12)
+									 */
 									case 0x2121: //  LAN_X_GET_VERSION
 									{
 										printf("LAN_X_GET_VERSION");
@@ -350,14 +702,36 @@ namespace TBT
 										break;
 									}
 
+									/** @ingroup Z21LANProtocol
+									 * ---
+									 * ### LAN_X_GET_STATUS
+									 * with the following command the system's status can be read out.
+									 *
+									 <table>
+									 <caption>request:</caption>
+									 <tr><th colspan="2">DataLen<th colspan="2">Headers<th colspan="3">Data
+									 <tr><td rowspan="2">0x07<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>DB0<th>XOR-Byte
+									 <tr><td>0x21<td>0x24<td>0x05
+									 </table>
+
+									 <table>
+									 <caption>response:</caption>
+									 <tr><th colspan="2">DataLen<th colspan="2">Headers<th colspan="4">Data
+									 <tr><td rowspan="2">0x08<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>DB0<th>DB1<th>XOR-Byte
+									 <tr><td>0x62<td>0x22<td>CentralState<td>XOR-Byte
+									 </table>
+
+									 The system status is identical to the centralState, which is supplied in SystemStatus.
+
+									 @see Manager::getCentralState
+									 */
 									case 0x2421: //  LAN_X_GET_STATUS
 									{
 										printf("LAN_X_GET_STATUS");
 										if (payload[6] == 0x05)
 										{
-											uint8_t LAN_X_STATUS[] = {0x08, 0x00, 0x40, 0x00, 0x62, 0x22, 0x00, 0x40};
+											uint8_t LAN_X_STATUS[] = {0x08, 0x00, 0x40, 0x00, 0x62, 0x22, 0x00, 0x00};
 											LAN_X_STATUS[6] = pClient->getInterface()->getManager()->getCentralState();
-											LAN_X_STATUS[7] = 0;
 											for (uint8_t i = 4; i < 7; i++)
 											{
 												LAN_X_STATUS[7] ^= LAN_X_STATUS[i];
@@ -367,6 +741,20 @@ namespace TBT
 										break;
 									}
 
+									/** @ingroup Z21LANProtocol
+									 * ---
+									 * ### LAN_X_SET_TRACK_POWER_OFF
+									 * With the following command the trackpower is switched off.
+									 *
+									 <table>
+									 <caption>request:</caption>
+									 <tr><th colspan="2">DataLen<th colspan="2">Header<th colspan="3">Data
+									 <tr><td rowspan="2">0x07<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>DB0<th>XOR-Byte
+									 <tr><td>0x21<td>0x80<td>0xA1
+									 </table>
+
+									 response: see UDPClient::broadcastPowerStateChange
+									 */
 									case 0x8021: //  LAN_X_SET_TRACK_POWER_OFF
 									{
 										printf("LAN_X_SET_TRACK_POWER_OFF");
@@ -377,12 +765,26 @@ namespace TBT
 										break;
 									}
 
+									/** @ingroup Z21LANProtocol
+									 * ---
+									 * ### LAN_X_SET_TRACK_POWER_ON
+									 * With the following command the trackpower is switched on.
+									 * This cancels a pending emergencystop or programmingmode.
+									 *
+									 <table>
+									 <caption>request:</caption>
+									 <tr><th colspan="2">DataLen<th colspan="2">Header<th colspan="3">Data
+									 <tr><td rowspan="2">0x07<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>DB0<th>XOR-Byte
+									 <tr><td>0x21<td>0x81<td>0xA0
+									 </table>
+
+									 response: see UDPClient::broadcastPowerStateChange
+									 */
 									case 0x8121: //  LAN_X_SET_TRACK_POWER_ON
 									{
 										printf("LAN_X_SET_TRACK_POWER_ON");
 										if (payload[6] == 0xA0)
 										{
-											//pClient->getInterface()->getManager()->setEmergencyStop();
 											pClient->getInterface()->getManager()->setPowerState(PowerOn);
 										}
 										break;

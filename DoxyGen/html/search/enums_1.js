@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['enum',['Enum',['../structJson_1_1CommentStyle.html#a51fc08f3518fd81eba12f340d19a3d0c',1,'Json::CommentStyle']]]
+  ['duplicationpolicy',['DuplicationPolicy',['../classJson_1_1Value_1_1CZString_a2805c46fb4a72bbaed55de6d75941b6d.html#a2805c46fb4a72bbaed55de6d75941b6d',1,'Json::Value::CZString']]]
 ];

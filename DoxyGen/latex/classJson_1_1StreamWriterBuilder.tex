@@ -18,21 +18,25 @@ Inheritance diagram for Json\+:\+:Stream\+Writer\+Builder\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classJson_1_1StreamWriter}{Stream\+Writer} $\ast$ \hyperlink{classJson_1_1StreamWriterBuilder_ab9ee278609f88ae04a7c1a84e1f559e6}{new\+Stream\+Writer} () const J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+V\+E\+R\+R\+I\+DE
+\hyperlink{classJson_1_1StreamWriterBuilder_ab95b76179c152673ad14abc639a46ee4_ab95b76179c152673ad14abc639a46ee4}{Stream\+Writer\+Builder} ()
 \item 
-bool \hyperlink{classJson_1_1StreamWriterBuilder_a12353b97766841db7d049da84658da09}{validate} (\hyperlink{classJson_1_1Value}{Json\+::\+Value} $\ast$invalid) const
+\hyperlink{classJson_1_1StreamWriterBuilder_a93263f8ef1e2d22593907075d8f0aaef_a93263f8ef1e2d22593907075d8f0aaef}{$\sim$\+Stream\+Writer\+Builder} () \hyperlink{json_8h_a824d6199c91488107e443226fa6022c5_a824d6199c91488107e443226fa6022c5}{J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+V\+E\+R\+R\+I\+DE}
 \item 
-\hyperlink{classJson_1_1Value}{Value} \& \hyperlink{classJson_1_1StreamWriterBuilder_af68f6b59cb20b074052ed12bb3d336a3}{operator\mbox{[}$\,$\mbox{]}} (J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG key)
+\hyperlink{classJson_1_1StreamWriter}{Stream\+Writer} $\ast$ \hyperlink{classJson_1_1StreamWriterBuilder_ab9ee278609f88ae04a7c1a84e1f559e6_ab9ee278609f88ae04a7c1a84e1f559e6}{new\+Stream\+Writer} () const \hyperlink{json_8h_a824d6199c91488107e443226fa6022c5_a824d6199c91488107e443226fa6022c5}{J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+V\+E\+R\+R\+I\+DE}
+\item 
+bool \hyperlink{classJson_1_1StreamWriterBuilder_a12353b97766841db7d049da84658da09_a12353b97766841db7d049da84658da09}{validate} (\hyperlink{classJson_1_1Value}{Json\+::\+Value} $\ast$invalid) const
+\item 
+\hyperlink{classJson_1_1Value}{Value} \& \hyperlink{classJson_1_1StreamWriterBuilder_af68f6b59cb20b074052ed12bb3d336a3_af68f6b59cb20b074052ed12bb3d336a3}{operator\mbox{[}$\,$\mbox{]}} (\hyperlink{json_8h_a1e723f95759de062585bc4a8fd3fa4be_a1e723f95759de062585bc4a8fd3fa4be}{J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG} key)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{classJson_1_1StreamWriterBuilder_a53bf106b141e28637b01ad0ecd2acbf6}{set\+Defaults} (\hyperlink{classJson_1_1Value}{Json\+::\+Value} $\ast$settings)
+static void \hyperlink{classJson_1_1StreamWriterBuilder_a53bf106b141e28637b01ad0ecd2acbf6_a53bf106b141e28637b01ad0ecd2acbf6}{set\+Defaults} (\hyperlink{classJson_1_1Value}{Json\+::\+Value} $\ast$settings)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classJson_1_1Value}{Json\+::\+Value} \hyperlink{classJson_1_1StreamWriterBuilder_a79bdf2e639a52f4e758c0b95bd1d3423}{settings\+\_\+}
+\hyperlink{classJson_1_1Value}{Json\+::\+Value} \hyperlink{classJson_1_1StreamWriterBuilder_a79bdf2e639a52f4e758c0b95bd1d3423_a79bdf2e639a52f4e758c0b95bd1d3423}{settings\+\_\+}
 \end{DoxyCompactItemize}
 
 
@@ -47,14 +51,29 @@ Usage\+:
 builder[\textcolor{stringliteral}{"commentStyle"}] = \textcolor{stringliteral}{"None"};
 builder[\textcolor{stringliteral}{"indentation"}] = \textcolor{stringliteral}{"   "};  \textcolor{comment}{// or whatever you like}
 std::unique\_ptr<Json::StreamWriter> writer(
-    builder.\hyperlink{classJson_1_1StreamWriterBuilder_ab9ee278609f88ae04a7c1a84e1f559e6}{newStreamWriter}());
+    builder.\hyperlink{classJson_1_1StreamWriterBuilder_ab9ee278609f88ae04a7c1a84e1f559e6_ab9ee278609f88ae04a7c1a84e1f559e6}{newStreamWriter}());
 writer->write(value, &std::cout);
 std::cout << std::endl;  \textcolor{comment}{// add lf and flush}
 \end{DoxyCode}
  
 
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_ab95b76179c152673ad14abc639a46ee4_ab95b76179c152673ad14abc639a46ee4}\label{classJson_1_1StreamWriterBuilder_ab95b76179c152673ad14abc639a46ee4_ab95b76179c152673ad14abc639a46ee4}} 
+\index{Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}!Stream\+Writer\+Builder@{Stream\+Writer\+Builder}}
+\index{Stream\+Writer\+Builder@{Stream\+Writer\+Builder}!Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}}
+\subsubsection{\texorpdfstring{Stream\+Writer\+Builder()}{StreamWriterBuilder()}}
+{\footnotesize\ttfamily Json\+::\+Stream\+Writer\+Builder\+::\+Stream\+Writer\+Builder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_a93263f8ef1e2d22593907075d8f0aaef_a93263f8ef1e2d22593907075d8f0aaef}\label{classJson_1_1StreamWriterBuilder_a93263f8ef1e2d22593907075d8f0aaef_a93263f8ef1e2d22593907075d8f0aaef}} 
+\index{Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}!````~Stream\+Writer\+Builder@{$\sim$\+Stream\+Writer\+Builder}}
+\index{````~Stream\+Writer\+Builder@{$\sim$\+Stream\+Writer\+Builder}!Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}}
+\subsubsection{\texorpdfstring{$\sim$\+Stream\+Writer\+Builder()}{~StreamWriterBuilder()}}
+{\footnotesize\ttfamily Json\+::\+Stream\+Writer\+Builder\+::$\sim$\+Stream\+Writer\+Builder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_ab9ee278609f88ae04a7c1a84e1f559e6}\label{classJson_1_1StreamWriterBuilder_ab9ee278609f88ae04a7c1a84e1f559e6}} 
+\mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_ab9ee278609f88ae04a7c1a84e1f559e6_ab9ee278609f88ae04a7c1a84e1f559e6}\label{classJson_1_1StreamWriterBuilder_ab9ee278609f88ae04a7c1a84e1f559e6_ab9ee278609f88ae04a7c1a84e1f559e6}} 
 \index{Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}!new\+Stream\+Writer@{new\+Stream\+Writer}}
 \index{new\+Stream\+Writer@{new\+Stream\+Writer}!Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}}
 \subsubsection{\texorpdfstring{new\+Stream\+Writer()}{newStreamWriter()}}
@@ -67,15 +86,23 @@ std::cout << std::endl;  \textcolor{comment}{// add lf and flush}
 \end{DoxyExceptions}
 
 
-Implements \hyperlink{classJson_1_1StreamWriter_1_1Factory_a9d30ec53e8288cd53befccf1009c5f31}{Json\+::\+Stream\+Writer\+::\+Factory}.
+Implements \hyperlink{classJson_1_1StreamWriter_1_1Factory_a9d30ec53e8288cd53befccf1009c5f31_a9d30ec53e8288cd53befccf1009c5f31}{Json\+::\+Stream\+Writer\+::\+Factory}.
 
-\mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_af68f6b59cb20b074052ed12bb3d336a3}\label{classJson_1_1StreamWriterBuilder_af68f6b59cb20b074052ed12bb3d336a3}} 
+
+
+References Json\+::\+Comment\+Style\+::\+All, J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG, Json\+::\+Comment\+Style\+::\+None, and Json\+::throw\+Runtime\+Error().
+
+
+
+Referenced by Json\+::operator$<$$<$().
+
+\mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_af68f6b59cb20b074052ed12bb3d336a3_af68f6b59cb20b074052ed12bb3d336a3}\label{classJson_1_1StreamWriterBuilder_af68f6b59cb20b074052ed12bb3d336a3_af68f6b59cb20b074052ed12bb3d336a3}} 
 \index{Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}!operator\mbox{[}\mbox{]}@{operator[]}}
 \index{operator\mbox{[}\mbox{]}@{operator[]}!Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}}
 \subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
-{\footnotesize\ttfamily \hyperlink{classJson_1_1Value}{Value} \& Json\+::\+Stream\+Writer\+Builder\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG}]{key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{classJson_1_1Value}{Value} \& Json\+::\+Stream\+Writer\+Builder\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{\hyperlink{json_8h_a1e723f95759de062585bc4a8fd3fa4be_a1e723f95759de062585bc4a8fd3fa4be}{J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG}}]{key }\end{DoxyParamCaption})}
 
-A simple way to update a specific setting. \mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_a53bf106b141e28637b01ad0ecd2acbf6}\label{classJson_1_1StreamWriterBuilder_a53bf106b141e28637b01ad0ecd2acbf6}} 
+A simple way to update a specific setting. \mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_a53bf106b141e28637b01ad0ecd2acbf6_a53bf106b141e28637b01ad0ecd2acbf6}\label{classJson_1_1StreamWriterBuilder_a53bf106b141e28637b01ad0ecd2acbf6_a53bf106b141e28637b01ad0ecd2acbf6}} 
 \index{Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}!set\+Defaults@{set\+Defaults}}
 \index{set\+Defaults@{set\+Defaults}!Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}}
 \subsubsection{\texorpdfstring{set\+Defaults()}{setDefaults()}}
@@ -92,7 +119,7 @@ Defaults\+:
 \end{DoxyRemark}
 \mbox{[}Stream\+Writer\+Builder\+Defaults\mbox{]}
 
-\mbox{[}Stream\+Writer\+Builder\+Defaults\mbox{]} \mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_a12353b97766841db7d049da84658da09}\label{classJson_1_1StreamWriterBuilder_a12353b97766841db7d049da84658da09}} 
+\mbox{[}Stream\+Writer\+Builder\+Defaults\mbox{]} \mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_a12353b97766841db7d049da84658da09_a12353b97766841db7d049da84658da09}\label{classJson_1_1StreamWriterBuilder_a12353b97766841db7d049da84658da09_a12353b97766841db7d049da84658da09}} 
 \index{Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}!validate@{validate}}
 \index{validate@{validate}!Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}}
 \subsubsection{\texorpdfstring{validate()}{validate()}}
@@ -103,8 +130,12 @@ true if \textquotesingle{}settings\textquotesingle{} are legal and consistent; o
 \end{DoxyReturn}
 
 
+References Json\+::get\+Valid\+Writer\+Keys(), J\+S\+O\+N\+C\+P\+P\+\_\+\+S\+T\+R\+I\+NG, and Json\+::\+Value\+::size().
+
+
+
 \subsection{Member Data Documentation}
-\mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_a79bdf2e639a52f4e758c0b95bd1d3423}\label{classJson_1_1StreamWriterBuilder_a79bdf2e639a52f4e758c0b95bd1d3423}} 
+\mbox{\Hypertarget{classJson_1_1StreamWriterBuilder_a79bdf2e639a52f4e758c0b95bd1d3423_a79bdf2e639a52f4e758c0b95bd1d3423}\label{classJson_1_1StreamWriterBuilder_a79bdf2e639a52f4e758c0b95bd1d3423_a79bdf2e639a52f4e758c0b95bd1d3423}} 
 \index{Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}!settings\+\_\+@{settings\+\_\+}}
 \index{settings\+\_\+@{settings\+\_\+}!Json\+::\+Stream\+Writer\+Builder@{Json\+::\+Stream\+Writer\+Builder}}
 \subsubsection{\texorpdfstring{settings\+\_\+}{settings\_}}
@@ -129,11 +160,11 @@ Configuration of this builder. Available settings (case-\/sensitive)\+:
 \end{DoxyItemize}
 
 You can examine \textquotesingle{}settings\+\_\+` yourself to see the defaults. You can also write and read them just like any J\+S\+ON \hyperlink{classJson_1_1Value}{Value}. \begin{DoxySeeAlso}{See also}
-\hyperlink{classJson_1_1StreamWriterBuilder_a53bf106b141e28637b01ad0ecd2acbf6}{set\+Defaults()} 
+\hyperlink{classJson_1_1StreamWriterBuilder_a53bf106b141e28637b01ad0ecd2acbf6_a53bf106b141e28637b01ad0ecd2acbf6}{set\+Defaults()} 
 \end{DoxySeeAlso}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-json/json.\+h\item 
-jsoncpp.\+cpp\end{DoxyCompactItemize}
+json/\hyperlink{json_8h}{json.\+h}\item 
+\hyperlink{jsoncpp_8cpp}{jsoncpp.\+cpp}\end{DoxyCompactItemize}

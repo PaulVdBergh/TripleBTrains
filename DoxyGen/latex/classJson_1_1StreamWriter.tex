@@ -18,13 +18,16 @@ class \hyperlink{classJson_1_1StreamWriter_1_1Factory}{Factory}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual int \hyperlink{classJson_1_1StreamWriter_a84278bad0c9a9fc587bc2a97c5bb5993}{write} (\hyperlink{classJson_1_1Value}{Value} const \&root, J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+S\+T\+R\+E\+AM $\ast$sout)=0
+\hyperlink{classJson_1_1StreamWriter_a66e6f5113618ce6b04cac9b3c85a3707_a66e6f5113618ce6b04cac9b3c85a3707}{Stream\+Writer} ()
+\item 
+virtual \hyperlink{classJson_1_1StreamWriter_a03f8fb6a873b6b50f05bc4556e043c3a_a03f8fb6a873b6b50f05bc4556e043c3a}{$\sim$\+Stream\+Writer} ()
+\item 
+virtual int \hyperlink{classJson_1_1StreamWriter_a84278bad0c9a9fc587bc2a97c5bb5993_a84278bad0c9a9fc587bc2a97c5bb5993}{write} (\hyperlink{classJson_1_1Value}{Value} const \&root, \hyperlink{json_8h_a37a25be5fca174927780caeb280094ce_a37a25be5fca174927780caeb280094ce}{J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+S\+T\+R\+E\+AM} $\ast$sout)=0
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classJson_1_1StreamWriter_a4f5603d4228a9fa46a42cb44e5234d9b}\label{classJson_1_1StreamWriter_a4f5603d4228a9fa46a42cb44e5234d9b}} 
-J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+S\+T\+R\+E\+AM $\ast$ {\bfseries sout\+\_\+}
+\hyperlink{json_8h_a37a25be5fca174927780caeb280094ce_a37a25be5fca174927780caeb280094ce}{J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+S\+T\+R\+E\+AM} $\ast$ \hyperlink{classJson_1_1StreamWriter_a4f5603d4228a9fa46a42cb44e5234d9b_a4f5603d4228a9fa46a42cb44e5234d9b}{sout\+\_\+}
 \end{DoxyCompactItemize}
 
 
@@ -35,19 +38,34 @@ Usage\+:
 \textcolor{keywordtype}{void} writeToStdout(\hyperlink{classJson_1_1StreamWriter_1_1Factory}{StreamWriter::Factory} \textcolor{keyword}{const}& factory, 
       \hyperlink{classJson_1_1Value}{Value} \textcolor{keyword}{const}& value) \{
   std::unique\_ptr<StreamWriter> \textcolor{keyword}{const} writer(
-    factory.\hyperlink{classJson_1_1StreamWriter_1_1Factory_a9d30ec53e8288cd53befccf1009c5f31}{newStreamWriter}());
+    factory.\hyperlink{classJson_1_1StreamWriter_1_1Factory_a9d30ec53e8288cd53befccf1009c5f31_a9d30ec53e8288cd53befccf1009c5f31}{newStreamWriter}());
   writer->write(value, &std::cout);
   std::cout << std::endl;  \textcolor{comment}{// add lf and flush}
 \}
 \end{DoxyCode}
  
 
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJson_1_1StreamWriter_a66e6f5113618ce6b04cac9b3c85a3707_a66e6f5113618ce6b04cac9b3c85a3707}\label{classJson_1_1StreamWriter_a66e6f5113618ce6b04cac9b3c85a3707_a66e6f5113618ce6b04cac9b3c85a3707}} 
+\index{Json\+::\+Stream\+Writer@{Json\+::\+Stream\+Writer}!Stream\+Writer@{Stream\+Writer}}
+\index{Stream\+Writer@{Stream\+Writer}!Json\+::\+Stream\+Writer@{Json\+::\+Stream\+Writer}}
+\subsubsection{\texorpdfstring{Stream\+Writer()}{StreamWriter()}}
+{\footnotesize\ttfamily Json\+::\+Stream\+Writer\+::\+Stream\+Writer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJson_1_1StreamWriter_a03f8fb6a873b6b50f05bc4556e043c3a_a03f8fb6a873b6b50f05bc4556e043c3a}\label{classJson_1_1StreamWriter_a03f8fb6a873b6b50f05bc4556e043c3a_a03f8fb6a873b6b50f05bc4556e043c3a}} 
+\index{Json\+::\+Stream\+Writer@{Json\+::\+Stream\+Writer}!````~Stream\+Writer@{$\sim$\+Stream\+Writer}}
+\index{````~Stream\+Writer@{$\sim$\+Stream\+Writer}!Json\+::\+Stream\+Writer@{Json\+::\+Stream\+Writer}}
+\subsubsection{\texorpdfstring{$\sim$\+Stream\+Writer()}{~StreamWriter()}}
+{\footnotesize\ttfamily Json\+::\+Stream\+Writer\+::$\sim$\+Stream\+Writer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classJson_1_1StreamWriter_a84278bad0c9a9fc587bc2a97c5bb5993}\label{classJson_1_1StreamWriter_a84278bad0c9a9fc587bc2a97c5bb5993}} 
+\mbox{\Hypertarget{classJson_1_1StreamWriter_a84278bad0c9a9fc587bc2a97c5bb5993_a84278bad0c9a9fc587bc2a97c5bb5993}\label{classJson_1_1StreamWriter_a84278bad0c9a9fc587bc2a97c5bb5993_a84278bad0c9a9fc587bc2a97c5bb5993}} 
 \index{Json\+::\+Stream\+Writer@{Json\+::\+Stream\+Writer}!write@{write}}
 \index{write@{write}!Json\+::\+Stream\+Writer@{Json\+::\+Stream\+Writer}}
 \subsubsection{\texorpdfstring{write()}{write()}}
-{\footnotesize\ttfamily virtual int Json\+::\+Stream\+Writer\+::write (\begin{DoxyParamCaption}\item[{\hyperlink{classJson_1_1Value}{Value} const \&}]{root,  }\item[{J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+S\+T\+R\+E\+AM $\ast$}]{sout }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual int Json\+::\+Stream\+Writer\+::write (\begin{DoxyParamCaption}\item[{\hyperlink{classJson_1_1Value}{Value} const \&}]{root,  }\item[{\hyperlink{json_8h_a37a25be5fca174927780caeb280094ce_a37a25be5fca174927780caeb280094ce}{J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+S\+T\+R\+E\+AM} $\ast$}]{sout }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 Write \hyperlink{classJson_1_1Value}{Value} into document as configured in sub-\/class. Do not take ownership of sout, but maintain a reference during function. \begin{DoxyPrecond}{Precondition}
 sout != N\+U\+LL 
@@ -62,11 +80,24 @@ zero on success (For now, we always return zero, so check the stream instead.)
 \end{DoxyExceptions}
 
 
-Implemented in \hyperlink{structJson_1_1BuiltStyledStreamWriter_a823cdb1afabb6b0d5f39bcd5a6a6f747}{Json\+::\+Built\+Styled\+Stream\+Writer}.
+Implemented in \hyperlink{structJson_1_1BuiltStyledStreamWriter_a823cdb1afabb6b0d5f39bcd5a6a6f747_a823cdb1afabb6b0d5f39bcd5a6a6f747}{Json\+::\+Built\+Styled\+Stream\+Writer}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classJson_1_1StreamWriter_a4f5603d4228a9fa46a42cb44e5234d9b_a4f5603d4228a9fa46a42cb44e5234d9b}\label{classJson_1_1StreamWriter_a4f5603d4228a9fa46a42cb44e5234d9b_a4f5603d4228a9fa46a42cb44e5234d9b}} 
+\index{Json\+::\+Stream\+Writer@{Json\+::\+Stream\+Writer}!sout\+\_\+@{sout\+\_\+}}
+\index{sout\+\_\+@{sout\+\_\+}!Json\+::\+Stream\+Writer@{Json\+::\+Stream\+Writer}}
+\subsubsection{\texorpdfstring{sout\+\_\+}{sout\_}}
+{\footnotesize\ttfamily \hyperlink{json_8h_a37a25be5fca174927780caeb280094ce_a37a25be5fca174927780caeb280094ce}{J\+S\+O\+N\+C\+P\+P\+\_\+\+O\+S\+T\+R\+E\+AM}$\ast$ Json\+::\+Stream\+Writer\+::sout\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Referenced by Json\+::\+Built\+Styled\+Stream\+Writer\+::push\+Value(), Json\+::\+Built\+Styled\+Stream\+Writer\+::write(), Json\+::\+Built\+Styled\+Stream\+Writer\+::write\+Array\+Value(), Json\+::\+Built\+Styled\+Stream\+Writer\+::write\+Comment\+After\+Value\+On\+Same\+Line(), Json\+::\+Built\+Styled\+Stream\+Writer\+::write\+Comment\+Before\+Value(), Json\+::\+Built\+Styled\+Stream\+Writer\+::write\+Indent(), Json\+::\+Built\+Styled\+Stream\+Writer\+::write\+Value(), and Json\+::\+Built\+Styled\+Stream\+Writer\+::write\+With\+Indent().
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-json/json.\+h\item 
-jsoncpp.\+cpp\end{DoxyCompactItemize}
+json/\hyperlink{json_8h}{json.\+h}\item 
+\hyperlink{jsoncpp_8cpp}{jsoncpp.\+cpp}\end{DoxyCompactItemize}

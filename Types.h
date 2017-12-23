@@ -45,6 +45,29 @@ namespace TBT
 	#define cseShortCircuitExternal	0x04
 	#define cseShortCircuitInternal	0x08
 
+	/**
+	 *
+     <table>
+	 <caption>response:</caption>
+	 <tr><th colspan="2">DataLen<th colspan="2">Headers<th>Data
+	 <tr><td>0x14<td>0x00<td>0x84<td>0x00<td>SystemState (16 Bytes)
+	 </table>
+
+	 <table>
+	 <caption><b>SystemState</b> layout (INT16 is little-endian)</caption>
+	 <tr><th>Byte offset<th>Type<th>Name<th>Unit<th>note
+	 <tr><td>0<td>int16_t<td>MainCurrent<td>mA<td>Main Track Current
+	 <tr><td>2<td>int16_t<td>ProgCurrent<td>mA<td>Programm Track Current
+	 <tr><td>4<td>int16_t<td>FilteredMainCurrent<td>mA<td>Smoothed Main Track Current
+	 <tr><td>6<td>int16_t<td>Temperature<td>&#176;C<td>Internal temperature
+	 <tr><td>8<td>uint16_t<td>SupplyVoltage<td>mV<td>Supply voltage
+	 <tr><td>10<td>uint16_t<td>VCCVoltage<td>mV<td>Voltage at the track
+	 <tr><td>12<td>uint8_t<td>CentralState<td>bitmask<td>see Manager::getCentralState
+	 <tr><td>13<td>uint8_t<td>CentralStateEx<td>bitmask<td>see Manager::getCentralStateEx
+	 <tr><td>14<td>uint8_t<td>reserved<td><td>
+	 <tr><td>15<td>uint8_t<td>reserved<td><td>
+	 </table>
+	 */
 	struct SystemState
 	{
 		uint8_t DataLen = 0x14;
