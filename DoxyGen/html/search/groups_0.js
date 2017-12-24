@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z21lanprotocolsystem',['Z21LANProtocolSystem',['../group__Z21LANProtocolSystem.html',1,'']]]
+  ['z21_20lan_20protocol',['Z21 LAN Protocol',['../group__Z21LANProtocol.html',1,'']]]
 ];

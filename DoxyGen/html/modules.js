@@ -1,4 +1,4 @@
 var modules =
 [
-    [ "Z21LANProtocolSystem", "group__Z21LANProtocolSystem.html", "group__Z21LANProtocolSystem" ]
+    [ "Z21 LAN Protocol", "group__Z21LANProtocol.html", "group__Z21LANProtocol" ]
 ];

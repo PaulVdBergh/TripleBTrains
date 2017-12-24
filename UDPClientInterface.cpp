@@ -43,7 +43,7 @@ namespace TBT
 	 * 	- sets up an event file descriptor (m_fdStop) which is responsible for a clean
 	 * 	shutdown of the worker thread.
 	 * 	- sets up a socket file descriptor (m_fdsock_me) and initializes it for listening
-	 * 	for incomming Z21 portocol datagrams.
+	 * 	for incomming Z21 protocol datagrams.
 	 * 	- sets up a worker thread and start the threadFunc to listen to incomming datagrams.
 	 *
 	 * @param	pManager : pointer to the Manager instance.
@@ -286,6 +286,7 @@ namespace TBT
 						{
 
 							/** @ingroup Z21LANProtocol
+							 * @{
 							 * ---
 							 * ### LAN_GET_SERIAL_NUMBER
 							 * read the serial number from the Z21
@@ -309,8 +310,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_GET_CODE
 							 * With this command, the SW feature scope of the Z21 can be checked and read out.
 							 * This command is of particular interest for the hardware version "z21 start" in order
@@ -345,8 +345,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_GET_HWINFO
 							 * With this command the hardware type and the firmware version of the Z21 can be read out.
 							 *
@@ -383,8 +382,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_LOGOFF
 							 * Log off this client from the system
 							 *
@@ -409,8 +407,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_GET_BROADCASTFLAGS
 							 * Reading out the broadcast flags in the Z21.
 							 *
@@ -437,8 +434,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_SYSTEMSTATE_GETDATA
 							 * Request the current system state.
 							 *
@@ -459,8 +455,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_LOCONET_FROM_LAN
 							 * <b>From Z21 FW version 1.20.</b>
 							 *
@@ -480,8 +475,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_RMBUS_GETDATA
 							 *
 							 * Request the current status of the feedback.
@@ -523,8 +517,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_RMBUS_PROGRAMMODULE
 							 *
 							 * Change the feedback address.
@@ -553,8 +546,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_GET_LOCOMODE
 							 *
 							 * Read the output format for a given locomotive address.
@@ -599,8 +591,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_X_SET_STOP
 							 * With the following command the emergency stop is raised.  All Locs goes into
 							 * speedstep 01, but the power is still feed to the rails.
@@ -624,8 +615,7 @@ namespace TBT
 								break;
 							}
 
-							/** @ingroup Z21LANProtocol
-							 * ---
+							/** ---
 							 * ### LAN_GET_TURNOUTMODE
 							 * Reading the settings for a given function decoder address ("Function Decoder"
 							 * in the sense of "Accessory Decoder" RP-9.2.1).
@@ -669,8 +659,7 @@ namespace TBT
 							{
 								switch (*(uint16_t*)&payload[4])
 								{
-									/** @ingroup Z21LANProtocol
-									 * ---
+									/** ---
 									 * ### LAN_X_GET_VERSION
 									 * With the following command the X-Bus version of the Z21 can be read out.
 									 *
@@ -702,8 +691,7 @@ namespace TBT
 										break;
 									}
 
-									/** @ingroup Z21LANProtocol
-									 * ---
+									/** ---
 									 * ### LAN_X_GET_STATUS
 									 * with the following command the system's status can be read out.
 									 *
@@ -741,8 +729,7 @@ namespace TBT
 										break;
 									}
 
-									/** @ingroup Z21LANProtocol
-									 * ---
+									/** ---
 									 * ### LAN_X_SET_TRACK_POWER_OFF
 									 * With the following command the trackpower is switched off.
 									 *
@@ -765,8 +752,7 @@ namespace TBT
 										break;
 									}
 
-									/** @ingroup Z21LANProtocol
-									 * ---
+									/** ---
 									 * ### LAN_X_SET_TRACK_POWER_ON
 									 * With the following command the trackpower is switched on.
 									 * This cancels a pending emergencystop or programmingmode.
@@ -1445,6 +1431,9 @@ namespace TBT
 								sendto(m_fdsock_me, LAN_X_UNKNOWN_COMMAND, LAN_X_UNKNOWN_COMMAND[0], 0, (sockaddr*)&si_other, sizeof(si_other));
 								break;
 							}
+							/**
+							 * @}
+							 */
 
 						}	/*	switch(*(uint32_t*)payload)	*/
 						printf(" ( ");

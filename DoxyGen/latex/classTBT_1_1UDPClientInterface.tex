@@ -33,10 +33,12 @@ virtual void \hyperlink{classTBT_1_1UDPClientInterface_a33a0c51d141a457cda9dacc4
 bool \hyperlink{classTBT_1_1UDPClientInterface_a1a80ed1e5670443bc35691c9f3d5ff72_a1a80ed1e5670443bc35691c9f3d5ff72}{remove\+Client} (\hyperlink{classTBT_1_1UDPClient}{U\+D\+P\+Client} $\ast$p\+Client)
 \begin{DoxyCompactList}\small\item\em removes client with specified address and destroys it. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
+\textbf{ }\par
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classTBT_1_1UDPClientInterface_abce6a58e1d8fbb71f9b08e4d5b3871c2_abce6a58e1d8fbb71f9b08e4d5b3871c2}{thread\+Func} (void)
 \begin{DoxyCompactList}\small\item\em does the actual work in a separate thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -116,7 +118,7 @@ The constructor of \hyperlink{classTBT_1_1UDPClientInterface}{U\+D\+P\+Client\+I
 \begin{DoxyItemize}
 \item initializes its base class
 \item sets up an event file descriptor (m\+\_\+fd\+Stop) which is responsible for a clean shutdown of the worker thread.
-\item sets up a socket file descriptor (m\+\_\+fdsock\+\_\+me) and initializes it for listening for incomming Z21 portocol datagrams.
+\item sets up a socket file descriptor (m\+\_\+fdsock\+\_\+me) and initializes it for listening for incomming Z21 protocol datagrams.
 \item sets up a worker thread and start the thread\+Func to listen to incomming datagrams.
 \end{DoxyItemize}
 
@@ -789,7 +791,7 @@ Reading the settings for a given function decoder address (\char`\"{}\+Function 
 
 Modus \+: see Function\+Decoder\+::get\+Mode
 
-At the L\+AN interface and in the Z21, the function decoder addresses are addressed from 0, in the visualization on the apps or on the multi-\/mouse, however, from 1. This is merely a decision of the visualization. Example\+: multi\+Maus switch address \# 3, corresponds on the L\+AN and Z21 to address \# 2.
+At the L\+AN interface and in the Z21, the function decoder addresses are addressed from 0, in the visualization on the apps or on the multi\+Maus, however, from 1. This is merely a decision of the visualization. Example\+: multi\+Maus switch address \# 3, corresponds on the L\+AN and Z21 to address \# 2.
 
 
 
