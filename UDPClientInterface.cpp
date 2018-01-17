@@ -776,7 +776,32 @@ namespace TBT
 										break;
 									}
 
-									case 0x0AF1: //  LAN_X_GET_FIRMWARE_VERSION
+									/** ---
+									 * ### LAN_X_GET_FIRMWARE_VERSION
+									 * With this command the firmware version of the Z21 can be read out.
+									 *
+									 <table>
+									 <caption>Request:</caption>
+									 <tr><th colspan="2">DataLen<th colspan="2">Header<th colspan="3">Data
+									 <tr><td rowspan="2">0x07<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>DB0<th>XOR-Byte
+									 <tr><td>0xF1<td>0x0A<td>0xFB
+									 </table>
+
+
+									 <table>
+									 <caption>Response:</caption>
+									 <tr><th colspan="2">DataLen<th colspan="2">Header<th colspan="5">Data
+									 <tr><td rowspan="2">0x09<td rowspan="2">0x00<td rowspan="2">0x40<td rowspan="2">0x00<th>X-Header<th>DB0<th>DB1<th>DB2<th>XOR-Byte
+									 <tr><td>0xF3<td>0x0A<td><b>V_MSB</b><td><b>V_LSB</b><td>XOR_Byte
+									 </table>
+
+									 <b>DB1</b> : Most significant byte firmware version.
+
+									 <b>DB2</b> : Least significant byte firmware version.
+
+									 The Firmware version is in BCD format.
+									 */
+									case 0x0AF1:
 									{
 										printf("LAN_X_GET_FIRMWARE_VERSION");
 										if (payload[6] == 0xFB)
@@ -795,6 +820,26 @@ namespace TBT
 								break;
 							}
 
+							/** ---
+							 * ### LAN_SET_LOCOMODE
+							 * Set the output format for a given locomotive address.
+							 * The format is stored persistently in the Z21.
+							 *
+							 * <table>
+							 * <caption>Request:</caption>
+							 * <tr><th colspan="2">DataLen<th colspan="2">Header<th colspan="2">Data
+							 * <tr><td>0x07<td>0x00<td>0x61<td>Loc-Address (16 Bit big endian)<td>Modus (8 Bit)
+							 * </table>
+							 *
+							 * <b>Response</b> : none
+							 *
+							 * <b>Modus</b> :
+							 *  - 0 = DCC Format
+							 *  - 1 = MM Format
+							 *
+							 * <b>Note</b>: Each loco address >= 256 is and will automatically be "DCC format".
+							 *
+							 */
 							case 0x00610007: //  LAN_SET_LOCOMODE
 							{
 								printf("LAN_SET_LOCOMODE");
@@ -813,6 +858,26 @@ namespace TBT
 								break;
 							}
 
+							/** ---
+							 * ### LAN_SET_TURNOUTMODE
+							 * Set the output format for a given function decoder address.
+							 * The format is stored persistently in the Z21.
+							 *
+							 * <table>
+							 * <caption>Request:</caption>
+							 * <tr><th colspan="2">DataLen<th colspan="2">Header<th colspan="2">Data
+							 * <tr><td>0x07<td>0x00<td>0x71<td>FunctionDecoder-Address (16 Bit big endian)<td>Modus (8 Bit)
+							 * </table>
+							 *
+							 * <b>Response</b> : none
+							 *
+							 * <b>Modus</b> :
+							 *  - 0 = DCC Format
+							 *  - 1 = MM Format
+							 *
+							 * <b>Note</b>: Each function decoder address >= 256 is and will automatically be "DCC format".
+							 *
+							 */
 							case 0x00710007: //  LAN_SET_TURNOUTMODE
 							{
 								printf("LAN_SET_TURNOUTMODE");
@@ -820,6 +885,18 @@ namespace TBT
 								break;
 							}
 
+							/** ---
+							 * ### LAN_RAILCOM_GETDATA
+							 * Request RailCom data from Z21.
+							 *
+							 * <table>
+							 * <caption>Request:</caption>
+							 * <tr><th colspan="2">Datalen<th colspan="2">Header<th colspan="2">Data
+							 * <tr><td>0x07<td>0x00<td>0x89<td>0x00<td><b>Type</b><td>Loc address (16 Bit litle endian)
+							 * </table>
+							 *
+							 * <b>Type</b> : 0x01 = Request RailCom data for given locomotive address
+							 */
 							case 0x00890007: //  LAN_RAILCOM_GETDATA
 							{
 								printf("LAN_RAILCOM_GETDATA");

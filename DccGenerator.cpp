@@ -32,6 +32,17 @@
 namespace TBT
 {
 
+	/**
+	 * 	class DccGenerator constructor.
+	 *
+	 * 	Create a new DccGenerator instance and start the working thread.
+	 *
+	 * 	@param pDecoders : pointer to the pool of registered decoders in the system.
+	 *
+	 * 	@param pMutex : pointer to the mutex that protect the pool of decoders against concurrent access.
+	 *
+	 * 	@return none
+	 */
 	DccGenerator::DccGenerator(map<uint16_t, Decoder*>* pDecoders, recursive_mutex* pMutex)
 	:	m_pDecoders(pDecoders)
 	,	m_pMutex(pMutex)
@@ -41,12 +52,32 @@ namespace TBT
 		m_thread = thread([this]{ threadFunc(); });
 	}
 
+	/**
+	 * 	class DccGenerator destructor.
+	 *
+	 * 	notify the worker thread to abort its activities and wait on it to finish.  Thereafter
+	 * 	the DccGenerator instance is destroyed.
+	 */
 	DccGenerator::~DccGenerator()
 	{
 		m_bContinue = false;
 		m_thread.join();
 	}
 
+	/**
+	 * 	The function that 'does the work' in a separate thread.
+	 *
+	 * 	The function itterates over the decoders in the pool, querying each of them for
+	 * 	a message to generate.  If a decoder responds with a message, this message is
+	 * 	forwarded to the PRUSS subsystem, which in turn generates the signal on the rail
+	 * 	terminals.
+	 *
+	 * 	The function terminates when bContinue is set to false.  This also terminates the
+	 * 	thread.
+	 *
+	 * 	\warning	This function will 'eat the cpu' if and only if there are one or
+	 * 	more decoder in the system and all of them responds false to getDccMessage.
+	 */
 	void DccGenerator::threadFunc()
 	{
 		uint8_t DCCMessage[32];

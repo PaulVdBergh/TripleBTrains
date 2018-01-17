@@ -270,7 +270,8 @@ namespace TBT
 	}
 
 	void LocDecoder::getLANLocInfo(uint8_t* pMsg)
-	{ lock_guard<recursive_mutex> guard(m_MLocInfo);
+	{
+		lock_guard<recursive_mutex> guard(m_MLocInfo);
 		m_LocInfo.XOR = 0;
 		for(uint8_t i = 4; i < *((uint8_t*)&m_LocInfo.DataLen); i++)
 		{

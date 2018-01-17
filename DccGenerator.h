@@ -34,21 +34,38 @@ using namespace std;
 namespace TBT
 {
 
+	///	Class TBT::DccGenerator is responsible for the generation of the DCC signal on the rails.
+	/**
+	 * Class DccGenerator is responsible for the communication with the PRUSS subsystem, which in turn
+	 * generates the DCC signal, including the RailCom gap.  The class interrogate every decoder and,
+	 * if needed, assembles an appropriate DCC message.  This message is handled over to the PRUSS sub-
+	 * system.  The PRUSS system generates the correct timings and waveform according to the DCC message.
+	 */
 	class DccGenerator
 	{
 		public:
+			///	class DccGenerator constructor
 			DccGenerator(map<uint16_t, Decoder*>* pDecoders, recursive_mutex* pMutex);
+
+			///	class DccGenerator destructor
 			virtual ~DccGenerator();
 
 		protected:
 
 		private:
+			///	The function that 'does the work' in a separate thread
 			void						threadFunc(void);
 
+			///	pointer to the pool of decoders in the system
 			map<uint16_t, Decoder*>*	m_pDecoders;
+
+			///	pointer to the mutex that protect the pool of decoders against concurrent access
 			recursive_mutex*			m_pMutex;
 
+			///	the effective worker thread
 			thread						m_thread;
+
+			///	flag indicating the thread to continue(true)/shutdown(false)
 			volatile bool				m_bContinue;
 	};
 
