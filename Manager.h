@@ -31,6 +31,7 @@
 using namespace std;
 
 #include "Types.h"
+#include "GPIOPin.h"
 
 namespace TBT
 {
@@ -124,6 +125,9 @@ namespace TBT
 
 			///	pointer to the DCC generator
 			DccGenerator*				m_pDccGenerator;
+
+			///	output pin for Linux_RailPower
+			GPIOPin						m_RailPowerPin;
 
 	};	/* class Manager */
 

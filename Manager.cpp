@@ -55,7 +55,11 @@ namespace TBT
 	 *	Maybe I implement it as a singleton, don't know for now...
 	 */
 	Manager::Manager()
+	:	m_RailPowerPin(48)
 	{
+		m_RailPowerPin.setDirection(GPIOPin::OUTPUT);
+		m_RailPowerPin.setValue(GPIOPin::LOW);
+
 		UDPClientInterface* pUDPClientIF = new UDPClientInterface(this);
 		m_ClientInterfaces.push_back(pUDPClientIF);
 
@@ -80,6 +84,8 @@ namespace TBT
 	 */
 	Manager::~Manager()
 	{
+		setPowerState(PowerOff);
+
 		delete m_pDccGenerator;
 
 		for(auto client : m_ClientInterfaces)
@@ -166,6 +172,9 @@ namespace TBT
 	 * newState and informs each interface about the new state.  In the case that newState is
 	 * PowerOn, this function will cancel any pending emergencystop.
 	 *
+	 * The power is removed from the rails if m_RailPowerPin(gpio48) is low, and is applied
+	 * to the rails if this pin is high.
+	 *
 	 * @param	newState:	member of enum PowerState
 	 *
 	 * @return	void
@@ -177,9 +186,11 @@ namespace TBT
 			if(newState == PowerOn)
 			{
 				m_SystemState.CentralState &= ~(csTrackVoltageOff | csEmergencyStop);
+				m_RailPowerPin.setValue(GPIOPin::HIGH);
 			}
 			else
 			{
+				m_RailPowerPin.setValue(GPIOPin::LOW);
 				m_SystemState.CentralState |= csTrackVoltageOff;
 			}
 		}	//	guard unlocked
