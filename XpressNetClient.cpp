@@ -23,6 +23,9 @@
  */
 
 #include "XpressNetClient.h"
+#include "XpressNetClientInterface.h"
+
+#include <unistd.h>
 
 namespace TBT
 {
@@ -49,6 +52,24 @@ namespace TBT
 	void XpressNetClient::broadcastLocInfoChanged(LocDecoder* pLoc)
 	{
 		//	TODO implementation
+	}
+
+	void XpressNetClient::broadcastOvercurrent()
+	{
+		uint8_t msg[] = { 0x05, 0x60 + m_XpressNetAddress, 0x61, 0x12, 0x73 };
+		for(uint8_t x = 0x40; x != 0; x = x >> 1)
+		{
+			if(msg[1] & x)
+			{
+				msg[1] ^= 0x80;
+			}
+		}
+
+		XpressNetClientInterface* pInterface = dynamic_cast<XpressNetClientInterface*>(getInterface());
+		if(pInterface)
+		{
+			write(pInterface->getSerial(), msg, msg[0]);
+		}
 	}
 
 } /* namespace TBT */

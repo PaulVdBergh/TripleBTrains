@@ -44,6 +44,9 @@ namespace TBT
 			virtual void broadcastPowerStateChange(bool newState);
 			virtual void broadcastLocInfoChange(LocDecoder* pLoc);
 			virtual void broadcastEmergencyStop(void);
+			virtual void broadcastOvercurrent(void);
+
+			const int& getSerial(void) { return m_fdSerial; }
 
 		protected:
 			XpressNetClient*	findClient(const uint8_t& address);	//	if client doesn't exists, it's created.

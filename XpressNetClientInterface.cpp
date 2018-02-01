@@ -121,6 +121,15 @@ namespace TBT
 		write(m_fdSerial, msg, msg[0]);
 	}
 
+	void XpressNetClientInterface::broadcastOvercurrent()
+	{
+		lock_guard<recursive_mutex> guard(m_MClients);
+		for(auto client : m_Clients)
+		{
+			client.second->broadcastOvercurrent();
+		}
+	}
+
 	XpressNetClient* XpressNetClientInterface::findClient(const uint8_t& address)
 	{
 		lock_guard<recursive_mutex> guard(m_MClients);
@@ -169,13 +178,14 @@ namespace TBT
 			int notifications = epoll_wait(epfd, evlist, NBRXPRESSNETPOLLEVENTS, -1);
 			if (-1 == notifications)
 			{
-				if (EINTR == notifications)
+				if (EINTR == errno)
 				{
 					continue;
 				}
 				else
 				{
 					//	TODO : better error recovery !!
+					perror("epoll_wait() failed in XpressNetClientInterface ");
 					bContinue = false;
 					continue;
 				}

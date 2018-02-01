@@ -67,9 +67,13 @@ namespace TBT
 			virtual ~GPIOPin();
 
 			int getNumber(void) { return m_pinNumber; }
+			const string& getPath(void) { return m_Path; }
 
 			int setDirection(GPIO_DIRECTION direction);
 			GPIO_DIRECTION getDirection(void);
+
+			int setEdge(GPIO_EDGE edge);
+			GPIO_EDGE getEdge(void);
 
 			int setValue(GPIO_VALUE value);
 			GPIO_VALUE getValue(void);

@@ -44,6 +44,7 @@ namespace TBT
 			virtual void broadcastPowerStateChange(bool newState) = 0;
 			virtual void broadcastLocInfoChange(LocDecoder* pLoc) = 0;
 			virtual void broadcastEmergencyStop(void) = 0;
+			virtual void broadcastOvercurrent(void) = 0;
 
 		protected:
 			Manager*	m_pManager;

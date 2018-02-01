@@ -156,6 +156,24 @@ namespace TBT
 	}
 
 	/**
+		 * UDPClinetInterface::broadcastOvercurrent informs each client about
+		 * the raise of an overcurrent (short circuit) occurence.
+		 *
+		 * @param none
+		 *
+		 * @return void
+		 */
+		void UDPClientInterface::broadcastOvercurrent()
+	{
+		lock_guard<recursive_mutex> guard(sm_MClients);
+
+		for(auto client : sm_Clients)
+		{
+			client->broadcastOvercurrent();
+		}
+	}
+
+	/**
 	 * UDPClientInterface::findClient returns a pointer to an UDPClient instance
 	 * at the specified address.  If the client doesn't exists, it is created.
 	 *
@@ -250,13 +268,14 @@ namespace TBT
 			int notifications = epoll_wait(epfd, evlist, 2, -1);
 			if (-1 == notifications)
 			{
-				if (EINTR == notifications)
+				if (EINTR == errno)
 				{
 					continue;
 				}
 				else
 				{
 					//	TODO : better error recovery !!
+					perror("epoll_wait() failed in UDPClientInterface ");
 					bContinue = false;
 					continue;
 				}

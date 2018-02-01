@@ -73,6 +73,13 @@ namespace TBT
 		mg_broadcast(&m_mgr, ev_handler_StateChange, msg, strlen(msg) + 1);
 	}
 
+	void WSClientInterface::broadcastOvercurrent()
+	{
+		char msg[] = "{ \"Overcurrent\":\"ON\" }";
+
+		mg_broadcast(&m_mgr, ev_handler_StateChange, msg, strlen(msg) + 1);
+	}
+
 	void WSClientInterface::threadFunc(void)
 	{
 		mg_mgr_init(&m_mgr, NULL);

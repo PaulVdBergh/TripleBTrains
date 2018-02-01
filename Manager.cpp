@@ -32,6 +32,11 @@
 #include "WSClientInterface.h"
 #include "XpressNetClientInterface.h"
 
+#include <fcntl.h>
+#include <sys/epoll.h>
+#include <sys/eventfd.h>
+#include <sys/inotify.h>
+
 namespace TBT
 {
 
@@ -56,9 +61,17 @@ namespace TBT
 	 */
 	Manager::Manager()
 	:	m_RailPowerPin(48)
+	,	m_ShortCircuitPin(60)
 	{
+		m_fdStop = eventfd(0, 0);
+
 		m_RailPowerPin.setDirection(GPIOPin::OUTPUT);
 		m_RailPowerPin.setValue(GPIOPin::LOW);
+
+		m_ShortCircuitPin.setDirection(GPIOPin::INPUT);
+		m_ShortCircuitPin.setEdge(GPIOPin::RISING);
+
+		m_thread = thread([this]{ threadFunc(); });
 
 		UDPClientInterface* pUDPClientIF = new UDPClientInterface(this);
 		m_ClientInterfaces.push_back(pUDPClientIF);
@@ -92,6 +105,13 @@ namespace TBT
 		{
 			delete client;
 		}
+
+		uint64_t stop = 1;
+		if(sizeof(stop) != write(m_fdStop, &stop, sizeof(stop)))
+		{
+			//	TODO : error recovery
+		}
+		m_thread.join();
 	}
 
 	/**
@@ -170,10 +190,10 @@ namespace TBT
 	/**
 	 * Manager::setPowerState set the powerstate of the system to the new state indicated by
 	 * newState and informs each interface about the new state.  In the case that newState is
-	 * PowerOn, this function will cancel any pending emergencystop.
+	 * PowerOn, this function will cancel any pending emergencystop and overcurrent occurence.
 	 *
-	 * The power is removed from the rails if m_RailPowerPin(gpio48) is low, and is applied
-	 * to the rails if this pin is high.
+	 * The power is removed from the rails if m_RailPowerPin(gpio48) is set low, and is applied
+	 * to the rails if this pin is set high.
 	 *
 	 * @param	newState:	member of enum PowerState
 	 *
@@ -185,7 +205,7 @@ namespace TBT
 			lock_guard<recursive_mutex> guard(m_MSystemState);
 			if(newState == PowerOn)
 			{
-				m_SystemState.CentralState &= ~(csTrackVoltageOff | csEmergencyStop);
+				m_SystemState.CentralState &= ~(csShortCircuit | csTrackVoltageOff | csEmergencyStop);
 				m_RailPowerPin.setValue(GPIOPin::HIGH);
 			}
 			else
@@ -234,6 +254,31 @@ namespace TBT
 	}
 
 	/**
+	 * Manager::setOvercurrent raises an overcurrent condition and informs
+	 * each interface about this condition.
+	 *
+	 * @param	none
+	 *
+	 * @return	void
+	 */
+	void Manager::setOvercurrent()
+	{
+		{
+			lock_guard<recursive_mutex> guard(m_MSystemState);
+			m_SystemState.CentralState |= csShortCircuit;
+			setPowerState(PowerOff);
+		}
+
+		{
+			lock_guard<recursive_mutex> guard(m_MClientInterfaces);
+			for(auto interface : m_ClientInterfaces)
+			{
+				interface->broadcastOvercurrent();
+			}
+		}
+	}
+
+	/**
 	 * Manager::getSystemState generate the UDP message (Z21 LAN protocol)
 	 * about the unit's systemstate.  The user is responsible for allocating a buffer
 	 * big enough to contain the returned message.
@@ -247,6 +292,90 @@ namespace TBT
 		lock_guard<recursive_mutex> guard(m_MSystemState);
 		memcpy(pMsg, &m_SystemState, m_SystemState.DataLen);
 		//	guard unlocked
+	}
+
+	/**
+	 *
+	 */
+	void Manager::threadFunc()
+	{
+		bool bContinue = true;
+
+#define NBRMANAGERPOLLEVENTS 2
+
+		epoll_event ev;
+		epoll_event evlist[NBRMANAGERPOLLEVENTS];
+
+		int epfd = epoll_create(NBRMANAGERPOLLEVENTS);
+		if(-1 == epfd)
+		{
+			perror("epoll_create() failed.");
+			bContinue = false;
+		}
+
+		memset(&ev, 0, sizeof(ev));
+		ev.data.fd = m_fdStop;
+		ev.events = EPOLLIN;
+		if(-1 == epoll_ctl(epfd, EPOLL_CTL_ADD, m_fdStop, &ev))
+		{
+			perror("epoll_ctl() failed while adding m_fdStop.");
+			bContinue = false;
+		}
+
+		memset(&ev, 0, sizeof(ev));
+		int overCurrentfd = open((m_ShortCircuitPin.getPath() + "value").c_str(), O_RDONLY | O_NONBLOCK);
+		if(overCurrentfd == -1)
+		{
+			perror("Cannot open overCurrentfd ");
+			bContinue = false;
+		}
+		ev.data.fd = overCurrentfd;
+		ev.events = EPOLLIN | EPOLLET | EPOLLPRI;
+		if(-1 == epoll_ctl(epfd, EPOLL_CTL_ADD, overCurrentfd, &ev))
+		{
+			perror("epoll_ctl() failed while adding overcurrent file descriptor ");
+			bContinue = false;
+		}
+
+		while(bContinue)
+		{
+			int notifications = epoll_wait(epfd, evlist, NBRMANAGERPOLLEVENTS, 100);
+			if(-1 == notifications)
+			{
+				if(EINTR == errno)
+				{
+					continue;
+				}
+				else
+				{
+					//	TODO : better error recovery !!
+					perror("epoll_wait() on overcurrent file descriptor failed ");
+					bContinue = false;
+				}
+			}
+			else if(0 == notifications)
+			{
+				//	Timeout occured -> read analog values (current, temp etc.)
+			}
+			else
+			{
+				for(int notification = 0; notification < notifications; notification++)
+				{
+					if (m_fdStop == evlist[notification].data.fd)
+					{
+						bContinue = false;
+					}
+					else if(overCurrentfd == evlist[notification].data.fd)
+					{
+						//	Overcurrent occured
+						printf("Manager : Overcurrent occured.\n");
+						setOvercurrent();
+					}
+				}
+			}
+		}
+
+		close(overCurrentfd);
 	}
 
 } /* namespace TBT */

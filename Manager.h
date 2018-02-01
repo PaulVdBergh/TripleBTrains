@@ -27,6 +27,7 @@
 
 #include <map>
 #include <mutex>
+#include <thread>
 #include <vector>
 using namespace std;
 
@@ -73,7 +74,10 @@ namespace TBT
 			void 			setPowerState(PowerState newState);
 
 			///	sets the emergency stop flag and notifies all interfaces about the new state
-			void			setEmergencyStop();
+			void			setEmergencyStop(void);
+
+			///	sets the overcurrent flag and notifies all interfaces about this condition
+			void			setOvercurrent(void);
 
 			///	copies the systemstate into pMsg
 			void 			getSystemState(SystemState* pMsg);
@@ -105,6 +109,16 @@ namespace TBT
 		protected:
 
 		private:
+			///	The function that 'does the work' in a separate thread
+			void						threadFunc(void);
+
+			///	the effective worker thread
+			thread						m_thread;
+
+			///	event fd indicating the thread to continue. writing
+			/// to this file descriptor will stop the thread.
+			int							m_fdStop;
+
 			///	variable to hold the systemstate of the unit
 			SystemState					m_SystemState;
 
@@ -128,6 +142,9 @@ namespace TBT
 
 			///	output pin for Linux_RailPower
 			GPIOPin						m_RailPowerPin;
+
+			/// input pin for short circuit detection
+			GPIOPin						m_ShortCircuitPin;
 
 	};	/* class Manager */
 

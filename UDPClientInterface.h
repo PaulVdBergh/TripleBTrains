@@ -106,6 +106,9 @@ namespace TBT
 			///	sends a notification to all clients about an emergencystop.
 			virtual void	broadcastEmergencyStop(void);
 
+			///	sends a notification to all clients about an overcurrent occurence
+			virtual void	broadcastOvercurrent(void);
+
 		protected:
 			/// returns pointer to client with specified address.
 			UDPClient* 		findClient(const sockaddr_in& address);

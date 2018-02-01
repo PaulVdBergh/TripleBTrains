@@ -90,15 +90,15 @@ namespace TBT
 	{
 		uint32_t DataLen = 0x0040000E;
 		uint8_t X_Header = 0xEF;
-		uint8_t Addr_MSB;
-		uint8_t Addr_LSB;
-		uint8_t DB2;
-		uint8_t DB3;
-		uint8_t DB4;
-		uint8_t DB5;
-		uint8_t DB6;
-		uint8_t DB7;
-		uint8_t XOR;
+		uint8_t Addr_MSB = 0x00;
+		uint8_t Addr_LSB = 0x00;
+		uint8_t DB2 = 0x00;
+		uint8_t DB3 = 0x00;
+		uint8_t DB4 = 0x00;
+		uint8_t DB5 = 0x00;
+		uint8_t DB6 = 0x00;
+		uint8_t DB7 = 0x00;
+		uint8_t XOR = 0x00;
 	}__attribute__((packed));
 
 	#define LOCMODE_DCC	0

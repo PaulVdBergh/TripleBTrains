@@ -48,106 +48,109 @@ namespace TBT
 
 	bool LocDecoder::getDccMessage(uint8_t* pMsg)
 	{
-		SystemState systemState;
-
-		m_pManager->getSystemState(&systemState);
-
-		if(systemState.CentralState)
+		switch(m_DCCState)
 		{
-			lock_guard<recursive_mutex> lock(m_MLocInfo);
-			pMsg[0] = 4;
-			pMsg[1] = 0x00;
-			pMsg[2] = 0x71;
-			pMsg[3] = pMsg[1] ^ pMsg[2];
-			return true;
-		}
-		else
-		{
-			switch(m_DCCState)
+			case 0:
 			{
-				case 0:
+				//	Speed message
+
+				SystemState systemState;
+
+				m_pManager->getSystemState(&systemState);
+
+				if(systemState.CentralState)
 				{
-					//	Speed message
+					lock_guard<recursive_mutex> lock(m_MLocInfo);
+					pMsg[0] = 4;
+					pMsg[1] = 0x00;
+					pMsg[2] = 0x71;
+					pMsg[3] = pMsg[1] ^ pMsg[2];
+					m_DCCState++;
+					return true;
+				}
+				else
+				{
 					bool rslt = getDCCSpeedMessage(pMsg);
 					m_DCCState++;
 					return rslt;
 				}
+			}
 
-				case 1:
-				{
-					//	Function group 1 (F0 - F4) Message
-					bool rslt = getDCCFG1Message(pMsg);
-					m_DCCState++;
-					return rslt;
-				}
+			case 1:
+			{
+				//	Function group 1 (F0 - F4) Message
+				bool rslt = getDCCFG1Message(pMsg);
+				m_DCCState++;
+				return rslt;
+			}
 
-				case 2:
-				{
-					//	Function group 2 (F5 - F8) Message
-					bool rslt = getDCCFG2Message(pMsg);
-					m_DCCState++;
-					return rslt;
-				}
+			case 2:
+			{
+				//	Function group 2 (F5 - F8) Message
+				bool rslt = getDCCFG2Message(pMsg);
+				m_DCCState++;
+				return rslt;
+			}
 
-				case 3:
-				{
-					//	Function group 3 (F9 - F12) Message
-					bool rslt = getDCCFG3Message(pMsg);
-					m_DCCState++;
-					return rslt;
-				}
+			case 3:
+			{
+				//	Function group 3 (F9 - F12) Message
+				bool rslt = getDCCFG3Message(pMsg);
+				m_DCCState++;
+				return rslt;
+			}
 
-				case 4:
-				{
-					//	Function group 4 (F13 - F20) Message
-					bool rslt = getDCCFG4Message(pMsg);
-					m_DCCState++;
-					return rslt;
-				}
+			case 4:
+			{
+				//	Function group 4 (F13 - F20) Message
+				bool rslt = getDCCFG4Message(pMsg);
+				m_DCCState++;
+				return rslt;
+			}
 
-				case 5:
-				{
-					//	Function group 5 (F21 - F28) Message
-					bool rslt = getDCCFG5Message(pMsg);
-					m_DCCState++;
-					return rslt;
-				}
-
-				case 6:
-				case 7:
-				case 8:
-				case 9:
-				case 10:
-				{
-					//	POM - Read CV
+			case 5:
+			{
+				//	Function group 5 (F21 - F28) Message
+				bool rslt = getDCCFG5Message(pMsg);
+				m_DCCState++;
+				return rslt;
+			}
 /*
-					pMsg[0] = 6;
-					pMsg[1] = m_LocInfo.Addr_LSB;
-					pMsg[2] = 0xE4;
-					pMsg[3] = m_CurrentCVRead;
-					pMsg[4] = 0x00;
-					pMsg[5] = pMsg[1] ^ pMsg[2] ^ pMsg[3] ^ pMsg[4];
-//					m_DCCState++;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+			{
+				//	POM - Read CV
+/*
+				pMsg[0] = 6;
+				pMsg[1] = m_LocInfo.Addr_LSB;
+				pMsg[2] = 0xE4;
+				pMsg[3] = m_CurrentCVRead;
+				pMsg[4] = 0x00;
+				pMsg[5] = pMsg[1] ^ pMsg[2] ^ pMsg[3] ^ pMsg[4];
+//				m_DCCState++;
  */
-					uint8_t* pCurrent = insertDCCAddress(pMsg);
-					*pCurrent++ = 0xE4;
-					*pCurrent++ = m_CurrentCVRead;
-					*pCurrent++ = 0x00;
-					pMsg[0] = 1 + (pCurrent - pMsg);
-					insertXOR(pMsg);
-					m_DCCState++;
-					return true;
-				}
+/*
+				uint8_t* pCurrent = insertDCCAddress(pMsg);
+				*pCurrent++ = 0xE4;
+				*pCurrent++ = m_CurrentCVRead;
+				*pCurrent++ = 0x00;
+				pMsg[0] = 1 + (pCurrent - pMsg);
+				insertXOR(pMsg);
+				m_DCCState++;
+				return true;
+			}
 
-				case 101:
-				{
-					return false;
-				}
-
-				default:
-				{
-					m_DCCState = 0;
-				}
+			case 101:
+			{
+				return false;
+			}
+*/
+			default:
+			{
+				m_DCCState = 0;
 			}
 		}
 		return false;

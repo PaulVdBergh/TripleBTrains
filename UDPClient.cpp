@@ -94,6 +94,12 @@ namespace TBT
 		sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
 	}
 
+	void UDPClient::broadcastOvercurrent()
+	{
+		uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x08, 0x69 };
+		sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+	}
+
 	/**
 	 *
 	 <table>

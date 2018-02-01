@@ -42,6 +42,7 @@ namespace TBT
 			virtual void broadcastPowerStateChange(bool newState);
 			virtual void broadcastLocInfoChanged(LocDecoder* pLoc);
 			virtual void broadcastEmergencyStop(void) {};
+			virtual void broadcastOvercurrent(void);
 
 		protected:
 			uint8_t	m_XpressNetAddress;

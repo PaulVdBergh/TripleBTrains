@@ -72,11 +72,48 @@ namespace TBT
 
 	GPIOPin::GPIO_DIRECTION GPIOPin::getDirection()
 	{
-		string input = read(m_Path, "edge");
+		string input = read(m_Path, "direction");
 		if(input == "in")
 			return INPUT;
 		else
 			return OUTPUT;
+	}
+
+	int GPIOPin::setEdge(GPIO_EDGE edge)
+	{
+		switch(edge)
+		{
+			case NONE:
+			{
+				return write(m_Path, "edge", "none");
+			}
+
+			case RISING:
+			{
+				return write(m_Path, "edge", "rising");
+			}
+
+			case FALLING:
+			{
+				return write(m_Path, "edge", "falling");
+			}
+
+			case BOTH:
+			{
+				return write(m_Path, "edge", "both");
+			}
+		}
+		return 0;
+	}
+
+	GPIOPin::GPIO_EDGE GPIOPin::getEdge()
+	{
+		string edge = read(m_Path, "edge");
+
+		if(edge == "none")			return NONE;
+		else if(edge == "rising")	return RISING;
+		else if(edge == "falling")	return FALLING;
+		else						return BOTH;
 	}
 
 	int GPIOPin::setValue(GPIO_VALUE value)
