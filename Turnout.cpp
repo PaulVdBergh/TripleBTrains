@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Paul Van den Bergh
+ * Copyright (C) 2018 Paul Van den Bergh
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,41 +16,26 @@
  */
 
 /*
- * Decoder.h
+ * Turnout.cpp
  *
- *  Created on: Nov 24, 2017
+ *  Created on: Feb 3, 2018
  *      Author: paul
  */
 
-#ifndef DECODER_H_
-#define DECODER_H_
-
-#include <stdint.h>
-#include "Manager.h"
+#include "Turnout.h"
 
 namespace TBT
 {
 
-	class Decoder
+	Turnout::Turnout()
 	{
-		public:
-			Decoder(Manager* pManager, uint16_t dccAddress);
-			virtual ~Decoder();
+		// TODO Auto-generated constructor stub
 
-			const uint16_t&		getDCCAddress(void) { return m_DCCAddress; }
-			virtual bool		getDccMessage(uint8_t* ) { return false; }
+	}
 
-		protected:
-			virtual uint8_t* insertDCCAddress(uint8_t* pMsg) = 0;
-			void insertXOR(uint8_t* pMsg);
-
-			uint16_t			m_DCCAddress;
-			Manager*			m_pManager;
-
-		private:
-
-	};	/*	class Decoder	*/
+	Turnout::~Turnout()
+	{
+		// TODO Auto-generated destructor stub
+	}
 
 } /* namespace TBT */
-
-#endif /* DECODER_H_ */

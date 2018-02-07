@@ -39,22 +39,6 @@ namespace TBT
 		m_pManager->unregisterDecoder(this);
 	}
 
-	uint8_t* Decoder::insertDCCAddress(uint8_t* pMsg)
-	{
-		uint8_t* pCurrent = &pMsg[1];
-		if(m_DCCAddress < 128)
-		{
-			*pCurrent++ = m_DCCAddress & 0xFF;
-		}
-		else
-		{
-			*pCurrent++ = 0xC0 | ((m_DCCAddress >> 8) & 0x3F);
-			*pCurrent++ = m_DCCAddress & 0xFF;
-		}
-
-		return pCurrent;
-	}
-
 	void Decoder::insertXOR(uint8_t* pMsg)
 	{
 		uint8_t* pXOR = pMsg + (pMsg[0] - 1);

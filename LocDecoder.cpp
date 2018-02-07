@@ -36,7 +36,7 @@ namespace TBT
 	,	m_CurrentCVRead(7)
 	{
 		// TODO Auto-generated constructor stub
-		m_LocInfo.Addr_MSB = (m_DCCAddress >> 8);
+		m_LocInfo.Addr_MSB = (m_DCCAddress >> 8) & 0x3F;
 		m_LocInfo.Addr_LSB = (m_DCCAddress & 0xFF);
 		setSpeedsteps(4);
 	}
@@ -123,7 +123,6 @@ namespace TBT
 			case 10:
 			{
 				//	POM - Read CV
-/*
 				pMsg[0] = 6;
 				pMsg[1] = m_LocInfo.Addr_LSB;
 				pMsg[2] = 0xE4;
@@ -131,8 +130,7 @@ namespace TBT
 				pMsg[4] = 0x00;
 				pMsg[5] = pMsg[1] ^ pMsg[2] ^ pMsg[3] ^ pMsg[4];
 //				m_DCCState++;
- */
-/*
+
 				uint8_t* pCurrent = insertDCCAddress(pMsg);
 				*pCurrent++ = 0xE4;
 				*pCurrent++ = m_CurrentCVRead;
@@ -154,6 +152,22 @@ namespace TBT
 			}
 		}
 		return false;
+	}
+
+	uint8_t* LocDecoder::insertDCCAddress(uint8_t* pMsg)
+	{
+		uint8_t* pCurrent = &pMsg[1];
+		if(m_DCCAddress < 128)
+		{
+			*pCurrent++ = m_DCCAddress & 0xFF;
+		}
+		else
+		{
+			*pCurrent++ = (m_DCCAddress >> 8);
+			*pCurrent++ = m_DCCAddress & 0xFF;
+		}
+
+		return pCurrent;
 	}
 
 	bool LocDecoder::getDCCSpeedMessage(uint8_t* pMsg)

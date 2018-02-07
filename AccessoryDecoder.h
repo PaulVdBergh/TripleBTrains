@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Paul Van den Bergh
+ * Copyright (C) 2018 Paul Van den Bergh
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,41 +16,40 @@
  */
 
 /*
- * Decoder.h
+ * AccessoryDecoder.h
  *
- *  Created on: Nov 24, 2017
+ *  Created on: Feb 2, 2018
  *      Author: paul
  */
 
-#ifndef DECODER_H_
-#define DECODER_H_
+#ifndef ACCESSORYDECODER_H_
+#define ACCESSORYDECODER_H_
 
-#include <stdint.h>
-#include "Manager.h"
+#include "Decoder.h"
 
 namespace TBT
 {
+	class Accessory;	//	Forward Declaration
 
-	class Decoder
+	/*
+	 *
+	 */
+	class AccessoryDecoder: public Decoder
 	{
 		public:
-			Decoder(Manager* pManager, uint16_t dccAddress);
-			virtual ~Decoder();
+			AccessoryDecoder(Manager* pManager, uint16_t dccAddress);
+			virtual ~AccessoryDecoder();
+			virtual uint8_t* insertDCCAddress(uint8_t* pMsg) { return NULL; };
 
-			const uint16_t&		getDCCAddress(void) { return m_DCCAddress; }
-			virtual bool		getDccMessage(uint8_t* ) { return false; }
+			void setTurnout(uint8_t port, bool OutputNbr, bool state);
 
 		protected:
-			virtual uint8_t* insertDCCAddress(uint8_t* pMsg) = 0;
-			void insertXOR(uint8_t* pMsg);
-
-			uint16_t			m_DCCAddress;
-			Manager*			m_pManager;
+			Accessory*	m_pAccessories[4];
 
 		private:
 
-	};	/*	class Decoder	*/
+	};	/*	class AccessoryDecoder	*/
 
 } /* namespace TBT */
 
-#endif /* DECODER_H_ */
+#endif /* ACCESSORYDECODER_H_ */

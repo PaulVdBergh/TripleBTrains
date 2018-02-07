@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Paul Van den Bergh
+ * Copyright (C) 2018 Paul Van den Bergh
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

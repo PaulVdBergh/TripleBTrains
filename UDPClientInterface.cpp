@@ -24,6 +24,7 @@
 
 #include "UDPClient.h"
 
+#include "AccessoryDecoder.h"
 #include "LocDecoder.h"
 
 #include <algorithm>
@@ -266,6 +267,11 @@ namespace TBT
 		while(bContinue)
 		{
 			int notifications = epoll_wait(epfd, evlist, 2, -1);
+
+			timespec time;
+			clock_gettime(CLOCK_MONOTONIC, &time);
+			printf("%lld.%.09ld : ", (long long)time.tv_sec, time.tv_nsec);
+
 			if (-1 == notifications)
 			{
 				if (EINTR == errno)
@@ -592,17 +598,21 @@ namespace TBT
 							{
 								printf("LAN_GET_LOC0MODE");
 								Manager* pManager = pClient->getInterface()->getManager();
-								uint16_t locAddress = (payload[4] << 8) + payload[5];
-								Decoder* pDecoder = pManager->findDecoder(locAddress);
+								uint16_t dccAddress = (payload[4] << 8) + payload[5];
+								if(dccAddress > 127)
+								{
+									dccAddress |= 0xC000;
+								}
+								Decoder* pDecoder = pManager->findDecoder(dccAddress);
 								if (pDecoder == NULL)
 								{
-									pDecoder = new LocDecoder(pManager, locAddress);
+									pDecoder = new LocDecoder(pManager, dccAddress);
 								}
 								LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 								if (pLoc)
 								{
 									uint8_t locMode[] = { 0x07, 0x00, 0x60, 0x00, 0x00, 0x00, 0x00};
-									locMode[4] = pLoc->getDCCAddress() >> 8;
+									locMode[4] = (0x3FFF & pLoc->getDCCAddress()) >> 8;
 									locMode[5] = pLoc->getDCCAddress() & 0xFF;
 									locMode[6] = pLoc->getLocMode();
 									sendto(m_fdsock_me, locMode, locMode[0], 0, (struct sockaddr*)&si_other, sizeof(si_other));
@@ -863,11 +873,15 @@ namespace TBT
 							{
 								printf("LAN_SET_LOCOMODE");
 								Manager* pManager = pClient->getInterface()->getManager();
-								uint16_t locAddress = (payload[4] << 8) + payload[5];
-								Decoder* pDecoder = pManager->findDecoder(locAddress);
+								uint16_t dccAddress = (payload[4] << 8) + payload[5];
+								if(dccAddress > 127)
+								{
+									dccAddress |= 0xC000;
+								}
+								Decoder* pDecoder = pManager->findDecoder(dccAddress);
 								if (pDecoder == NULL)
 								{
-									pDecoder = new LocDecoder(pManager, locAddress);
+									pDecoder = new LocDecoder(pManager, dccAddress);
 								}
 								LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 								if (pLoc)
@@ -954,7 +968,22 @@ namespace TBT
 									case 0x43: //  LAN_X_GET_TURNOUT_INFO
 									{
 										printf("LAN_X_GET_TURNOUT_INFO");
-										//	TODO implementation
+										Manager* pManager = pClient->getInterface()->getManager();
+
+										uint16_t FAddr = (payload[5] << 8) + payload[6];
+										uint16_t dccAddress = 0x8000 | (FAddr >> 2);
+										uint8_t port = FAddr & 0x0003;
+
+										Decoder* pDecoder = pManager->findDecoder(dccAddress);
+										if(!pDecoder)
+										{
+											pDecoder = new AccessoryDecoder(pManager, dccAddress);
+										}
+										AccessoryDecoder* pAccessory = dynamic_cast<AccessoryDecoder*>(pDecoder);
+										if(pAccessory)
+										{
+
+										}
 										break;
 									}
 
@@ -1006,7 +1035,20 @@ namespace TBT
 									case 0x53: //  LAN_X_SET_TURNOUT
 									{
 										printf("LAN_X_SET_TURNOUT");
-										//	TODO implementation
+										Manager* pManager = pClient->getInterface()->getManager();
+										uint16_t FAddr = (payload[5] << 8) + payload[6];
+										uint16_t dccAddress = 0x8000 | (FAddr >> 2);
+										uint8_t Port = payload[6] & 0x03;
+										Decoder* pDecoder = pManager->findDecoder(dccAddress);
+										if(!pDecoder)
+										{
+											pDecoder = new AccessoryDecoder(pManager, dccAddress);
+										}
+										AccessoryDecoder* pAccessoryDecoder = dynamic_cast<AccessoryDecoder*>(pDecoder);
+										if(pAccessoryDecoder)
+										{
+											pAccessoryDecoder->setTurnout(Port, payload[7] & 0x01, payload[7] & 0x08);
+										}
 										break;
 									}
 
@@ -1014,11 +1056,15 @@ namespace TBT
 									{
 										printf("LAN_X_GET_LOCO_INFO");
 										Manager* pManager = pClient->getInterface()->getManager();
-										uint16_t locAddress = ((payload[6] & 0x3F) << 8) + payload[7];
-										Decoder* pDecoder = pManager->findDecoder(locAddress);
+										uint16_t dccAddress = ((payload[6] & 0x3F) << 8) + payload[7];
+										if(dccAddress > 127)
+										{
+											dccAddress |= 0xC000;
+										}
+										Decoder* pDecoder = pManager->findDecoder(dccAddress);
 										if (pDecoder == NULL)
 										{
-											pDecoder = new LocDecoder(pManager, locAddress);
+											pDecoder = new LocDecoder(pManager, dccAddress);
 										}
 										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 										if (pLoc)
@@ -1043,11 +1089,15 @@ namespace TBT
 								if (payload[4] == 0xE4)
 								{
 									Manager* pManager = pClient->getInterface()->getManager();
-									uint16_t locAddress = ((payload[6] & 0x3F) << 8) + payload[7];
-									Decoder* pDecoder = pManager->findDecoder(locAddress);
+									uint16_t dccAddress = ((payload[6] & 0x3F) << 8) + payload[7];
+									if(dccAddress > 127)
+									{
+										dccAddress |= 0xC000;
+									}
+									Decoder* pDecoder = pManager->findDecoder(dccAddress);
 									if (pDecoder == NULL)
 									{
-										pDecoder = new LocDecoder(pManager, locAddress);
+										pDecoder = new LocDecoder(pManager, dccAddress);
 									}
 									LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 									if (pLoc)

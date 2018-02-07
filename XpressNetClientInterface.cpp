@@ -25,6 +25,7 @@
 #include "XpressNetClient.h"
 #include "XpressNetClientInterface.h"
 
+#include "AccessoryDecoder.h"
 #include "LocDecoder.h"
 
 #include <string.h>
@@ -176,6 +177,11 @@ namespace TBT
 		while(bContinue)
 		{
 			int notifications = epoll_wait(epfd, evlist, NBRXPRESSNETPOLLEVENTS, -1);
+
+			timespec time;
+			clock_gettime(CLOCK_MONOTONIC, &time);
+			printf("%lld.%.09ld : ", (long long)time.tv_sec, time.tv_nsec);
+
 			if (-1 == notifications)
 			{
 				if (EINTR == errno)
@@ -442,12 +448,39 @@ namespace TBT
 							case 0x42://	Accessory Decoder Information Request
 							{
 								printf("Accessory Decoder Information Request");
+								uint16_t dccAddress = 0x8000 | ((msg[3] * 4) + ((msg[4] & 0x01) * 2));
+
+								Manager* pManager = pClient->getInterface()->getManager();
+								Decoder* pDecoder = pManager->findDecoder(dccAddress);
+								if(!pDecoder)
+								{
+									pDecoder = new AccessoryDecoder(pManager, dccAddress);
+								}
+								AccessoryDecoder* pAccessory = dynamic_cast<AccessoryDecoder*>(pDecoder);
+								if(pAccessory)
+								{
+
+								}
 								break;
 							}	//	case 0x42
 
 							case 0x52://	Accessory Decoder operation request
 							{
 								printf("Accessory Decoder operation request");
+								uint16_t dccAddress = 0x8000 | (msg[3] * 4) | ((msg[4] & 0x06) >> 1);
+								uint8_t Port =  ((msg[4] & 0x06) >> 1);
+
+								Manager* pManager = pClient->getInterface()->getManager();
+								Decoder* pDecoder = pManager->findDecoder(dccAddress);
+								if(!pDecoder)
+								{
+									pDecoder = new AccessoryDecoder(pManager, dccAddress);
+								}
+								AccessoryDecoder* pAccessory = dynamic_cast<AccessoryDecoder*>(pDecoder);
+								if(pAccessory)
+								{
+									pAccessory->setTurnout(Port, msg[4] & 0x01, msg[4] & 0x08);
+								}
 								break;
 							}	//	case 0x52
 
@@ -477,11 +510,15 @@ namespace TBT
 									case 0x00://	Locomotive information request
 									{
 										printf("Locomotive information request");
-										uint16_t locAddress = (msg[4] << 8) + msg[5];
-										Decoder* pDecoder = pClient->getInterface()->getManager()->findDecoder(locAddress);
+										uint16_t dccAddress = (msg[4] << 8) + msg[5];
+										if(dccAddress > 127)
+										{
+											dccAddress |= 0xC000;
+										}
+										Decoder* pDecoder = pClient->getInterface()->getManager()->findDecoder(dccAddress);
 										if (pDecoder == NULL)
 										{
-											pDecoder = new LocDecoder(pClient->getInterface()->getManager(), locAddress);
+											pDecoder = new LocDecoder(pClient->getInterface()->getManager(), dccAddress);
 										}
 										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
 										if (pLoc)
@@ -540,119 +577,95 @@ namespace TBT
 
 							case 0xE4:
 							{
-								uint16_t locAddress = (msg[4] << 8) + msg[5];
-								Decoder* pDecoder = pClient->getInterface()->getManager()->findDecoder(locAddress);
-
-								switch(msg[3])
+								uint16_t dccAddress = (msg[4] << 8) + msg[5];
+								if(dccAddress > 127)
 								{
-									case 0x10://	Locomotive Speed and Direction operation (14 steps)
+									dccAddress |= 0xC000;
+								}
+								Decoder* pDecoder = pClient->getInterface()->getManager()->findDecoder(dccAddress);
+								if(!pDecoder)
+								{
+									pDecoder = new LocDecoder(pClient->getInterface()->getManager(), dccAddress);
+								}
+								LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
+
+								if(pLoc)
+								{
+									switch(msg[3])
 									{
-										printf("Locomotive Speed and Direction operation (14 steps)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x10://	Locomotive Speed and Direction operation (14 steps)
 										{
+											printf("Locomotive Speed and Direction operation (14 steps)");
 											pLoc->setLocoDrive14(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x11://	Locomotive Speed and Direction operation (27 steps)
-									{
-										printf("Locomotive Speed and Direction operation (27 steps)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x11://	Locomotive Speed and Direction operation (27 steps)
 										{
+											printf("Locomotive Speed and Direction operation (27 steps)");
 											pLoc->setLocoDrive27(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x12://	Locomotive Speed and Direction operation (28 steps)
-									{
-										printf("Locomotive Speed and Direction operation (28 steps)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x12://	Locomotive Speed and Direction operation (28 steps)
 										{
+											printf("Locomotive Speed and Direction operation (28 steps)");
 											pLoc->setLocoDrive28(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x13://	Locomotive Speed and Direction operation (128 steps)
-									{
-										printf("Locomotive Speed and Direction operation (128 steps)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x13://	Locomotive Speed and Direction operation (128 steps)
 										{
+											printf("Locomotive Speed and Direction operation (128 steps)");
 											pLoc->setLocoDrive128(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x20://	Function operation instruction (F0 - F4)
-									{
-										printf("Function operation instruction (F0 - F4)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x20://	Function operation instruction (F0 - F4)
 										{
+											printf("Function operation instruction (F0 - F4)");
 											pLoc->setFunctionGroup1(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x21://	Function operation instruction (F5 - F8)
-									{
-										printf("Function operation instruction (F5 - F8)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x21://	Function operation instruction (F5 - F8)
 										{
+											printf("Function operation instruction (F5 - F8)");
 											pLoc->setFunctionGroup2(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x22://	Function operation instruction (F9 - F12)
-									{
-										printf("Function operation instruction (F9 - F12)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x22://	Function operation instruction (F9 - F12)
 										{
+											printf("Function operation instruction (F9 - F12)");
 											pLoc->setFunctionGroup3(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x23://	Function operation instruction (F13 - F20)
-									{
-										printf("Function operation instruction (F13 - F20)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x23://	Function operation instruction (F13 - F20)
 										{
+											printf("Function operation instruction (F13 - F20)");
 											pLoc->setFunctionGroup4(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x28://	Function operation instruction (F21 - F28)
-									{
-										printf("Function operation instruction (F21 - F28)");
-										LocDecoder* pLoc = dynamic_cast<LocDecoder*>(pDecoder);
-										if(pLoc)
+										case 0x28://	Function operation instruction (F21 - F28)
 										{
+											printf("Function operation instruction (F21 - F28)");
 											pLoc->setFunctionGroup5(msg[6]);
+											break;
 										}
-										break;
-									}
 
-									case 0x42://	Remove Locomotive from multi-unit request
-									{
-										printf("Remove Locomotive from multi-unit request");
-										break;
-									}
+										case 0x42://	Remove Locomotive from multi-unit request
+										{
+											printf("Remove Locomotive from multi-unit request");
+											break;
+										}
 
-									default:
-									{
-										break;
+										default:
+										{
+											break;
+										}
 									}
 								}
 								break;

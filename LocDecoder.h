@@ -131,6 +131,8 @@ namespace TBT
 			void setF28(bool value) { lock_guard<recursive_mutex> lock(m_MLocInfo); value ? (m_LocInfo.DB7 |= 0x80) : (m_LocInfo.DB7 &= ~(0x80)); m_pManager->broadcastLocInfoChanged(this); }
 
 		protected:
+			virtual uint8_t* insertDCCAddress(uint8_t* pMsg);
+
 			bool getDCCSpeedMessage(uint8_t* pMsg);
 			bool getDCCFG1Message(uint8_t* pMsg);
 			bool getDCCFG2Message(uint8_t* pMsg);

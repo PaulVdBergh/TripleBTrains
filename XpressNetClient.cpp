@@ -56,7 +56,8 @@ namespace TBT
 
 	void XpressNetClient::broadcastOvercurrent()
 	{
-		uint8_t msg[] = { 0x05, 0x60 + m_XpressNetAddress, 0x61, 0x12, 0x73 };
+		uint8_t msg[] = { 0x05, 0x60, 0x61, 0x12, 0x73 };
+		msg[1] += m_XpressNetAddress;
 		for(uint8_t x = 0x40; x != 0; x = x >> 1)
 		{
 			if(msg[1] & x)
