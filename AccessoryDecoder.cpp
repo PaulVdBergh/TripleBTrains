@@ -47,9 +47,32 @@ namespace TBT
 		}
 	}
 
-	void AccessoryDecoder::setTurnout(uint8_t port, bool outputNbr, bool state)
+	bool AccessoryDecoder::getDccMessage(uint8_t* pMsg)
 	{
-		m_pAccessories[port]->setTurnout(outputNbr, state);
+		static uint8_t _currentAccessory = 0;
+		uint8_t currentAccessory = _currentAccessory;
+		do
+		{
+			if(m_pAccessories[currentAccessory++]->getDCCMessage(pMsg))
+			{
+				_currentAccessory = currentAccessory % 4;
+				return true;
+			}
+			currentAccessory %= 4;
+		}
+		while(currentAccessory != _currentAccessory);
+
+		return false;
+	}
+
+	uint8_t AccessoryDecoder::getState(uint8_t port)
+	{
+		return m_pAccessories[port]->getUDPState();
+	}
+
+	void AccessoryDecoder::setDesiredState(uint8_t port, uint8_t outputNbr, uint8_t state)
+	{
+		m_pAccessories[port]->setState(outputNbr, state);
 	}
 
 } /* namespace TBT */

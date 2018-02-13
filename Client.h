@@ -41,6 +41,7 @@ namespace TBT
 			//	pure virtuals
 			virtual void broadcastPowerStateChange(bool newState) = 0;
 			virtual void broadcastLocInfoChanged(LocDecoder* pLoc) = 0;
+			virtual void broadcastAccessoryInfoChanged(Accessory* pAccessory) = 0;
 			virtual void broadcastEmergencyStop(void) = 0;
 
 		protected:

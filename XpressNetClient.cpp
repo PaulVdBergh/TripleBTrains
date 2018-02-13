@@ -54,6 +54,11 @@ namespace TBT
 		//	TODO implementation
 	}
 
+	void XpressNetClient::broadcastAccessoryInfoChanged(Accessory* pAccessory)
+	{
+		//	TODO implementation
+	}
+
 	void XpressNetClient::broadcastOvercurrent()
 	{
 		uint8_t msg[] = { 0x05, 0x60, 0x61, 0x12, 0x73 };

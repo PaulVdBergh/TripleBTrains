@@ -30,6 +30,7 @@
 namespace TBT
 {
 
+#define ACCESSORYREPEATCOUNT	5
 	/*
 	 *
 	 */
@@ -39,13 +40,21 @@ namespace TBT
 			Accessory(AccessoryDecoder* pAccessoryDecoder, uint8_t port);
 			virtual ~Accessory();
 
-			void setTurnout(bool outputNbr, bool state);
+			uint8_t getUDPState(void);
+			void setUDPState(uint8_t newState);
+			bool getDCCMessage(uint8_t* pMsg);
+			void setState(uint8_t outputNbr, uint8_t state);
 
 		protected:
 
 		private:
 			AccessoryDecoder*	m_pAccDecoder;
 			uint8_t				m_Port;
+
+			uint8_t				m_currentState[2];
+			uint8_t				m_desiredState[2];
+
+			uint8_t				m_UDPState;
 
 	};
 

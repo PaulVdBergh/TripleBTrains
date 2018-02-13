@@ -116,6 +116,11 @@ namespace TBT
 		//	TODO implementation
 	}
 
+	void XpressNetClientInterface::broadcastAccessoryInfoChanged(Accessory* pAccessory)
+	{
+		//	TODO implementation
+	}
+
 	void XpressNetClientInterface::broadcastEmergencyStop()
 	{
 		uint8_t msg[] = {0x05, 0x60, 0x81, 0x00, 0x81};
@@ -143,6 +148,19 @@ namespace TBT
 			return pClient;
 		}
 		return client->second;
+	}
+
+	uint8_t XpressNetClientInterface::makeStraight(uint8_t* pValue)
+	{
+		*pValue &= 0x7F;
+		for(uint8_t i = 0; i < 7; i++)
+		{
+			if(*pValue & (1 << i))
+			{
+				*pValue ^= 0x80;
+			}
+		}
+		return *pValue;
 	}
 
 	void XpressNetClientInterface::threadFunc()
@@ -267,6 +285,7 @@ namespace TBT
 										printf("Command station software-version request");
 										uint8_t response[7] = {0x07, 0x60, 0x63, 0x21, 0x30, 0x00, 0x72};
 										response[1] += msg[1];
+										makeStraight(&(response[1]));
 										for (uint8_t x = 0x40; x != 0; x = x >> 1)
 										{
 											if (response[1] & x)
@@ -288,6 +307,7 @@ namespace TBT
 										printf("Command station status request");
 										uint8_t response[6] = {0x06, 0x60, 0x62, 0x22, 0x00, 0x00};
 										response[1] += msg[1];	//	address
+										makeStraight(&(response[1]));
 										uint8_t centralState = pClient->getInterface()->getManager()->getCentralState();
 										for (uint x = 0x40; x != 0; x >>= 1)
 										{
@@ -448,7 +468,8 @@ namespace TBT
 							case 0x42://	Accessory Decoder Information Request
 							{
 								printf("Accessory Decoder Information Request");
-								uint16_t dccAddress = 0x8000 | ((msg[3] * 4) + ((msg[4] & 0x01) * 2));
+								uint16_t dccAddress = 0x8000 | msg[3];
+								uint8_t nibble = (msg[4] & 0x01);
 
 								Manager* pManager = pClient->getInterface()->getManager();
 								Decoder* pDecoder = pManager->findDecoder(dccAddress);
@@ -456,10 +477,29 @@ namespace TBT
 								{
 									pDecoder = new AccessoryDecoder(pManager, dccAddress);
 								}
-								AccessoryDecoder* pAccessory = dynamic_cast<AccessoryDecoder*>(pDecoder);
-								if(pAccessory)
+								AccessoryDecoder* pAccessoryDecoder = dynamic_cast<AccessoryDecoder*>(pDecoder);
+								if(pAccessoryDecoder)
 								{
-
+									uint8_t response[] = {0x06, 0x60, 0x42, 0x00, 0x00, 0x00};
+									response[1] += msg[1];
+									makeStraight(&(response[1]));
+									response[3] = msg[3];
+									response[4] |= nibble << 4;
+									response[4] |= (pAccessoryDecoder->getState(0 + (nibble * 2)));
+									response[4] |= (pAccessoryDecoder->getState(1 + (nibble * 2))) << 2;
+									if(((response[4] & 0x03) == 0) || ((response[4] & 0x0C) == 0))
+									{
+										response[4] |= 0x80;
+									}
+									for (uint8_t i = 2; i < 5; i++)
+									{
+										response[5] ^= response[i];
+									}
+									ssize_t nbrWritten = write(m_fdSerial, response, response[0]);
+									if (nbrWritten == -1)
+									{
+										perror("Write response");
+									}
 								}
 								break;
 							}	//	case 0x42
@@ -467,7 +507,7 @@ namespace TBT
 							case 0x52://	Accessory Decoder operation request
 							{
 								printf("Accessory Decoder operation request");
-								uint16_t dccAddress = 0x8000 | (msg[3] * 4) | ((msg[4] & 0x06) >> 1);
+								uint16_t dccAddress = 0x8000 | msg[3];
 								uint8_t Port =  ((msg[4] & 0x06) >> 1);
 
 								Manager* pManager = pClient->getInterface()->getManager();
@@ -476,10 +516,10 @@ namespace TBT
 								{
 									pDecoder = new AccessoryDecoder(pManager, dccAddress);
 								}
-								AccessoryDecoder* pAccessory = dynamic_cast<AccessoryDecoder*>(pDecoder);
-								if(pAccessory)
+								AccessoryDecoder* pAccessoryDecoder = dynamic_cast<AccessoryDecoder*>(pDecoder);
+								if(pAccessoryDecoder)
 								{
-									pAccessory->setTurnout(Port, msg[4] & 0x01, msg[4] & 0x08);
+									pAccessoryDecoder->setDesiredState(Port, msg[4] & 0x01, (msg[4] & 0x08) >> 3);
 								}
 								break;
 							}	//	case 0x52
@@ -525,6 +565,7 @@ namespace TBT
 										{
 											uint8_t response[8] = {0x08, 0x60, 0xE4, 0x00, 0x00, 0x00, 0x00, 0x00};
 											response[1] += msg[1];
+											makeStraight(&(response[1]));
 
 											response[3] = pLoc->getSpeedsteps();
 											response[4] = pLoc->getDirection() | pLoc->getSpeed();

@@ -79,6 +79,11 @@ namespace TBT
 		sendto(m_MySocket, pMsg, pMsg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
 	}
 
+	void UDPClient::broadcastAccessoryInfoChanged(Accessory* pAccessory)
+	{
+		//	TODO implementation
+	}
+
 	/**
 	 *
 	 <table>

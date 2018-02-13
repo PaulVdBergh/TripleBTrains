@@ -33,12 +33,14 @@ namespace TBT
 
 	class Decoder
 	{
+		friend class Accessory;
+
 		public:
 			Decoder(Manager* pManager, uint16_t dccAddress);
 			virtual ~Decoder();
 
 			const uint16_t&		getDCCAddress(void) { return m_DCCAddress; }
-			virtual bool		getDccMessage(uint8_t* ) { return false; }
+			virtual bool		getDccMessage(uint8_t* ) = 0;
 
 		protected:
 			virtual uint8_t* insertDCCAddress(uint8_t* pMsg) = 0;

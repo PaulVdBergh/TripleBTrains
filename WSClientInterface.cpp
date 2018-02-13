@@ -66,6 +66,11 @@ namespace TBT
 
 	}
 
+	void WSClientInterface::broadcastAccessoryInfoChanged(Accessory* pAccessory)
+	{
+
+	}
+
 	void WSClientInterface::broadcastEmergencyStop()
 	{
 		char msg[] = "{ \"EmergencyStop\":\"ON\" }";

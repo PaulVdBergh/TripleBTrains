@@ -43,10 +43,15 @@ namespace TBT
 			//	Virtuals
 			virtual void broadcastPowerStateChange(bool newState);
 			virtual void broadcastLocInfoChange(LocDecoder* pLoc);
+
+			///	send a notification to all clients about the Accessory
+			virtual void	broadcastAccessoryInfoChanged(Accessory* pAccessory);
 			virtual void broadcastEmergencyStop(void);
 			virtual void broadcastOvercurrent(void);
 
 			const int& getSerial(void) { return m_fdSerial; }
+
+			static uint8_t makeStraight(uint8_t* pValue);
 
 		protected:
 			XpressNetClient*	findClient(const uint8_t& address);	//	if client doesn't exists, it's created.

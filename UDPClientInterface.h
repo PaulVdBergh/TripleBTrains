@@ -103,6 +103,9 @@ namespace TBT
 			///	sends a notification to all clients about the locdecoder.
 			virtual void 	broadcastLocInfoChange(LocDecoder* pLoc);
 
+			///	send a notification to all clients about the Accessory
+			virtual void	broadcastAccessoryInfoChanged(Accessory* pAccessory);
+
 			///	sends a notification to all clients about an emergencystop.
 			virtual void	broadcastEmergencyStop(void);
 

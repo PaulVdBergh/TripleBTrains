@@ -34,12 +34,15 @@ using namespace std;
 #include "Types.h"
 #include "GPIOPin.h"
 
+#define MAIN_CURRENT_ANALOG_PATH "/sys/bus/iio/devices/iio:device0/in_voltage0_raw"
+
 namespace TBT
 {
 
 	class ClientInterface;	//	forward declaration
 	class Decoder;			//	forward declaration
 	class LocDecoder;		//	forward declaration
+	class Accessory;		//	forward declaration
 	class DccGenerator;		//	forward declaration
 
 	/// Class Manager represents 'the Boss' in the system.
@@ -69,6 +72,9 @@ namespace TBT
 
 			///	sends message to all interfaces about the locdecoder
 			void			broadcastLocInfoChanged(LocDecoder* pLoc);
+
+			///	sends a message to all interfaces about the accessory decoder
+			void			broadcastAccessoryInfoChanged(Accessory* pAccessory);
 
 			///	sets the new powerstate and notifies all interfaces about the new state
 			void 			setPowerState(PowerState newState);

@@ -39,11 +39,15 @@ namespace TBT
 		public:
 			AccessoryDecoder(Manager* pManager, uint16_t dccAddress);
 			virtual ~AccessoryDecoder();
-			virtual uint8_t* insertDCCAddress(uint8_t* pMsg) { return NULL; };
 
-			void setTurnout(uint8_t port, bool OutputNbr, bool state);
+			virtual bool getDccMessage(uint8_t* pMsg);
+
+			uint8_t	getState(uint8_t port);
+			void setDesiredState(uint8_t port, uint8_t OutputNbr, uint8_t state);
 
 		protected:
+			virtual uint8_t* insertDCCAddress(uint8_t* pMsg) { return NULL; };
+
 			Accessory*	m_pAccessories[4];
 
 		private:

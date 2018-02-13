@@ -187,6 +187,15 @@ namespace TBT
 		}
 	}
 
+	void Manager::broadcastAccessoryInfoChanged(Accessory* pAccessory)
+	{
+		lock_guard<recursive_mutex> guard(m_MClientInterfaces);
+		for(auto interface : m_ClientInterfaces)
+		{
+			interface->broadcastAccessoryInfoChanged(pAccessory);
+		}
+	}
+
 	/**
 	 * Manager::setPowerState set the powerstate of the system to the new state indicated by
 	 * newState and informs each interface about the new state.  In the case that newState is
@@ -356,6 +365,26 @@ namespace TBT
 			else if(0 == notifications)
 			{
 				//	Timeout occured -> read analog values (current, temp etc.)
+
+				fstream	fsMainCurrent;
+				int reading;
+
+				/*
+				 *	1.8V equals 4096 steps
+				 *	1.8V over 0.235 Ohm is 7659 mA
+				 *	7659 mA devided over 4096 steps
+				 *	1 step is equal to 1.87 mA (7659 / 4096)
+				 */
+				fsMainCurrent.open(MAIN_CURRENT_ANALOG_PATH, fstream::in);
+				if(!fsMainCurrent.is_open())
+				{
+					printf("Manager : Cannot open fsMainCurrent.\n");
+				}
+
+				fsMainCurrent >> reading;
+				m_SystemState.MainCurrent = 1.87 * reading;
+
+				fsMainCurrent.close();
 			}
 			else
 			{

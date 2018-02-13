@@ -138,6 +138,16 @@ namespace TBT
 		}
 	}
 
+	void UDPClientInterface::broadcastAccessoryInfoChanged(Accessory* pAccessory)
+	{
+		lock_guard<recursive_mutex> guard(sm_MClients);
+
+		for(auto client : sm_Clients)
+		{
+			client->broadcastAccessoryInfoChanged(pAccessory);
+		}
+	}
+
 	/**
 	 * UDPClinetInterface::broadcastEmergencyStop informs each client about
 	 * the raise of an emergency stop.
@@ -979,10 +989,20 @@ namespace TBT
 										{
 											pDecoder = new AccessoryDecoder(pManager, dccAddress);
 										}
-										AccessoryDecoder* pAccessory = dynamic_cast<AccessoryDecoder*>(pDecoder);
-										if(pAccessory)
+										AccessoryDecoder* pAccessoryDecoder = dynamic_cast<AccessoryDecoder*>(pDecoder);
+										if(pAccessoryDecoder)
 										{
+											uint8_t pMsg[] = { 0x09, 0x00, 0x40, 0x00, 0x43, 0x00, 0x00, 0x00, 0x00};
+											pMsg[5] = payload[5];
+											pMsg[6] = payload[6];
+											pMsg[7] = pAccessoryDecoder->getState(port);
 
+											for(uint8_t i = 4; i < (pMsg[0] - 1); i++)
+											{
+												pMsg[8] ^= pMsg[i];
+											}
+
+											sendto(m_fdsock_me, pMsg, pMsg[0], 0, (struct sockaddr*)&si_other, sizeof(si_other));
 										}
 										break;
 									}
@@ -1047,7 +1067,7 @@ namespace TBT
 										AccessoryDecoder* pAccessoryDecoder = dynamic_cast<AccessoryDecoder*>(pDecoder);
 										if(pAccessoryDecoder)
 										{
-											pAccessoryDecoder->setTurnout(Port, payload[7] & 0x01, payload[7] & 0x08);
+											pAccessoryDecoder->setDesiredState(Port, payload[7] & 0x01, (payload[7] & 0x08) >> 3);
 										}
 										break;
 									}

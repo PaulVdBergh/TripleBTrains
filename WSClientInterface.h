@@ -47,6 +47,9 @@ namespace TBT
 
 			virtual void	broadcastPowerStateChange(bool newState);
 			virtual void 	broadcastLocInfoChange(LocDecoder* pLoc);
+
+			///	send a notification to all clients about the Accessory
+			virtual void	broadcastAccessoryInfoChanged(Accessory* pAccessory);
 			virtual void	broadcastEmergencyStop(void);
 			virtual void	broadcastOvercurrent(void);
 
