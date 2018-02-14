@@ -118,7 +118,11 @@ namespace TBT
 
 	void XpressNetClientInterface::broadcastAccessoryInfoChanged(Accessory* pAccessory)
 	{
-		//	TODO implementation
+		lock_guard<recursive_mutex> guard(m_MClients);
+		for(auto client : m_Clients)
+		{
+			client.second->broadcastAccessoryInfoChanged(pAccessory);
+		}
 	}
 
 	void XpressNetClientInterface::broadcastEmergencyStop()
@@ -153,9 +157,9 @@ namespace TBT
 	uint8_t XpressNetClientInterface::makeStraight(uint8_t* pValue)
 	{
 		*pValue &= 0x7F;
-		for(uint8_t i = 0; i < 7; i++)
+		for(uint8_t i = 0x40; i != 0; i >>= 1)
 		{
-			if(*pValue & (1 << i))
+			if(*pValue & i)
 			{
 				*pValue ^= 0x80;
 			}
@@ -286,13 +290,6 @@ namespace TBT
 										uint8_t response[7] = {0x07, 0x60, 0x63, 0x21, 0x30, 0x00, 0x72};
 										response[1] += msg[1];
 										makeStraight(&(response[1]));
-										for (uint8_t x = 0x40; x != 0; x = x >> 1)
-										{
-											if (response[1] & x)
-											{
-												response[1] ^= 0x80;
-											}
-										}
 
 										ssize_t nbrWritten = write(m_fdSerial, response, response[0]);
 										if (nbrWritten == -1)
@@ -309,13 +306,6 @@ namespace TBT
 										response[1] += msg[1];	//	address
 										makeStraight(&(response[1]));
 										uint8_t centralState = pClient->getInterface()->getManager()->getCentralState();
-										for (uint x = 0x40; x != 0; x >>= 1)
-										{
-											if (response[1] & x)
-											{
-												response[1] ^= 0x80;
-											}
-										}
 
 										response[4] = centralState & 0x03;				// Emergency Stop and Track Voltage Off
 										response[4] |= ((centralState & 0x04) << 1);	// Short Curcuit

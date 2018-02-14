@@ -40,6 +40,8 @@ namespace TBT
 			AccessoryDecoder(Manager* pManager, uint16_t dccAddress);
 			virtual ~AccessoryDecoder();
 
+			Accessory* getAccessory(uint8_t port) { return m_pAccessories[port]; }
+
 			virtual bool getDccMessage(uint8_t* pMsg);
 
 			uint8_t	getState(uint8_t port);

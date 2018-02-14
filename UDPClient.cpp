@@ -25,6 +25,7 @@
 #include "UDPClient.h"
 
 #include "LocDecoder.h"
+#include "Accessory.h"
 
 namespace TBT
 {
@@ -34,7 +35,7 @@ namespace TBT
 	,	m_Address(address)
 	,	m_BroadcastFlags(0)
 	{
-		m_MySocket = ((UDPClientInterface*)m_pInterface)->getMySocket();
+
 	}
 
 	UDPClient::~UDPClient()
@@ -62,12 +63,12 @@ namespace TBT
 		if(newState)	//	Track Power On
 		{
 			const uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x01, 0x60 };
-			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+			((UDPClientInterface*)getInterface())->sendToSocket(msg, (sockaddr*)&m_Address);
 		}
 		else	//	Track Power Off
 		{
 			const uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x00, 0x61 };
-			sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+			((UDPClientInterface*)getInterface())->sendToSocket(msg, (sockaddr*)&m_Address);
 		}
 	}
 
@@ -76,12 +77,22 @@ namespace TBT
 		uint8_t pMsg[0x0E];
 		pLoc->getLANLocInfo(pMsg);
 
-		sendto(m_MySocket, pMsg, pMsg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+		((UDPClientInterface*)getInterface())->sendToSocket(pMsg, (sockaddr*)&m_Address);
 	}
 
 	void UDPClient::broadcastAccessoryInfoChanged(Accessory* pAccessory)
 	{
-		//	TODO implementation
+		uint8_t msg[] = { 0x09, 0x00, 0x40, 0x00, 0x43, 0x00, 0x00, 0x00, 0x00 };
+		uint16_t FAddr = (pAccessory->getDecoder()->getDCCAddress() << 2) + pAccessory->getPort();
+		msg[5] = FAddr >> 8;
+		msg[6] = FAddr & 0x00FF;
+		msg[7] = pAccessory->getUDPState();
+		for(uint8_t i = 4; i < 8; i++)
+		{
+			msg[8] ^= msg[i];
+		}
+
+		((UDPClientInterface*)getInterface())->sendToSocket(msg, (sockaddr*)&m_Address);
 	}
 
 	/**
@@ -96,13 +107,13 @@ namespace TBT
 	void UDPClient::broadcastEmergencyStop(void)
 	{
 		uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x81, 0x00, 0x81};
-		sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+		((UDPClientInterface*)getInterface())->sendToSocket(msg, (sockaddr*)&m_Address);
 	}
 
 	void UDPClient::broadcastOvercurrent()
 	{
 		uint8_t msg[] = { 0x07, 0x00, 0x40, 0x00, 0x61, 0x08, 0x69 };
-		sendto(m_MySocket, msg, msg[0], 0, (sockaddr*)&m_Address, sizeof(m_Address));
+		((UDPClientInterface*)getInterface())->sendToSocket(msg, (sockaddr*)&m_Address);
 	}
 
 	/**

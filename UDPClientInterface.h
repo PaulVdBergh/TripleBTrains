@@ -93,9 +93,11 @@ namespace TBT
 			 *
 			 * @param	none
 			 *
-			 * @return	int : handle to socket on wich to send responses to.
+			 * @return	int : handle to socket on which to send responses to.
 			 */
-			int				getMySocket(void) { return m_fdsock_me; }
+			//int				getMySocket(void) { return m_fdsock_me; }
+
+			ssize_t			sendToSocket(const uint8_t* pMsg, sockaddr* address);
 
 			///	sends a notification to all clients about a powerstate change.
 			virtual void 	broadcastPowerStateChange(bool newState);
@@ -127,6 +129,7 @@ namespace TBT
 			thread		m_thread;
 			sockaddr_in m_sockaddr_me;
 			int			m_fdsock_me;
+			recursive_mutex	m_Mfdsock_me;
 			int			m_fdStop;
 
 			vector<UDPClient*>	sm_Clients;

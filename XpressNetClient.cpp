@@ -25,6 +25,8 @@
 #include "XpressNetClient.h"
 #include "XpressNetClientInterface.h"
 
+#include "Accessory.h"
+
 #include <unistd.h>
 
 namespace TBT
@@ -56,20 +58,32 @@ namespace TBT
 
 	void XpressNetClient::broadcastAccessoryInfoChanged(Accessory* pAccessory)
 	{
-		//	TODO implementation
+		uint8_t msg[] = { 0x06, 0x60, 0x42, 0x00, 0x00, 0x00};
+		msg[1] += m_XpressNetAddress;
+		XpressNetClientInterface::makeStraight(&msg[1]);
+		AccessoryDecoder* pAccessoryDecoder = dynamic_cast<AccessoryDecoder*>(pAccessory->getDecoder());
+		msg[3] = (pAccessoryDecoder->getDCCAddress() & 0x3FFF) / 4;
+		uint8_t nibble = pAccessory->getPort() / 2;
+		if(nibble)
+		{
+			msg[4] |= 0x10;
+		}
+		msg[4] |= (pAccessoryDecoder->getState(nibble * 2));
+		msg[4] |= (pAccessoryDecoder->getState((nibble * 2) + 1) << 2);
+		msg[5] = msg[2] ^ msg[3] ^ msg[4];
+
+		XpressNetClientInterface* pInterface = dynamic_cast<XpressNetClientInterface*>(getInterface());
+		if(pInterface)
+		{
+			write(pInterface->getSerial(), msg, msg[0]);
+		}
 	}
 
 	void XpressNetClient::broadcastOvercurrent()
 	{
 		uint8_t msg[] = { 0x05, 0x60, 0x61, 0x12, 0x73 };
 		msg[1] += m_XpressNetAddress;
-		for(uint8_t x = 0x40; x != 0; x = x >> 1)
-		{
-			if(msg[1] & x)
-			{
-				msg[1] ^= 0x80;
-			}
-		}
+		XpressNetClientInterface::makeStraight(&msg[1]);
 
 		XpressNetClientInterface* pInterface = dynamic_cast<XpressNetClientInterface*>(getInterface());
 		if(pInterface)

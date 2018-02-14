@@ -45,6 +45,9 @@ namespace TBT
 			bool getDCCMessage(uint8_t* pMsg);
 			void setState(uint8_t outputNbr, uint8_t state);
 
+			AccessoryDecoder* getDecoder(void) { return m_pAccDecoder; }
+			uint8_t getPort(void) { return m_Port; }
+
 		protected:
 
 		private:

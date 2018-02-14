@@ -49,7 +49,6 @@ namespace TBT
 
 		protected:
 			const sockaddr_in	m_Address;
-			int					m_MySocket;
 			uint32_t			m_BroadcastFlags;
 
 		private:

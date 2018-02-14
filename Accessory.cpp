@@ -52,8 +52,8 @@ namespace TBT
 	{
 		if(m_UDPState != newState)
 		{
-			m_pAccDecoder->m_pManager->broadcastAccessoryInfoChanged(this);
 			m_UDPState = newState;
+			m_pAccDecoder->m_pManager->broadcastAccessoryInfoChanged(this);
 		}
 	}
 
@@ -67,11 +67,18 @@ namespace TBT
 		bool retval = false;
 		pMsg[0] = 4;
 		pMsg[1] = 0x80 | (m_pAccDecoder->getDCCAddress() & 0x003F);
-		pMsg[2] = 0x80 | ((~(m_pAccDecoder->getDCCAddress() & 0x01C0) >> 2) & 0x70) | (m_Port << 1);
+		pMsg[2] = 0x80 | ((~(m_pAccDecoder->getDCCAddress() & 0x01C0) >> 2) & 0x70) | ((m_Port & 0x03) << 1);
 		if((m_desiredState[0] == 0) && (m_currentState[0] != 0))
 		{
 			retval = true;
 			m_currentState[0]--;
+		}
+		else if((m_desiredState[1] == 0) && (m_currentState[1] != 0))
+		{
+			pMsg[2] |= 0x01;
+			retval = true;
+			m_currentState[1]--;
+
 		}
 		else if((m_desiredState[0] == ACCESSORYREPEATCOUNT) && (m_currentState[0] != ACCESSORYREPEATCOUNT))
 		{
@@ -81,17 +88,6 @@ namespace TBT
 			{
 				setUDPState(1);
 			}
-			else
-			{
-				setUDPState(0);
-			}
-		}
-		else if((m_desiredState[1] == 0) && (m_currentState[1] != 0))
-		{
-			pMsg[2] |= 0x01;
-			retval = true;
-			m_currentState[1]--;
-
 		}
 		else if((m_desiredState[1] == ACCESSORYREPEATCOUNT) && (m_currentState[1] != ACCESSORYREPEATCOUNT))
 		{
@@ -100,10 +96,6 @@ namespace TBT
 			if(++m_currentState[1] == ACCESSORYREPEATCOUNT)
 			{
 				setUDPState(2);
-			}
-			else
-			{
-				setUDPState(0);
 			}
 		}
 
@@ -114,7 +106,13 @@ namespace TBT
 
 	void Accessory::setState(uint8_t outputNbr, uint8_t state)
 	{
-		m_desiredState[outputNbr] = state * ACCESSORYREPEATCOUNT;
+		if(state)
+		{
+			uint16_t FAddr = (m_pAccDecoder->getDCCAddress() << 2) + (m_Port & 0x03);
+			printf("Accessory %i : set output %i to %i.\n", FAddr, outputNbr, state);
+			m_desiredState[outputNbr] = state * ACCESSORYREPEATCOUNT;
+			m_desiredState[outputNbr ? 0 : 1] = 0;
+		}
 	}
 
 } /* namespace TBT */
