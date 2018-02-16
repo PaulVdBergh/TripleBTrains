@@ -85,6 +85,14 @@ namespace TBT
 	{
 		delete [] m_pTtyPath;
 
+		{
+			lock_guard<recursive_mutex> guard(m_MClients);
+			for(auto client : m_Clients)
+			{
+				delete client.second;
+			}
+		}
+
 		uint64_t stop = 1;
 		if(sizeof(stop) != write(m_fdStop, &stop, sizeof(stop)))
 		{
@@ -94,6 +102,7 @@ namespace TBT
 		m_thread.join();
 		close(m_fdSerial);
 		close(m_fdStop);
+
 	}
 
 	void XpressNetClientInterface::broadcastPowerStateChange(bool newState)

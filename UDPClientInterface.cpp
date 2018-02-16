@@ -95,11 +95,18 @@ namespace TBT
 	 */
 	UDPClientInterface::~UDPClientInterface()
 	{
+		lock_guard<recursive_mutex> guard(sm_MClients);
+		for(auto client : sm_Clients)
+		{
+			delete client;
+		}
+
 		uint64_t stop = 1;
 		write(m_fdStop, &stop, sizeof(stop));
 		m_thread.join();
 		shutdown(m_fdsock_me, SHUT_RDWR);
 		close(m_fdStop);
+
 	}
 
 	ssize_t UDPClientInterface::sendToSocket(const uint8_t* pMsg, sockaddr* address)
